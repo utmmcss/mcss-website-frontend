@@ -4,5 +4,5 @@
 ### What is changed / added
 - short description of the PR
 
-### Screen shots
-- if applicabale
+### Screenshots
+- if applicable
