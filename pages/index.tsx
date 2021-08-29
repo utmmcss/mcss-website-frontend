@@ -1,4 +1,9 @@
 import { FC } from 'react';
-const Home: FC = () => <div>Home Page</div>;
+
+interface Props {
+  title: string;
+}
+
+const Home: FC<Props> = ({ title }) => <div>Home Page</div>;
 
 export default Home;
