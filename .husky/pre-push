@@ -1,4 +1,21 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run lint
+# Check ESLint Standards
+npm run link ||
+(
+        echo '😤🏀👋😤 Failed linting! 😤🏀👋😤 
+                ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+        false; 
+)
+
+# Check tsconfig standards
+npm run check-types ||
+(
+    echo '🤡😂❌🤡 Failed Type check! 🤡😂❌🤡
+                Make the changes required above.'
+    false;
+)
+
+# If everything passes... Now we can commit
+echo '✅✅✅✅ Looks good to me, I am committing this now... ✅✅✅✅'
