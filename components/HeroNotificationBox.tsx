@@ -3,8 +3,8 @@ import Image from "next/image";
 import { FC } from "react";
 
 type HeroNotificationBoxProps = {
-  title: string;
-  content: string;
+  title?: string;
+  content?: string;
 };
 
 const HeroNotificationBox: FC<HeroNotificationBoxProps> = ({
