@@ -1,6 +1,6 @@
-import Arrow from "../public/arrow_forward.svg";
-import Image from "next/image";
-import { FC } from "react";
+import { FC } from 'react';
+import Image from 'next/image';
+import Arrow from '../public/arrow_forward.svg';
 
 type HeroNotificationBoxProps = {
   title?: string;
@@ -10,19 +10,23 @@ type HeroNotificationBoxProps = {
 const HeroNotificationBox: FC<HeroNotificationBoxProps> = ({
   title,
   content,
-}) => {
-  return (
-    <div className="heroNotificationBox">
-      <p className="text-2xl font-bold">{title || "We’re hosting an event!"}</p>
-      <div className="flex justify-evenly items-center">
-        <p className="text-base overflow-clip flex-shrink font-medium">
-          {content || "This is going to be a fun event!"}
-        </p>
-        <button className="flex-none max-h-12">
-          <Image src={Arrow} alt="Events"></Image>
-        </button>
-      </div>
+}: HeroNotificationBoxProps) => (
+  <div className="heroNotificationBox">
+    <p className="text-2xl font-bold">{title}</p>
+    <div className="flex justify-between items-center">
+      <p className="text-base overflow-clip flex-shrink font-medium">
+        {content}
+      </p>
+      <button type="button" className="flex-none max-h-12">
+        <Image src={Arrow} alt="Events" />
+      </button>
     </div>
-  );
+  </div>
+);
+
+HeroNotificationBox.defaultProps = {
+  title: 'We’re hosting an event!',
+  content: 'This is going to be a fun event!',
 };
+
 export default HeroNotificationBox;
