@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 type CardProps = {
-  elevation?: number;
+  children: React.ReactNode;
   className?: string;
 };
 
