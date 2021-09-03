@@ -10,7 +10,7 @@ type HeroNotificationBoxProps = {
 const HeroNotificationBox: FC<HeroNotificationBoxProps> = ({
   title,
   content,
-}: HeroNotificationBoxProps) => (
+}) => (
   <div className="heroNotificationBox">
     <p className="text-2xl font-bold">{title}</p>
     <div className="flex justify-between items-center">
