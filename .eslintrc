@@ -4,7 +4,8 @@
     "import/newline-after-import": ["error", { "count": 1 }],
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
-    "import/no-extraneous-dependencies": "off"
+    "import/no-extraneous-dependencies": "off",
+    "react/prop-types": "off"
   },
   "parserOptions": {
     "project": "./tsconfig.json"
