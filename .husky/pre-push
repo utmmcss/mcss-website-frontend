@@ -18,4 +18,4 @@ npm run check-types ||
 )
 
 # If everything passes... Now we can commit
-echo '✅✅✅✅ Looks good to me, I am committing this now... ✅✅✅✅'
+echo '✅✅✅✅ Looks good to me, I am pushing this now... ✅✅✅✅'
