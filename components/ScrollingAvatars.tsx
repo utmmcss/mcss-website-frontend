@@ -10,7 +10,7 @@ interface AvatarInfo {
 interface IProps {
   /** pre-set width and height of each avatar */
   size?: 'small' | 'mid' | 'large';
-  /** list of objects containing the configs for the avatars */
+  /** list of objects containing the configs for the avatars, maximum size is 24 */
   avatarInfos: AvatarInfo[];
   scrollDirection?: 'left' | 'right';
 }
@@ -32,6 +32,10 @@ const AVATAR_ENUM = {
   },
 };
 
+/**
+ * Given a list of avatar infos, calculate the total number of avatars needed to be appended to
+ * create infinte scrolling animation and return the new list of avatar infos.
+ */
 const appendAvatarInfos = (
   avatarInfos: AvatarInfo[],
   { size, margin }: { size: number; margin: number },
@@ -67,7 +71,9 @@ const ScrollingAvatars: FC<IProps> = ({
   return (
     <div className="scrolling-avatars">
       <p className="text-center title-string">{titleString}</p>
-      <div className={`scrolling-avatars-container--${size}--scroll-${scrollDirection}`}>
+      <div
+        className={`scrolling-avatars-container--${size}--${avatarInfos.length}--scroll-${scrollDirection}`}
+      >
         {appendedAvatarsInfos.map(({ name: currName, position: currPosition, imgSrc }) => (
           <Avatar
             onMouseEnter={() => {

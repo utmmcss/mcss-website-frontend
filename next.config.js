@@ -6,6 +6,6 @@ module.exports = {
     includePaths: [path.join(__dirname, 'scss')],
   },
   images: {
-    domains: ['i.pravatar.cc'],
+    domains: ['i.pravatar.cc', 'gravatar.com'],
   },
 };
