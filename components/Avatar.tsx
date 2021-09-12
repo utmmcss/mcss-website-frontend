@@ -5,17 +5,12 @@ interface IProps {
   /** width and height of avatar */
   size?: number;
   className?: string;
+  imgSrc: string;
 }
 
-const Avatar: FC<IProps> = ({ size = 100, className }) => (
+const Avatar: FC<IProps> = ({ size = 100, className, imgSrc }) => (
   <div className={className}>
-    <Image
-      alt="avatar"
-      src={`https://i.pravatar.cc/${size}`}
-      layout="fixed"
-      width={size}
-      height={size}
-    />
+    <Image alt="avatar" src={imgSrc} layout="fixed" width={size} height={size} />
   </div>
 );
 

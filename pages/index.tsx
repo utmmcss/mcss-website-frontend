@@ -13,7 +13,16 @@ const Home: FC = () => (
       </div>
       <div className="flex-1 p-10">This is some other content</div>
     </Card> */}
-    <ScrollingAvatars />
+    <ScrollingAvatars
+      size={100}
+      avatarInfos={[
+        {
+          name: 'Shawn',
+          position: 'Co-Director of Technology',
+          imgSrc: 'https://i.pravatar.cc/100',
+        },
+      ]}
+    />
   </div>
 );
 

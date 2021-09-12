@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Avatar from '@components/Avatar';
 
 interface AvatarInfo {
@@ -14,12 +14,34 @@ interface IProps {
   avatarInfos: AvatarInfo[];
 }
 
-const ScrollingAvatars: FC<IProps> = () => (
-  <div className="scrolling-avatars">
-    <Avatar className="avatar" />
-    <Avatar className="avatar" />
-    <Avatar className="avatar" />
-  </div>
-);
+const appendAvatarInfos = (avatarInfos: AvatarInfo[], size: number) => {
+  const desiredWidth = window.innerWidth + 3 * size;
+  const currAvatarWidth = avatarInfos.length * (size + 30);
+  const remainingWidth = desiredWidth - currAvatarWidth;
+  const remainingAvatars = Math.ceil(remainingWidth / (size + 30));
+  const appendedAvatarsInfos = [...avatarInfos];
+
+  for (let i = 0; i < remainingAvatars; i += 1) {
+    appendedAvatarsInfos.push(avatarInfos[i % avatarInfos.length]);
+  }
+
+  return appendedAvatarsInfos;
+};
+
+const ScrollingAvatars: FC<IProps> = ({ size, avatarInfos }) => {
+  const [appendedAvatarsInfos, setAppendedAvatarsInfos] = useState<AvatarInfo[]>([]);
+
+  useEffect(() => {
+    setAppendedAvatarsInfos(appendAvatarInfos(avatarInfos, size));
+  }, [avatarInfos, size]);
+
+  return (
+    <div className="scrolling-avatars">
+      {appendedAvatarsInfos.map(({ imgSrc }) => (
+        <Avatar className="avatar" size={size} imgSrc={imgSrc} />
+      ))}
+    </div>
+  );
+};
 
 export default ScrollingAvatars;

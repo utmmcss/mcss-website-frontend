@@ -1,0 +1,23 @@
+@keyframes scroll {
+  from {
+    left: 0px;
+  }
+  to {
+    left: -160px;
+  }
+}
+
+.scrolling-avatars {
+  width: 200%;
+  display: flex;
+  animation: scroll 1s linear infinite;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+
+  .avatar {
+    margin: 10px 30px;
+    img {
+      @apply rounded-full;
+    }
+  }
+}
