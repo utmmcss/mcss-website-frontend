@@ -1,11 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
-import Avatar from '@components/Avatar';
-
-interface AvatarInfo {
-  name: string;
-  position: string;
-  imgSrc: string;
-}
+import Avatar from '@components/ScrollingAvatars/Avatar';
+import type { AvatarInfo } from './ScrollingAvatarsContainer';
 
 interface IProps {
   /** pre-set width and height of each avatar */

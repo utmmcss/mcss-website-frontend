@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Card from '@components/Card';
-import ScrollingAvatars from '@components/ScrollingAvatars';
+import ScrollingAvatars from '@components/ScrollingAvatars/ScrollingAvatars';
 
 const Home: FC = () => (
   <div className="h-screen">
