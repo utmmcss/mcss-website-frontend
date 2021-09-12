@@ -8,10 +8,11 @@ interface AvatarInfo {
 }
 
 interface IProps {
-  /** width and height of each avatar */
+  /** pre-set width and height of each avatar */
   size?: 'small' | 'mid' | 'large';
   /** list of objects containing the configs for the avatars */
   avatarInfos: AvatarInfo[];
+  scrollDirection?: 'left' | 'right';
 }
 
 /** enum used to map size label and it's corresponding css properties.
@@ -36,7 +37,7 @@ const appendAvatarInfos = (
   { size, margin }: { size: number; margin: number },
 ) => {
   const currAvatarWidth = avatarInfos.length * (size + 2 * margin);
-  const desiredWidth = window.innerWidth + 3 * currAvatarWidth;
+  const desiredWidth = window.innerWidth + 10 * currAvatarWidth;
   const remainingWidth = desiredWidth - currAvatarWidth;
   const remainingAvatars = Math.ceil(remainingWidth / currAvatarWidth);
   const appendedAvatarsInfos = [...avatarInfos];
@@ -48,30 +49,42 @@ const appendAvatarInfos = (
   return appendedAvatarsInfos;
 };
 
-const ScrollingAvatars: FC<IProps> = ({ size = 'small', avatarInfos }) => {
+const ScrollingAvatars: FC<IProps> = ({
+  size = 'small',
+  avatarInfos,
+  scrollDirection = 'left',
+}) => {
   const [appendedAvatarsInfos, setAppendedAvatarsInfos] = useState<AvatarInfo[]>([]);
   const [name, setName] = useState<string>('');
+  const [position, setPosition] = useState<string>('');
   const avatarConfig = AVATAR_ENUM[size];
+  const titleString = name && position ? `${name} - ${position}` : '';
 
   useEffect(() => {
     setAppendedAvatarsInfos(appendAvatarInfos(avatarInfos, avatarConfig));
   }, [avatarConfig, avatarInfos]);
 
   return (
-    <>
-      <div className={`scrolling-avatars--${size}`}>
-        {appendedAvatarsInfos.map(({ name: currName, imgSrc }) => (
+    <div className="scrolling-avatars">
+      <p className="text-center title-string">{titleString}</p>
+      <div className={`scrolling-avatars-container--${size}--scroll-${scrollDirection}`}>
+        {appendedAvatarsInfos.map(({ name: currName, position: currPosition, imgSrc }) => (
           <Avatar
-            onMouseEnter={() => setName(currName)}
-            onMouseLeave={() => setName('')}
+            onMouseEnter={() => {
+              setName(currName);
+              setPosition(currPosition);
+            }}
+            onMouseLeave={() => {
+              setName('');
+              setPosition('');
+            }}
             className="avatar"
             size={avatarConfig.size}
             imgSrc={imgSrc}
           />
         ))}
       </div>
-      {name}
-    </>
+    </div>
   );
 };
 

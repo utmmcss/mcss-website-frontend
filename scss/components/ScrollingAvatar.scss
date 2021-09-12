@@ -1,7 +1,15 @@
 $avatar-configs: 'small' 60px 15px 0.7s, 'mid' 100px 30px 1s, 'large' 150px 50px 2s;
 
 @each $name, $size, $margin, $duration in $avatar-configs {
-  @keyframes scroll-#{$name} {
+  @keyframes scroll-#{$name}-right {
+    from {
+      left: -$size - 2 * $margin;
+    }
+    to {
+      left: 0px;
+    }
+  }
+  @keyframes scroll-#{$name}-left {
     from {
       left: 0px;
     }
@@ -12,24 +20,41 @@ $avatar-configs: 'small' 60px 15px 0.7s, 'mid' 100px 30px 1s, 'large' 150px 50px
 }
 
 @each $name, $size, $margin, $duration in $avatar-configs {
-  .scrolling-avatars--#{$name} {
-    width: 200%;
-    display: flex;
-    position: relative;
-    animation: scroll-#{$name} $duration linear infinite;
-
-    &:hover {
-      animation-play-state: paused;
+  .scrolling-avatars {
+    .title-string {
+      min-height: 25px;
+      margin: 0px;
     }
 
-    .avatar {
-      margin: 10px $margin;
-      img {
-        @apply rounded-full;
-      }
+    .scrolling-avatars-container--#{$name} {
+      width: 200%;
+      display: flex;
+      position: relative;
+      left: -200px;
 
       &:hover {
-        @apply animate-pulse;
+        animation-play-state: paused;
+      }
+
+      .avatar {
+        margin: 10px $margin;
+        img {
+          @apply rounded-full;
+        }
+
+        &:hover {
+          @apply animate-pulse;
+        }
+      }
+
+      &--scroll-left {
+        @extend .scrolling-avatars-container--#{$name};
+        animation: scroll-#{$name}-left $duration linear infinite;
+      }
+
+      &--scroll-right {
+        @extend .scrolling-avatars-container--#{$name};
+        animation: scroll-#{$name}-right $duration linear infinite;
       }
     }
   }
