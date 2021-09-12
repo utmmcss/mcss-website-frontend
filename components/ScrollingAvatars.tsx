@@ -9,16 +9,36 @@ interface AvatarInfo {
 
 interface IProps {
   /** width and height of each avatar */
-  size: number;
+  size?: 'small' | 'mid' | 'large';
   /** list of objects containing the configs for the avatars */
   avatarInfos: AvatarInfo[];
 }
 
-const appendAvatarInfos = (avatarInfos: AvatarInfo[], size: number) => {
-  const desiredWidth = window.innerWidth + 3 * size;
-  const currAvatarWidth = avatarInfos.length * (size + 30);
+/** enum used to map size label and it's corresponding css properties.
+ * This enum must match that in ScrollingAvatar.scss */
+const AVATAR_ENUM = {
+  small: {
+    size: 60,
+    margin: 15,
+  },
+  mid: {
+    size: 100,
+    margin: 30,
+  },
+  large: {
+    size: 150,
+    margin: 50,
+  },
+};
+
+const appendAvatarInfos = (
+  avatarInfos: AvatarInfo[],
+  { size, margin }: { size: number; margin: number },
+) => {
+  const currAvatarWidth = avatarInfos.length * (size + 2 * margin);
+  const desiredWidth = window.innerWidth + 3 * currAvatarWidth;
   const remainingWidth = desiredWidth - currAvatarWidth;
-  const remainingAvatars = Math.ceil(remainingWidth / (size + 30));
+  const remainingAvatars = Math.ceil(remainingWidth / currAvatarWidth);
   const appendedAvatarsInfos = [...avatarInfos];
 
   for (let i = 0; i < remainingAvatars; i += 1) {
@@ -28,19 +48,30 @@ const appendAvatarInfos = (avatarInfos: AvatarInfo[], size: number) => {
   return appendedAvatarsInfos;
 };
 
-const ScrollingAvatars: FC<IProps> = ({ size, avatarInfos }) => {
+const ScrollingAvatars: FC<IProps> = ({ size = 'small', avatarInfos }) => {
   const [appendedAvatarsInfos, setAppendedAvatarsInfos] = useState<AvatarInfo[]>([]);
+  const [name, setName] = useState<string>('');
+  const avatarConfig = AVATAR_ENUM[size];
 
   useEffect(() => {
-    setAppendedAvatarsInfos(appendAvatarInfos(avatarInfos, size));
-  }, [avatarInfos, size]);
+    setAppendedAvatarsInfos(appendAvatarInfos(avatarInfos, avatarConfig));
+  }, [avatarConfig, avatarInfos]);
 
   return (
-    <div className="scrolling-avatars">
-      {appendedAvatarsInfos.map(({ imgSrc }) => (
-        <Avatar className="avatar" size={size} imgSrc={imgSrc} />
-      ))}
-    </div>
+    <>
+      <div className={`scrolling-avatars--${size}`}>
+        {appendedAvatarsInfos.map(({ name: currName, imgSrc }) => (
+          <Avatar
+            onMouseEnter={() => setName(currName)}
+            onMouseLeave={() => setName('')}
+            className="avatar"
+            size={avatarConfig.size}
+            imgSrc={imgSrc}
+          />
+        ))}
+      </div>
+      {name}
+    </>
   );
 };
 

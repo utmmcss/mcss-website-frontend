@@ -14,7 +14,6 @@ const Home: FC = () => (
       <div className="flex-1 p-10">This is some other content</div>
     </Card> */}
     <ScrollingAvatars
-      size={100}
       avatarInfos={[
         {
           name: 'Shawn',

@@ -6,10 +6,13 @@ interface IProps {
   size?: number;
   className?: string;
   imgSrc: string;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
-const Avatar: FC<IProps> = ({ size = 100, className, imgSrc }) => (
-  <div className={className}>
+// eslint-disable-next-line object-curly-newline
+const Avatar: FC<IProps> = ({ size = 100, className, imgSrc, onMouseEnter, onMouseLeave }) => (
+  <div onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} className={className}>
     <Image alt="avatar" src={imgSrc} layout="fixed" width={size} height={size} />
   </div>
 );

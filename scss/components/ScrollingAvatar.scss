@@ -1,23 +1,36 @@
-@keyframes scroll {
-  from {
-    left: 0px;
-  }
-  to {
-    left: -160px;
+$avatar-configs: 'small' 60px 15px 0.7s, 'mid' 100px 30px 1s, 'large' 150px 50px 2s;
+
+@each $name, $size, $margin, $duration in $avatar-configs {
+  @keyframes scroll-#{$name} {
+    from {
+      left: 0px;
+    }
+    to {
+      left: -$size - 2 * $margin;
+    }
   }
 }
 
-.scrolling-avatars {
-  width: 200%;
-  display: flex;
-  animation: scroll 1s linear infinite;
-  position: relative;
-  transform: translate3d(0, 0, 0);
+@each $name, $size, $margin, $duration in $avatar-configs {
+  .scrolling-avatars--#{$name} {
+    width: 200%;
+    display: flex;
+    position: relative;
+    animation: scroll-#{$name} $duration linear infinite;
 
-  .avatar {
-    margin: 10px 30px;
-    img {
-      @apply rounded-full;
+    &:hover {
+      animation-play-state: paused;
+    }
+
+    .avatar {
+      margin: 10px $margin;
+      img {
+        @apply rounded-full;
+      }
+
+      &:hover {
+        @apply animate-pulse;
+      }
     }
   }
 }
