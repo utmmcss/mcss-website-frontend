@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Card from '@components/Card';
-import ScrollingAvatars from '@components/ScrollingAvatars/ScrollingAvatars';
+import ScrollingAvatars from '@components/ScrollingAvatars/ScrollingAvatarsContainer';
 
 const Home: FC = () => (
   <div className="h-screen">
@@ -14,6 +14,7 @@ const Home: FC = () => (
       <div className="flex-1 p-10">This is some other content</div>
     </Card>
     <ScrollingAvatars
+      rows={3}
       avatarInfos={[
         {
           name: 'John Wick',

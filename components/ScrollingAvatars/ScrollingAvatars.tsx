@@ -8,6 +8,10 @@ interface IProps {
   /** list of objects containing the configs for the avatars, maximum size is 24 */
   avatarInfos: AvatarInfo[];
   scrollDirection?: 'left' | 'right';
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  setName: (name: string) => void;
+  setPosition: (position: string) => void;
 }
 
 /** enum used to map size label and it's corresponding css properties.
@@ -52,12 +56,11 @@ const ScrollingAvatars: FC<IProps> = ({
   size = 'small',
   avatarInfos,
   scrollDirection = 'left',
+  setName,
+  setPosition,
 }) => {
   const [appendedAvatarsInfos, setAppendedAvatarsInfos] = useState<AvatarInfo[]>([]);
-  const [name, setName] = useState<string>('');
-  const [position, setPosition] = useState<string>('');
   const avatarConfig = AVATAR_ENUM[size];
-  const titleString = name && position ? `${name} - ${position}` : '';
 
   useEffect(() => {
     setAppendedAvatarsInfos(appendAvatarInfos(avatarInfos, avatarConfig));
@@ -65,15 +68,14 @@ const ScrollingAvatars: FC<IProps> = ({
 
   return (
     <div className="scrolling-avatars">
-      <p className="text-center title-string">{titleString}</p>
       <div
         className={`scrolling-avatars-container--${size}--${avatarInfos.length}--scroll-${scrollDirection}`}
       >
-        {appendedAvatarsInfos.map(({ name: currName, position: currPosition, imgSrc }) => (
+        {appendedAvatarsInfos.map(({ name, position, imgSrc }) => (
           <Avatar
             onMouseEnter={() => {
-              setName(currName);
-              setPosition(currPosition);
+              setName(name);
+              setPosition(position);
             }}
             onMouseLeave={() => {
               setName('');
