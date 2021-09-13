@@ -33,7 +33,11 @@ const ScrollingAvatarsContainer: FC<IProps> = ({ rows = 1, avatarInfos, startScr
     mappedScrollingAvatars = _.chunk(avatarInfos, avatarInfos.length / rows).map(
       (chunkedAvatarInfos, index) => (
         <ScrollingAvatars
-          scrollDirection={index % 2 === 0 && !startScrollRight ? 'left' : 'right'}
+          scrollDirection={
+            (index % 2 === 0 && !startScrollRight) || (index % 2 !== 0 && startScrollRight)
+              ? 'left'
+              : 'right'
+          }
           avatarInfos={chunkedAvatarInfos}
           setName={setName}
           setPosition={setPosition}
