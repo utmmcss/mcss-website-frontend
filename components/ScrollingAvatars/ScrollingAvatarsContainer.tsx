@@ -1,4 +1,6 @@
 import React, { FC, useState } from 'react';
+import _ from 'underscore';
+
 import ScrollingAvatars from './ScrollingAvatars';
 
 interface AvatarInfo {
@@ -17,32 +19,35 @@ const ScrollingAvatarsContainer: FC<IProps> = ({ rows = 1, avatarInfos, startScr
   const [name, setName] = useState<string>('');
   const [position, setPosition] = useState<string>('');
   const titleString = name && position ? `${name} - ${position}` : '';
-  // eslint-disable-next-line operator-linebreak
-  const mappedScrollingAvatars =
-    rows >= avatarInfos.length ? (
-      [...Array(rows)].map((_, index) => (
-        <ScrollingAvatars
-          scrollDirection={index % 2 === 0 && !startScrollRight ? 'left' : 'right'}
-          avatarInfos={avatarInfos}
-          setName={setName}
-          setPosition={setPosition}
-        />
-      ))
-    ) : (
+  let mappedScrollingAvatars;
+  if (rows >= avatarInfos.length) {
+    mappedScrollingAvatars = [...Array(rows)].map((__, index) => (
       <ScrollingAvatars
-        scrollDirection="left"
+        scrollDirection={index % 2 === 0 && !startScrollRight ? 'left' : 'right'}
         avatarInfos={avatarInfos}
         setName={setName}
         setPosition={setPosition}
       />
+    ));
+  } else {
+    mappedScrollingAvatars = _.chunk(avatarInfos, avatarInfos.length / rows).map(
+      (chunkedAvatarInfos, index) => (
+        <ScrollingAvatars
+          scrollDirection={index % 2 === 0 && !startScrollRight ? 'left' : 'right'}
+          avatarInfos={chunkedAvatarInfos}
+          setName={setName}
+          setPosition={setPosition}
+        />
+      ),
     );
+  }
 
   return (
-    <div>
+    <div className="scrolling-avatars-container">
       <p className="text-center" style={{ minHeight: 25, margin: 0 }}>
         {titleString}
       </p>
-      {mappedScrollingAvatars}
+      <div className="scrolling-area">{mappedScrollingAvatars}</div>
     </div>
   );
 };

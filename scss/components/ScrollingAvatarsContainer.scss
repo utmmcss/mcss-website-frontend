@@ -1,0 +1,22 @@
+.scrolling-avatars-container {
+  .scrolling-area {
+    position: relative;
+
+    &::after {
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      content: '';
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0) 5%,
+        rgba(9, 9, 121, 0) 50%,
+        rgba(255, 255, 255, 0) 95%,
+        rgba(255, 255, 255, 0.5) 100%
+      );
+      pointer-events: none; /* so the avatars are still hoverable */
+    }
+  }
+}

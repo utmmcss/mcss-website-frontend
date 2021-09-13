@@ -40,7 +40,7 @@ const appendAvatarInfos = (
   { size, margin }: { size: number; margin: number },
 ) => {
   const currAvatarWidth = avatarInfos.length * (size + 2 * margin);
-  const desiredWidth = window.innerWidth + 10 * currAvatarWidth;
+  const desiredWidth = window.innerWidth + 20 * currAvatarWidth;
   const remainingWidth = desiredWidth - currAvatarWidth;
   const remainingAvatars = Math.ceil(remainingWidth / currAvatarWidth);
   const appendedAvatarsInfos = [...avatarInfos];

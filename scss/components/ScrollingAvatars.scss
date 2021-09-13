@@ -1,4 +1,4 @@
-$avatar-configs: 'small' 60px 15px 0.7s, 'mid' 100px 30px 1s, 'large' 150px 50px 2s;
+$avatar-configs: 'small' 60px 15px 1s, 'mid' 100px 30px 2s, 'large' 150px 50px 3s;
 
 @for $avatars-length from 1 through 24 {
   @each $name, $size, $margin, $duration in $avatar-configs {
@@ -49,12 +49,20 @@ $avatar-configs: 'small' 60px 15px 0.7s, 'mid' 100px 30px 1s, 'large' 150px 50px
 
         &--scroll-left {
           @extend .scrolling-avatars-container--#{$name}--#{$avatars-length};
-          animation: scroll-#{$name}-left-#{$avatars-length} $duration * $avatars-length linear infinite;
+          animation: scroll-#{$name}-left-#{$avatars-length}
+            $duration *
+            $avatars-length
+            linear
+            infinite;
         }
 
         &--scroll-right {
           @extend .scrolling-avatars-container--#{$name}--#{$avatars-length};
-          animation: scroll-#{$name}-right-#{$avatars-length} $duration * $avatars-length linear infinite;
+          animation: scroll-#{$name}-right-#{$avatars-length}
+            $duration *
+            $avatars-length
+            linear
+            infinite;
         }
       }
     }
