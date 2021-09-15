@@ -49,7 +49,7 @@ const appendAvatarInfos = (
     appendedAvatarsInfos.push(avatarInfos[i % avatarInfos.length]);
   }
 
-  return appendedAvatarsInfos;
+  return appendedAvatarsInfos.map((avatarInfo, index) => ({ ...avatarInfo, key: index }));
 };
 
 const ScrollingAvatars: FC<IProps> = ({
@@ -62,6 +62,7 @@ const ScrollingAvatars: FC<IProps> = ({
   const [appendedAvatarsInfos, setAppendedAvatarsInfos] = useState<AvatarInfo[]>([]);
   const avatarConfig = AVATAR_ENUM[size];
 
+  // we have to use useEffect since we need the component to mount firste before we can call window
   useEffect(() => {
     setAppendedAvatarsInfos(appendAvatarInfos(avatarInfos, avatarConfig));
   }, [avatarConfig, avatarInfos]);
@@ -71,8 +72,10 @@ const ScrollingAvatars: FC<IProps> = ({
       <div
         className={`scrolling-avatars-container--${size}--${avatarInfos.length}--scroll-${scrollDirection}`}
       >
-        {appendedAvatarsInfos.map(({ name, position, imgSrc }) => (
+        {/* eslint-disable-next-line object-curly-newline */}
+        {appendedAvatarsInfos.map(({ name, position, imgSrc, key }) => (
           <Avatar
+            key={key}
             onMouseEnter={() => {
               setName(name);
               setPosition(position);

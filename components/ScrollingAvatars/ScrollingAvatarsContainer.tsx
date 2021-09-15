@@ -7,6 +7,7 @@ interface AvatarInfo {
   name: string;
   position: string;
   imgSrc: string;
+  key?: number;
 }
 
 interface IProps {
@@ -20,29 +21,36 @@ const ScrollingAvatarsContainer: FC<IProps> = ({ rows = 1, avatarInfos, startScr
   const [position, setPosition] = useState<string>('');
   const titleString = name && position ? `${name} - ${position}` : '';
   let mappedScrollingAvatars;
+
   if (rows >= avatarInfos.length) {
-    mappedScrollingAvatars = [...Array(rows)].map((__, index) => (
+    mappedScrollingAvatars = Array.from(Array(rows).keys()).map((key) => (
       <ScrollingAvatars
-        scrollDirection={index % 2 === 0 && !startScrollRight ? 'left' : 'right'}
+        key={key}
+        scrollDirection={key % 2 === 0 && !startScrollRight ? 'left' : 'right'}
         avatarInfos={avatarInfos}
         setName={setName}
         setPosition={setPosition}
       />
     ));
   } else {
+    let currKey = 0;
     mappedScrollingAvatars = _.chunk(avatarInfos, avatarInfos.length / rows).map(
-      (chunkedAvatarInfos, index) => (
-        <ScrollingAvatars
-          scrollDirection={
-            (index % 2 === 0 && !startScrollRight) || (index % 2 !== 0 && startScrollRight)
-              ? 'left'
-              : 'right'
-          }
-          avatarInfos={chunkedAvatarInfos}
-          setName={setName}
-          setPosition={setPosition}
-        />
-      ),
+      (chunkedAvatarInfos, index) => {
+        currKey += 1;
+        return (
+          <ScrollingAvatars
+            key={currKey}
+            scrollDirection={
+              (index % 2 === 0 && !startScrollRight) || (index % 2 !== 0 && startScrollRight)
+                ? 'left'
+                : 'right'
+            }
+            avatarInfos={chunkedAvatarInfos}
+            setName={setName}
+            setPosition={setPosition}
+          />
+        );
+      },
     );
   }
 
