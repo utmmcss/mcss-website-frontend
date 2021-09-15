@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Card from '@components/Card';
+import Footer from '@components/Footer';
 
 const Home: FC = () => (
   <div className="h-screen">
@@ -12,6 +13,7 @@ const Home: FC = () => (
       </div>
       <div className="flex-1 p-10">This is some other content</div>
     </Card>
+    <Footer></Footer>
   </div>
 );
 
