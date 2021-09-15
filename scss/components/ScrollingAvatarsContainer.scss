@@ -2,6 +2,7 @@
   .scrolling-area {
     position: relative;
 
+    // gradient to allow avatars to fade as it goes off screen
     &::after {
       position: absolute;
       bottom: 0;
