@@ -11,7 +11,7 @@ const FooterLink:FC<LinkProps> = ({href, text}) => {
     <li className="mt-3 list-none">
       <Link href={href}>
         <a className="text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50">
-          {props.text}
+          {text}
         </a>
       </Link>
     </li>
