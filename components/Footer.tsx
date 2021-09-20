@@ -1,3 +1,4 @@
+import React, { FC } from 'react';
 import Link from 'next/link';
 import CTAButton from './CTAButton';
 
@@ -6,12 +7,12 @@ interface LinkProps {
   text: string;
 }
 
-const FooterLink = ({ href, text }: LinkProps) => (
+const FooterLink:FC<LinkProps> = ({ href, text }) => (
   <li className="mt-3 list-none">
     <Link href={href}>
-      <p className="text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50 cursor-pointer">
+      <a href={href} className="text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50">
         {text}
-      </p>
+      </a>
     </Link>
   </li>
 );
@@ -21,18 +22,14 @@ interface ColProps {
   children?: JSX.Element | JSX.Element[];
 }
 
-const FooterCol = ({ title, children }: ColProps) => (
+const FooterCol:FC<ColProps> = ({ title, children }) => (
   <div className="px-6">
     <h1 className="text-xl">{title}</h1>
     {children}
   </div>
 );
 
-FooterCol.defaultProps = {
-  children: null,
-};
-
-const Footer = () => (
+const Footer:FC = () => (
   <div className="pt-12">
     <footer id="footer" className="relative z-50 dark:bg-gray-900 mt-24">
       <div className=" border-t border-b border-gray-200 dark:border-gray-700 py-16">
@@ -43,7 +40,7 @@ const Footer = () => (
             </FooterCol>
             <FooterCol title="More Pages">
               <FooterLink text="FAQ" href="/" />
-              <FooterLink text="Something Else" href="https://google.com" />
+              <FooterLink text="Something Else" href="/" />
             </FooterCol>
             <FooterCol title="Newsletter">
               <input
