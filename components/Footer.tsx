@@ -23,7 +23,7 @@ interface ColProps {
   children?: JSX.Element | JSX.Element[];
 }
 
-const FooterCol = ({ title, children }: ColProps) => {
+const FooterCol:FC<ColProps> = ({ title, children }) => {
   return (
     <div className="px-6">
       <h1 className="text-xl">{title}</h1>
