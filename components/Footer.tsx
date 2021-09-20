@@ -6,7 +6,7 @@ interface LinkProps {
   text: string;
 }
 
-const FooterLink = (props: LinkProps) => {
+const FooterLink:FC<LinkProps> = ({href, text}) => {
   return (
     <li className="mt-3 list-none">
       <Link href={props.href}>
