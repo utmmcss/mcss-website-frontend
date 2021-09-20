@@ -32,7 +32,7 @@ const FooterCol = ({ title, children }: ColProps) => {
   );
 };
 
-const Footer = () => {
+const Footer:FC = () => {
   return (
     <div className="pt-12">
       <footer id="footer" className="relative z-50 dark:bg-gray-900 mt-24">
