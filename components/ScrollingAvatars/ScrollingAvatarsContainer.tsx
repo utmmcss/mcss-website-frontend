@@ -23,34 +23,32 @@ const ScrollingAvatarsContainer: FC<IProps> = ({ rows = 1, avatarInfos, startScr
   let mappedScrollingAvatars;
 
   if (rows >= avatarInfos.length) {
-    mappedScrollingAvatars = Array.from(Array(rows).keys()).map((key) => (
+    mappedScrollingAvatars = [...new Array(rows)].map((__, index) => (
       <ScrollingAvatars
-        key={key}
-        scrollDirection={key % 2 === 0 && !startScrollRight ? 'left' : 'right'}
+        scrollDirection={index % 2 === 0 && !startScrollRight ? 'left' : 'right'}
         avatarInfos={avatarInfos}
         setName={setName}
         setPosition={setPosition}
       />
     ));
   } else {
-    let currKey = 0;
+    /** If the number of rows is less than the number of avatars, we will attempt to
+     * evenly distribute the avatars across the rows. In the case where there are left overs,
+     * we will add them to the last row.
+     * */
     mappedScrollingAvatars = _.chunk(avatarInfos, avatarInfos.length / rows).map(
-      (chunkedAvatarInfos, index) => {
-        currKey += 1;
-        return (
-          <ScrollingAvatars
-            key={currKey}
-            scrollDirection={
-              (index % 2 === 0 && !startScrollRight) || (index % 2 !== 0 && startScrollRight)
-                ? 'left'
-                : 'right'
-            }
-            avatarInfos={chunkedAvatarInfos}
-            setName={setName}
-            setPosition={setPosition}
-          />
-        );
-      },
+      (chunkedAvatarInfos, index) => (
+        <ScrollingAvatars
+          scrollDirection={
+            (index % 2 === 0 && !startScrollRight) || (index % 2 !== 0 && startScrollRight)
+              ? 'left'
+              : 'right'
+          }
+          avatarInfos={chunkedAvatarInfos}
+          setName={setName}
+          setPosition={setPosition}
+        />
+      ),
     );
   }
 

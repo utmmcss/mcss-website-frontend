@@ -4,7 +4,7 @@ import type { AvatarInfo } from './ScrollingAvatarsContainer';
 
 interface IProps {
   /** pre-set width and height of each avatar */
-  size?: 'small' | 'mid' | 'large';
+  size?: 'sm' | 'md' | 'lg';
   /** list of objects containing the configs for the avatars, maximum size is 24 */
   avatarInfos: AvatarInfo[];
   scrollDirection?: 'left' | 'right';
@@ -16,16 +16,16 @@ interface IProps {
 
 /** enum used to map size label and it's corresponding css properties.
  * This enum must match that in ScrollingAvatar.scss */
-const AVATAR_ENUM = {
-  small: {
+const AVATAR_SIZE_MAP = {
+  sm: {
     size: 60,
     margin: 15,
   },
-  mid: {
+  md: {
     size: 100,
     margin: 30,
   },
-  large: {
+  lg: {
     size: 150,
     margin: 50,
   },
@@ -44,23 +44,24 @@ const appendAvatarInfos = (
   const remainingWidth = desiredWidth - currAvatarWidth;
   const remainingAvatars = Math.ceil(remainingWidth / currAvatarWidth);
   const appendedAvatarsInfos = [...avatarInfos];
-
-  for (let i = 0; i < remainingAvatars; i += 1) {
-    appendedAvatarsInfos.push(avatarInfos[i % avatarInfos.length]);
-  }
+  [...new Array(remainingAvatars)].forEach((_, i) =>
+    // eslint-disable-next-line implicit-arrow-linebreak
+    appendedAvatarsInfos.push(avatarInfos[i % avatarInfos.length]),
+  // eslint-disable-next-line function-paren-newline
+  );
 
   return appendedAvatarsInfos.map((avatarInfo, index) => ({ ...avatarInfo, key: index }));
 };
 
 const ScrollingAvatars: FC<IProps> = ({
-  size = 'small',
+  size = 'sm',
   avatarInfos,
   scrollDirection = 'left',
   setName,
   setPosition,
 }) => {
   const [appendedAvatarsInfos, setAppendedAvatarsInfos] = useState<AvatarInfo[]>([]);
-  const avatarConfig = AVATAR_ENUM[size];
+  const avatarConfig = AVATAR_SIZE_MAP[size];
 
   // we have to use useEffect since we need the component to mount firste before we can call window
   useEffect(() => {
