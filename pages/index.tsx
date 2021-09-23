@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Card from '@components/Card';
-import Icon from '@components/Icon';
+// import Icon from '@components/Icon';
 import NavBar from '@components/navbar';
 
 const Home: FC = () => (
