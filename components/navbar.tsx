@@ -28,6 +28,6 @@ const NavBar: FC = () => {
       </nav>
     </>
   );
-}
+};
 
 export default NavBar;
