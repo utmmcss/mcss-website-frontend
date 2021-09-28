@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import Image from 'next/image';
-import Deerfield from '../public/deerfield.png'; // image from https://www.soundsolutions.ca/projects/featured-exterior-cladding-projects/deerfield-hall-univeristy-of-toronto-mississauga-campus
-import Experience from '../public/experience.png';
-import ProfilePlaceholder from '../public/profileplaceholder.png'; // image from https://www.pngfind.com/mpng/hJmwxix_image-placeholder-png-user-profile-placeholder-image-png/
+import Deerfield from 'public/deerfield.png'; // image from https://www.soundsolutions.ca/projects/featured-exterior-cladding-projects/deerfield-hall-univeristy-of-toronto-mississauga-campus
+import Experience from 'public/experience.png';
+import ProfilePlaceholder from 'public/profileplaceholder.png'; // image from https://www.pngfind.com/mpng/hJmwxix_image-placeholder-png-user-profile-placeholder-image-png/
 
 const AboutUs: FC = () => (
   <div className="flex justify-evenly">
