@@ -7,7 +7,6 @@ interface AvatarInfo {
   name: string;
   position: string;
   imgSrc: string;
-  key?: number;
 }
 
 interface IProps {

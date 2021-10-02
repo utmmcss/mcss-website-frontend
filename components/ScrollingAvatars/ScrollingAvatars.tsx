@@ -45,12 +45,10 @@ const appendAvatarInfos = (
   const remainingAvatars = Math.ceil(remainingWidth / currAvatarWidth);
   const appendedAvatarsInfos = [...avatarInfos];
   [...new Array(remainingAvatars)].forEach((_, i) =>
-    // eslint-disable-next-line implicit-arrow-linebreak
     appendedAvatarsInfos.push(avatarInfos[i % avatarInfos.length]),
-  // eslint-disable-next-line function-paren-newline
   );
 
-  return appendedAvatarsInfos.map((avatarInfo, index) => ({ ...avatarInfo, key: index }));
+  return appendedAvatarsInfos;
 };
 
 const ScrollingAvatars: FC<IProps> = ({
@@ -63,7 +61,7 @@ const ScrollingAvatars: FC<IProps> = ({
   const [appendedAvatarsInfos, setAppendedAvatarsInfos] = useState<AvatarInfo[]>([]);
   const avatarConfig = AVATAR_SIZE_MAP[size];
 
-  // we have to use useEffect since we need the component to mount firste before we can call window
+  // we have to use useEffect since we need the component to mount first before we can call window
   useEffect(() => {
     setAppendedAvatarsInfos(appendAvatarInfos(avatarInfos, avatarConfig));
   }, [avatarConfig, avatarInfos]);
@@ -73,10 +71,8 @@ const ScrollingAvatars: FC<IProps> = ({
       <div
         className={`scrolling-avatars-container--${size}--${avatarInfos.length}--scroll-${scrollDirection}`}
       >
-        {/* eslint-disable-next-line object-curly-newline */}
-        {appendedAvatarsInfos.map(({ name, position, imgSrc, key }) => (
+        {appendedAvatarsInfos.map(({ name, position, imgSrc }) => (
           <Avatar
-            key={key}
             onMouseEnter={() => {
               setName(name);
               setPosition(position);
