@@ -15,8 +15,8 @@ const Home: FC = () => (
       <div className="flex-1 p-10">This is some other content</div>
     </Card>
     <Card className="m-10 h-2/5 flex items-center p-20 bg-white">
-      <div className="flex-row p-50">
-        <div className="flex-wrap flex-col">
+      <div className="flex justify-between flex-row flex-wrap  p-50">
+        <div className="flex-col">
           <div className="m-5 text-grey font-semibold">
             CALL TO ACTION
           </div>
@@ -28,12 +28,23 @@ const Home: FC = () => (
           </div>
         </div>
         <div className="">
-          <div className="text-grey font-semibold">
+          <div className="m-5 text-grey font-semibold">
             EXECUTIVES
           </div>
           <div className="m-5 text-6xl font-medium">
             0
           </div>
+        </div>
+        <div className="">
+          <div className="m-5 text-grey font-semibold">
+            ASSOCIATES
+          </div>
+          <div className="m-5 text-6xl font-medium">
+            0
+          </div>
+        </div>
+        <div className="flex flex-col justify-center">
+          <button type="submit" className="px-8 py-2 text-xl bg-blue-700 text-white">JOIN US</button>
         </div>
       </div>
     </Card>
