@@ -14,6 +14,29 @@ const Home: FC = () => (
       </div>
       <div className="flex-1 p-10">This is some other content</div>
     </Card>
+    <Card className="m-10 h-2/5 flex items-center p-20 bg-white">
+      <div className="flex-row p-50">
+        <div className="flex-wrap flex-col">
+          <div className="m-5 text-grey font-semibold">
+            CALL TO ACTION
+          </div>
+          <div className="m-5 text-6xl font-medium">
+            JOIN OUR TEAM
+          </div>
+          <div className="m-5 text-grey font-semibold">
+            CONTRIBUTE TO OUR COMMUNITY
+          </div>
+        </div>
+        <div className="">
+          <div className="text-grey font-semibold">
+            EXECUTIVES
+          </div>
+          <div className="m-5 text-6xl font-medium">
+            0
+          </div>
+        </div>
+      </div>
+    </Card>
   </div>
 );
 
