@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import Card from '@components/Card';
+import ScrollingAvatars from '@components/ScrollingAvatars/ScrollingAvatarsContainer';
 import Icon from '@components/Icon';
 
 const Home: FC = () => (
@@ -18,6 +19,41 @@ const Home: FC = () => (
       </div>
       <div className="flex-1 p-10">This is some other content</div>
     </Card>
+    <ScrollingAvatars
+      rows={2}
+      avatarInfos={[
+        {
+          name: 'John Wick',
+          position: 'Co-Director of Technology',
+          imgSrc: 'https://i.pravatar.cc/100',
+        },
+        {
+          name: 'Peter Parker',
+          position: 'Co-Director of Technology',
+          imgSrc: 'https://gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',
+        },
+        {
+          name: 'Shang Chi',
+          position: 'President',
+          imgSrc: 'https://i.pravatar.cc/150?img=3',
+        },
+        {
+          name: 'Shang Chi',
+          position: 'President',
+          imgSrc: 'https://i.pravatar.cc/150?img=4',
+        },
+        {
+          name: 'Shang Chi',
+          position: 'President',
+          imgSrc: 'https://i.pravatar.cc/150?img=5',
+        },
+        {
+          name: 'Shang Chi',
+          position: 'President',
+          imgSrc: 'https://i.pravatar.cc/150?img=6',
+        },
+      ]}
+    />
   </div>
 );
 
