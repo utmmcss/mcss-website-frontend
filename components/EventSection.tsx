@@ -1,8 +1,10 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import Card from '@components/Card';
+import Button from '@components/Button';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 interface EventCardInfo {
   imgSrc: string;
@@ -23,13 +25,11 @@ const EventSection: FC<IProps> = ({ eventCardInfos }) => (
       {eventCardInfos.map(({ imgSrc, date, author, description }) => (
         <div className="w-full sm:w-1/3 md:w-1/4 px-6 py-4">
           <Card className="card rounded-lg relative">
-            <div className="tag">
-              Food
-            </div>
+            <div className="tag">Food</div>
             <div className="w-full h-1/2 image-container">
               <Image src={imgSrc} layout="fill" />
             </div>
-            <div className="mt-5 h-1/2 p-1">
+            <div className="mt-5 h-1/2 p-1 px-3">
               <div className="flex">
                 <div className="flex w-1/2">
                   <EventOutlinedIcon className="mr-1" />
@@ -45,6 +45,14 @@ const EventSection: FC<IProps> = ({ eventCardInfos }) => (
           </Card>
         </div>
       ))}
+    </div>
+    <div className="text-center mt-3">
+      <Button>
+        <div className="flex align-middle">
+          More Events
+          <ArrowForwardIcon className="ml-3" />
+        </div>
+      </Button>
     </div>
   </div>
 );
