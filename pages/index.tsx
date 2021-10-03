@@ -2,9 +2,11 @@ import { FC } from 'react';
 import Card from '@components/Card';
 import ScrollingAvatars from '@components/ScrollingAvatars/ScrollingAvatarsContainer';
 import Icon from '@components/Icon';
+import EventSection from '@components/EventSection';
 
 const Home: FC = () => (
   <div className="h-screen">
+    <EventSection />
     <div>
       This is home
       <Icon size="lg" variations="two-tone">
