@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Card from '@components/Card';
 import ScrollingAvatars from '@components/ScrollingAvatars/ScrollingAvatarsContainer';
 import Icon from '@components/Icon';
-import NavBar from '@components/navbar';
+import NavBar from '@components/NavBar';
 
 const Home: FC = () => (
   <div className="h-screen">
