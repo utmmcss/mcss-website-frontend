@@ -47,7 +47,7 @@ const Home: FC = () => (
         <div className="flex flex-col justify-center">
           <button type="submit" className="px-8 py-2 text-xl bg-blue-700 text-white">
             JOIN US
-            <Icon variations="two-tone" size="sm">arrow_right_alt</Icon>
+            <Icon variations="two-tone" size="md">  arrow_right_alt</Icon>
           </button>
         </div>
       </div>
