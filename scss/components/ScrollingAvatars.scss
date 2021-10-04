@@ -1,0 +1,71 @@
+$avatar-configs: 'sm' 60px 15px 1s, 'md' 100px 30px 2s, 'lg' 150px 50px 3s;
+
+@for $avatars-length from 1 through 24 {
+  @each $name, $size, $margin, $duration in $avatar-configs {
+    @keyframes scroll-#{$name}-right-#{$avatars-length} {
+      from {
+        left: -$avatars-length * ($size + 2 * $margin);
+      }
+      to {
+        left: 0px;
+      }
+    }
+    @keyframes scroll-#{$name}-left-#{$avatars-length} {
+      from {
+        left: 0px;
+      }
+      to {
+        left: -$avatars-length * ($size + 2 * $margin);
+      }
+    }
+  }
+
+  @each $name, $size, $margin, $duration in $avatar-configs {
+    .scrolling-avatars {
+      .title-string {
+        min-height: 25px;
+        margin: 0px;
+      }
+
+      .scrolling-avatars-container--#{$name}--#{$avatars-length} {
+        width: 200%;
+        display: flex;
+        position: relative;
+
+        &:hover {
+          animation-play-state: paused;
+        }
+
+        .avatar {
+          margin: 10px $margin;
+          img {
+            @apply rounded-full;
+          }
+
+          &:hover {
+            @apply animate-pulse;
+          }
+        }
+
+        // below are the styling to determine scroll direction
+        &--scroll-left {
+          @extend .scrolling-avatars-container--#{$name}--#{$avatars-length};
+          animation: scroll-#{$name}-left-#{$avatars-length}
+            $duration *
+            $avatars-length
+            linear
+            infinite;
+        }
+
+        &--scroll-right {
+          @extend .scrolling-avatars-container--#{$name}--#{$avatars-length};
+          animation: scroll-#{$name}-right-#{$avatars-length}
+            $duration *
+            $avatars-length
+            linear
+            infinite;
+        }
+      }
+    }
+  }
+}
