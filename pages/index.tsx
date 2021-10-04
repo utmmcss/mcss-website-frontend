@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Card from '@components/Card';
-// import Icon from '@components/Icon';
+import Icon from '@components/Icon';
 import NavBar from '@components/navbar';
 
 const Home: FC = () => (
@@ -15,7 +15,7 @@ const Home: FC = () => (
       <div className="flex-1 p-10">This is some other content</div>
     </Card>
     <Card className="m-10 h-2/5 flex items-center p-20 bg-white">
-      <div className="flex justify-between flex-row flex-wrap  p-50">
+      <div className="flex justify-between flex-row gap-20 p-50">
         <div className="flex-col">
           <div className="m-5 text-grey font-semibold">
             CALL TO ACTION
@@ -27,7 +27,7 @@ const Home: FC = () => (
             CONTRIBUTE TO OUR COMMUNITY
           </div>
         </div>
-        <div className="">
+        <div className="flex-col">
           <div className="m-5 text-grey font-semibold">
             EXECUTIVES
           </div>
@@ -35,7 +35,7 @@ const Home: FC = () => (
             0
           </div>
         </div>
-        <div className="">
+        <div className="flex-col">
           <div className="m-5 text-grey font-semibold">
             ASSOCIATES
           </div>
@@ -44,7 +44,10 @@ const Home: FC = () => (
           </div>
         </div>
         <div className="flex flex-col justify-center">
-          <button type="submit" className="px-8 py-2 text-xl bg-blue-700 text-white">JOIN US</button>
+          <button type="submit" className="px-8 py-2 text-xl bg-blue-700 text-white">
+            JOIN US
+            <Icon variations="two-tone" size="sm">arrow_right_alt</Icon>
+          </button>
         </div>
       </div>
     </Card>
