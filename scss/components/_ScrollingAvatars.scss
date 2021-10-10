@@ -22,12 +22,14 @@ $avatar-configs: 'sm' 60px 15px 1s, 'md' 100px 30px 2s, 'lg' 150px 50px 3s;
 
   @each $name, $size, $margin, $duration in $avatar-configs {
     .scrolling-avatars {
+      overflow: hidden;
+
       .title-string {
         min-height: 25px;
         margin: 0px;
       }
 
-      .scrolling-avatars-container--#{$name}--#{$avatars-length} {
+      .scrolling-avatars-inner-container--#{$name}--#{$avatars-length} {
         width: 200%;
         display: flex;
         position: relative;
@@ -49,7 +51,7 @@ $avatar-configs: 'sm' 60px 15px 1s, 'md' 100px 30px 2s, 'lg' 150px 50px 3s;
 
         // below are the styling to determine scroll direction
         &--scroll-left {
-          @extend .scrolling-avatars-container--#{$name}--#{$avatars-length};
+          @extend .scrolling-avatars-inner-container--#{$name}--#{$avatars-length};
           animation: scroll-#{$name}-left-#{$avatars-length}
             $duration *
             $avatars-length
@@ -58,7 +60,7 @@ $avatar-configs: 'sm' 60px 15px 1s, 'md' 100px 30px 2s, 'lg' 150px 50px 3s;
         }
 
         &--scroll-right {
-          @extend .scrolling-avatars-container--#{$name}--#{$avatars-length};
+          @extend .scrolling-avatars-inner-container--#{$name}--#{$avatars-length};
           animation: scroll-#{$name}-right-#{$avatars-length}
             $duration *
             $avatars-length

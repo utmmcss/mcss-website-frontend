@@ -69,7 +69,7 @@ const ScrollingAvatars: FC<IProps> = ({
   return (
     <div className="scrolling-avatars">
       <div
-        className={`scrolling-avatars-container--${size}--${avatarInfos.length}--scroll-${scrollDirection}`}
+        className={`scrolling-avatars-inner-container--${size}--${avatarInfos.length}--scroll-${scrollDirection}`}
       >
         {appendedAvatarsInfos.map(({ name, position, imgSrc }) => (
           <Avatar

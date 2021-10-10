@@ -2,15 +2,8 @@
 @import './theme/colors';
 
 // import your custom scss files below here
+@import './Footer.scss';
 @import './HeroNotificationBox';
 @import './components/ScrollingAvatars.scss';
 @import './components/ScrollingAvatarsContainer.scss';
 @import './components/EventSections.scss';
-
-body {
-  overflow-x: hidden;
-}
-
-html {
-  overflow: hidden;
-}
