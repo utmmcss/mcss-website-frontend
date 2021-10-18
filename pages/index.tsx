@@ -16,19 +16,19 @@ const Home: FC = () => (
         },
         {
           imgSrc: '/chef.jpg',
-          date: 'Sept 25',
+          date: 'Sept 26',
           author: 'Brian Li',
           description: 'Masterchef Series: TA vs Professors',
         },
         {
           imgSrc: '/chef.jpg',
-          date: 'Sept 25',
+          date: 'Sept 27',
           author: 'Brian Li',
           description: 'Masterchef Series: TA vs Professors',
         },
         {
           imgSrc: '/chef.jpg',
-          date: 'Sept 25',
+          date: 'Sept 28',
           author: 'Brian Li',
           description: 'Masterchef Series: TA vs Professors',
         },

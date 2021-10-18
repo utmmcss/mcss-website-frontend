@@ -23,7 +23,7 @@ const EventSection: FC<IProps> = ({ eventCardInfos }) => (
     <h1 className="text-4xl text-center font-bold">EVENTS</h1>
     <div className="flex flex-wrap mt-2">
       {eventCardInfos.map(({ imgSrc, date, author, description }) => (
-        <div className="w-full sm:w-1/3 md:w-1/4 px-6 py-4">
+        <div className="w-full sm:w-1/3 md:w-1/4 px-6 py-4" key={`${date}${author}${description}`}>
           <Card className="card rounded-lg relative">
             <div className="tag">Food</div>
             <div className="w-full h-1/2 image-container">
