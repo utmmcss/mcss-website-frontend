@@ -8,7 +8,7 @@ const NavBar: FC = () => {
   const handleClick = () => { setActive(!active); };
 
   const links = ['About', 'Team', 'Events', 'Posts', 'Contacts'];
-  let navbar = [];
+  const navbar = [];
   let i = 0;
   links.forEach((link) => {
     navbar.push(<a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8" key={i}>{link}</a>);
