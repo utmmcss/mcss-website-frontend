@@ -8,12 +8,6 @@ const NavBar: FC = () => {
   const handleClick = () => { setActive(!active); };
 
   const links = ['About', 'Team', 'Events', 'Posts', 'Contacts'];
-  const navbar = [];
-  let i = 0;
-  links.forEach((link) => {
-    navbar.push(<a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8" key={i}>{link}</a>);
-    i += 1;
-  });
 
   return (
     <>
@@ -26,7 +20,7 @@ const NavBar: FC = () => {
         </button>
         <div className={`${active ? '' : 'hidden'} bg-gray-700 w-full block flex-grow lg:flex lg:items-center lg:w-auto`}>
           <div className="absolute right-0 mr-10">
-            {navbar}
+            {links.map((link) => <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">{link}</a>)}
           </div>
         </div>
       </nav>
