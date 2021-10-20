@@ -7,6 +7,14 @@ const NavBar: FC = () => {
 
   const handleClick = () => { setActive(!active); };
 
+  const links = ['About', 'Team', 'Events', 'Posts', 'Contacts'];
+  let navbar = [];
+  let i = 0;
+  links.forEach((link) => {
+    navbar.push(<a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8" key={i}>{link}</a>);
+    i += 1;
+  });
+
   return (
     <>
       <nav className="flex items-center justify-between flex-wrap bg-teal-500 mt-14 ml-14 mr-14">
@@ -18,11 +26,7 @@ const NavBar: FC = () => {
         </button>
         <div className={`${active ? '' : 'hidden'} bg-gray-700 w-full block flex-grow lg:flex lg:items-center lg:w-auto`}>
           <div className="absolute right-0 mr-10">
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">About</a>
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">Team</a>
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">Events</a>
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">Posts</a>
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">Contact</a>
+            {navbar}
           </div>
         </div>
       </nav>

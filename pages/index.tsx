@@ -1,8 +1,10 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Card from '@components/Card';
 import NavBar from '@components/NavBar';
 import ScrollingAvatars from '@components/ScrollingAvatars/ScrollingAvatarsContainer';
 import EventSection from '@components/EventSection';
+import Button from '@components/Button';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const Home: FC = () => (
   <div className="h-screen">
@@ -73,10 +75,12 @@ const Home: FC = () => (
           </div>
         </div>
         <div className="flex flex-col justify-center">
-          <button type="submit" className="px-8 py-2 text-xl bg-blue-700 text-white">
-            JOIN US
-            <Icon variations="two-tone" size="md">  arrow_right_alt</Icon>
-          </button>
+          <Button>
+            <div className="flex align-middle">
+              Join Us
+              <ArrowForwardIcon className="ml-3" />
+            </div>
+          </Button>
         </div>
       </div>
     </Card>
