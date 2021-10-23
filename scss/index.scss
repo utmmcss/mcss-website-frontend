@@ -6,4 +6,8 @@
 @import './HeroNotificationBox';
 @import './components/ScrollingAvatars.scss';
 @import './components/ScrollingAvatarsContainer.scss';
+
+body {
+  overflow-x: hidden;
+}
 @import './components/EventSections.scss';

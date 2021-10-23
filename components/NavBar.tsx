@@ -7,6 +7,8 @@ const NavBar: FC = () => {
 
   const handleClick = () => { setActive(!active); };
 
+  const links = ['About', 'Team', 'Events', 'Posts', 'Contacts'];
+
   return (
     <>
       <nav className="flex items-center justify-between flex-wrap bg-teal-500 mt-14 ml-14 mr-14">
@@ -18,11 +20,7 @@ const NavBar: FC = () => {
         </button>
         <div className={`${active ? '' : 'hidden'} bg-gray-700 w-full block flex-grow lg:flex lg:items-center lg:w-auto`}>
           <div className="absolute right-0 mr-10">
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">About</a>
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">Team</a>
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">Events</a>
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">Posts</a>
-            <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">Contact</a>
+            {links.map((link) => <a href="PLACEHOLDER" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 text-blue-400 mr-8">{link}</a>)}
           </div>
         </div>
       </nav>
