@@ -11,7 +11,7 @@ const NavBar: FC = () => {
 
   return (
     <>
-      <nav className="flex items-center justify-between flex-wrap bg-teal-500 mt-14 ml-14 mr-14">
+      <nav className="flex items-center justify-between flex-wrap bg-teal-500 mt-8 mx-14">
         <div className="flex item-center flex-shrink-0">
           <Image src={Logo} alt="MCSS logo" />
         </div>
