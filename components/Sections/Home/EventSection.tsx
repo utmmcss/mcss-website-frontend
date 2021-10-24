@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import Image from 'next/image';
-import Card from '@components/Card';
-import Button from '@components/Button';
+import Card from '@components/Common/Card';
+import Button from '@components/Common/Button';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';

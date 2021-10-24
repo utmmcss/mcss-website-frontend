@@ -4,7 +4,7 @@ import HomeImage from 'public/homeImage.png';
 
 const HomeIntro: FC = () => (
   <>
-    <div className="flex justify-evenly m-20">
+    <div className="flex justify-evenly m-20 mt-10">
       <div className="w-2/3">
         <span className="h-1/3 relative top-14">
           <hr className="inline-block h-1 w-56 bg-purple-700" />

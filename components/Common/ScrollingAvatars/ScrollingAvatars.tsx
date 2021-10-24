@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import Avatar from '@components/ScrollingAvatars/Avatar';
+import Avatar from '@components/Common/ScrollingAvatars/Avatar';
 import type { AvatarInfo } from './ScrollingAvatarsContainer';
 
 interface IProps {
