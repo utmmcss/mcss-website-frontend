@@ -5,6 +5,7 @@ import IconButton from '@components/Common/IconButton';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import SectionWrapper from '@components/Common/SectionWrapper';
 
 const EventSection: FC = () => {
   const eventCardInfos = [
@@ -35,10 +36,7 @@ const EventSection: FC = () => {
   ];
 
   return (
-    <div className="event-section mx-20">
-      <hr className="mt-3 w-8 h-1 text-center mx-auto mb-2 bg-purple-600" />
-      <p className="text-center text-gray-400 mb-2">CONNECT</p>
-      <h1 className="text-4xl text-center font-bold">EVENTS</h1>
+    <SectionWrapper title="EVENTS" subtitle="CONNECT" className="event-section mx-20">
       <div className="flex flex-wrap mt-10">
         {eventCardInfos.map(({ imgSrc, date, author, description }) => (
           <div
@@ -72,7 +70,7 @@ const EventSection: FC = () => {
           More Events
         </IconButton>
       </div>
-    </div>
+    </SectionWrapper>
   );
 };
 

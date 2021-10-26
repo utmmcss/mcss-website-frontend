@@ -2,12 +2,10 @@ import { FC } from 'react';
 import IconButton from '@components/Common/IconButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ScrollingAvatars from '@components/Common/ScrollingAvatars/ScrollingAvatarsContainer';
+import SectionWrapper from '@components/Common/SectionWrapper';
 
 const TeamMemberSection: FC = () => (
-  <div className="my-20">
-    <hr className="mt-3 w-8 h-1 text-center mx-auto mb-2 bg-purple-600" />
-    <p className="text-center text-gray-400 mb-2">EXECUTIVES & ASSOICATES</p>
-    <h1 className="text-4xl text-center font-bold mb-5">OUR TEAM</h1>
+  <SectionWrapper subtitle="EXECUTIVES & ASSOICATES" title="OUR TEAM">
     <ScrollingAvatars
       rows={2}
       avatarInfos={[
@@ -48,7 +46,7 @@ const TeamMemberSection: FC = () => (
         Join Us
       </IconButton>
     </div>
-  </div>
+  </SectionWrapper>
 );
 
 export default TeamMemberSection;
