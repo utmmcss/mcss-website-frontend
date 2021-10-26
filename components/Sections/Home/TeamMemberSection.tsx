@@ -7,7 +7,7 @@ const TeamMemberSection: FC = () => (
   <div className="my-20">
     <hr className="mt-3 w-8 h-1 text-center mx-auto mb-2 bg-purple-600" />
     <p className="text-center text-gray-400 mb-2">EXECUTIVES & ASSOICATES</p>
-    <h1 className="text-4xl text-center font-bold">OUR TEAM</h1>
+    <h1 className="text-4xl text-center font-bold mb-5">OUR TEAM</h1>
     <ScrollingAvatars
       rows={2}
       avatarInfos={[

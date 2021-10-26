@@ -4,7 +4,7 @@ import ArrowForward from '@mui/icons-material/ArrowForward';
 import Card from '@components/Common/Card';
 
 const JoinUsSection: FC = () => (
-  <Card className="m-10 my-10 h-2/5 flex items-center p-20 bg-white">
+  <Card className="m-10 my-10 mb-0 h-2/5 flex justify-center items-center p-20 bg-white">
     <div className="flex justify-between flex-row gap-20 p-50">
       <div className="flex-col">
         <div className="m-5 text-grey font-semibold">CALL TO ACTION</div>
