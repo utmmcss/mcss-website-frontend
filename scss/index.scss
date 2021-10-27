@@ -6,8 +6,10 @@
 @import './HeroNotificationBox';
 @import './components/ScrollingAvatars.scss';
 @import './components/ScrollingAvatarsContainer.scss';
+@import './components/EventSections.scss';
+@import "./components/MaterialCard";
+@import "./components/WhatWeDo";
 
 body {
   overflow-x: hidden;
 }
-@import './components/EventSections.scss';

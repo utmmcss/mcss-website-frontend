@@ -36,7 +36,7 @@ const EventSection: FC = () => {
   ];
 
   return (
-    <SectionWrapper title="EVENTS" subtitle="CONNECT" className="event-section mx-20">
+    <SectionWrapper subtitle="CONNECT" title="EVENTS" className="event-section mx-20">
       <div className="flex flex-wrap mt-10">
         {eventCardInfos.map(({ imgSrc, date, author, description }) => (
           <div
