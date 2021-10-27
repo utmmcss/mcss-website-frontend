@@ -34,7 +34,7 @@ const BlogsSection: FC = () => {
     <SectionWrapper title="ARTICLES " subtitle="BLOGS" className="blogs-section">
       <div className="flex justify-center my-20">
         {cardInfo.map(({ imgSrc, author, title, description }) => (
-          <MaterialCard classNames="flex flex-col w-1/5 mx-10 justify-center h-96">
+          <MaterialCard classNames="flex flex-col w-1/4 2xl:w-1/5 mx-10 justify-center h-96">
             <div className="h-1/2 w-full image-container">
               <Image src={imgSrc} layout="fill" />
             </div>
