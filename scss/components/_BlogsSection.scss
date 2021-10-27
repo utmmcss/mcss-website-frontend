@@ -1,0 +1,8 @@
+.blogs-section {
+  .image-container {
+    position: relative;
+    img {
+      @apply rounded-t-lg;
+    }
+  }
+}

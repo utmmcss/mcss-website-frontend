@@ -6,6 +6,7 @@ import HomeIntro from '@components/Sections/Home/HomeIntro';
 import AboutUs from '@components/Sections/Home/AboutUs';
 import JoinUsSection from '@components/Sections/Home/JoinUsSections';
 import WhatWeDoSection from '@components/Sections/Home/WhatWeDoSection';
+import BlogsSection from '@components/Sections/Home/BlogsSection';
 
 const Home: FC = () => (
   <div>
@@ -21,8 +22,9 @@ const Home: FC = () => (
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
     />
-    <EventSection />
     <JoinUsSection />
+    <EventSection />
+    <BlogsSection />
   </div>
 );
 
