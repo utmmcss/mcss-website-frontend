@@ -1,16 +1,19 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
-import CTAButton from './CTAButton';
+import Button from '@components/Common/Button';
 
 interface LinkProps {
   href: string;
   text: string;
 }
 
-const FooterLink:FC<LinkProps> = ({ href, text }) => (
+const FooterLink: FC<LinkProps> = ({ href, text }) => (
   <li className="mt-3 list-none">
     <Link href={href}>
-      <a href={href} className="text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50">
+      <a
+        href={href}
+        className="text-xs lg:text-sm leading-none hover:text-brand dark:hover:text-brand text-gray-800 dark:text-gray-50"
+      >
         {text}
       </a>
     </Link>
@@ -22,15 +25,15 @@ interface ColProps {
   children?: JSX.Element | JSX.Element[];
 }
 
-const FooterCol:FC<ColProps> = ({ title, children }) => (
+const FooterCol: FC<ColProps> = ({ title, children }) => (
   <div className="px-6">
     <h1 className="text-xl">{title}</h1>
     {children}
   </div>
 );
 
-const Footer:FC = () => (
-  <div className="pt-12">
+const Footer: FC = () => (
+  <div>
     <footer id="footer" className="relative z-50 dark:bg-gray-900 mt-24">
       <div className=" border-t border-b border-gray-200 dark:border-gray-700 py-16">
         <div className="mx-auto container px-4 xl:px-12 2xl:px-4">
@@ -49,7 +52,7 @@ const Footer:FC = () => (
                 type="text"
                 placeholder="Email"
               />
-              <CTAButton text="Sign me up!" />
+              <Button className="font-bold py-3 px-10 mt-3">Sign me up!</Button>
             </FooterCol>
           </div>
         </div>
