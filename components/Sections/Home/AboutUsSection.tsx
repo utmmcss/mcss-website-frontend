@@ -4,7 +4,7 @@ import Deerfield from 'public/deerfield.png'; // image from https://www.soundsol
 import Experience from 'public/experience.png';
 import ProfilePlaceholder from 'public/profileplaceholder.png'; // image from https://www.pngfind.com/mpng/hJmwxix_image-placeholder-png-user-profile-placeholder-image-png/
 
-const AboutUs: FC = () => (
+const AboutUsSection: FC = () => (
   <div className="flex m-20">
     <div className="w-1/3 mx-10">
       <Image src={Deerfield} alt="Deerfield Hall" />
@@ -45,4 +45,4 @@ const AboutUs: FC = () => (
     </div>
   </div>
 );
-export default AboutUs;
+export default AboutUsSection;

@@ -19,9 +19,9 @@ const NavBar: FC = () => {
 
   return (
     <>
-      <nav className="flex items-center justify-between flex-wrap mt-8 mx-14">
-        <div className="flex item-center flex-shrink-0 cursor-pointer">
-          <Image src={Logo} alt="MCSS logo" height={80} onClick={() => router.push('/')} />
+      <nav className="flex items-center justify-between flex-wrap mt-8 mx-4 md:mx-14">
+        <div className="flex item-center justify-start cursor-pointer w-20 md:w-48">
+          <Image src={Logo} alt="MCSS logo" onClick={() => router.push('/')} />
         </div>
         <button className="lg:hidden" id="open-menu" onClick={handleClick} type="button">
           <svg
