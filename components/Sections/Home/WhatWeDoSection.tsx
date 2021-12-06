@@ -35,7 +35,10 @@ const WhatWeDoSection: FC = () => {
     >
       <div className="flex flex-col md:flex-row justify-center m-10 md:mt-20">
         {cardInfo.map(({ icon, title, description }) => (
-          <MaterialCard classNames="flex flex-col w-full md:w-1/4 my-5 md:mx-10 px-10 justify-center h-60 md:h-72">
+          <MaterialCard
+            className="flex flex-col w-full md:w-1/4 my-5 md:mx-10 px-10 justify-center h-60 md:h-72"
+            key={title}
+          >
             <div className="flex items-center h-1/2">
               <div className=" border-2 rounded-xl p-4">{icon}</div>
               <h2 className="text-lg font-bold ml-10 w-20">{title}</h2>

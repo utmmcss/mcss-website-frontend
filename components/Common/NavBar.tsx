@@ -46,7 +46,7 @@ const NavBar: FC = () => {
       >
         <div className="absolute right-0 mr-10">
           {links.map(({ label, href }) => (
-            <a href={href} className="block mt-4 lg:inline-block lg:mt-0 mr-8 text-lg">
+            <a href={href} className="block mt-4 lg:inline-block lg:mt-0 mr-8 text-lg" key={label}>
               {label}
             </a>
           ))}

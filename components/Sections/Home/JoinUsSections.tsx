@@ -1,15 +1,14 @@
 import { FC } from 'react';
-import MediaQuery from 'react-responsive';
 
 import IconButton from '@components/Common/IconButton';
 import ArrowForward from '@mui/icons-material/ArrowForward';
 import Card from '@components/Common/Card';
 import SectionWrapper from '@components/Common/SectionWrapper';
-import { breakPoints } from '@utils/constants';
+import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 
 const JoinUsSection: FC = () => (
   <>
-    <MediaQuery maxWidth={breakPoints.md}>
+    <MediaQueryContainer showOnMobile>
       <SectionWrapper title="JOIN US" subtitle="CALL TO ACTION">
         <div className="flex justify-center px-10">
           <div>
@@ -25,9 +24,9 @@ const JoinUsSection: FC = () => (
           </div>
         </div>
       </SectionWrapper>
-    </MediaQuery>
-    <MediaQuery minWidth={breakPoints.md}>
-      <Card className="m-10 my-10 mb-0 h-2/5 flex justify-center items-center p-20 bg-white">
+    </MediaQueryContainer>
+    <MediaQueryContainer hideOnMobile>
+      <Card className="hidden m-10 my-10 mb-0 h-2/5 md:flex justify-center items-center p-20 bg-white">
         <div className="flex justify-between flex-row gap-20 p-50">
           <div className="flex-col">
             <div className="m-5 text-grey font-semibold">CALL TO ACTION</div>
@@ -47,7 +46,7 @@ const JoinUsSection: FC = () => (
           </div>
         </div>
       </Card>
-    </MediaQuery>
+    </MediaQueryContainer>
   </>
 );
 

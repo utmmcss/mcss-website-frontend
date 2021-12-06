@@ -1,31 +1,18 @@
 .event-section {
-  .card {
-    box-shadow: 3px 5px 11px 3px rgba(0, 0, 0, 0.13);
-    height: 384px;
-
-    @screen md {
-      height: 270px;
+  .image-container {
+    position: relative;
+    img {
+      @apply rounded-t-lg;
     }
-
-    .image-container {
-      position: relative;
-      img {
-        @apply rounded-t-lg;
-      }
-    }
-    .tag {
-      position: absolute;
-      padding: 2px 15px;
-      z-index: 2;
-      top: 177px;
-      right: 5px;
-      color: white;
-      @apply bg-purple-600;
-      @apply rounded-full;
-
-      @screen md {
-        top: 120px;
-      }
-    }
+  }
+  .tag {
+    position: absolute;
+    padding: 2px 15px;
+    z-index: 1000;
+    top: 177px;
+    right: 5px;
+    color: white;
+    @apply bg-purple-600;
+    @apply rounded-full;
   }
 }
