@@ -74,12 +74,12 @@ const Footer: FC = () => (
             <MediaQueryContainer hideOnMobile>
               <FooterCol title="Newsletter">
                 <input
-                  className="appearance-none border-none w-full py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
+                  className="appearance-none border-none w-full mt-3 py-2 px-3 text-gray-700 focus:outline-none focus:shadow-outline"
                   id="email"
                   type="text"
                   placeholder="Email"
                 />
-                <Button className="font-bold py-3 px-10 mt-3">Sign me up!</Button>
+                <Button className="font-bold py-3 px-10 mt-4">Sign me up!</Button>
               </FooterCol>
             </MediaQueryContainer>
           </div>

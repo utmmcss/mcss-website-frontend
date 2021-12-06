@@ -1,16 +1,21 @@
 import '../scss/index.scss';
-import type { AppProps } from 'next/app';
 import 'tailwindcss/tailwind.css';
+import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 
 import Footer from '@components/Common/Footer';
 import NavBar from '@components/Common/NavBar';
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const NavBarBlackList = ['/NavMenu'];
+  const FooterBlackList = ['/NavMenu'];
+
   return (
     <>
-      <NavBar />
+      {!NavBarBlackList.includes(router.pathname) && <NavBar />}
       <Component {...pageProps} />
-      <Footer />
+      {!FooterBlackList.includes(router.pathname) && <Footer />}
     </>
   );
 }
