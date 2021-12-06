@@ -5,4 +5,15 @@
       @apply rounded-t-lg;
     }
   }
+
+  .tag {
+    position: absolute;
+    padding: 2px 15px;
+    z-index: 1000;
+    top: 177px;
+    right: 5px;
+    color: white;
+    @apply bg-purple-600;
+    @apply rounded-full;
+  }
 }

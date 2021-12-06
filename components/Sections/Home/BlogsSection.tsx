@@ -43,7 +43,8 @@ const BlogsSection: FC = () => {
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
           {cardInfo.map(({ imgSrc, author, title, description }) => (
             <div className="w-full px-10 py-4" key={`${title}${author}${description}`}>
-              <MaterialCard className="h-96 w-full">
+              <MaterialCard className="h-96 w-full relative">
+                <div className="tag">Courses</div>
                 <div className="h-1/2 w-full image-container">
                   <Image src={imgSrc} layout="fill" />
                 </div>
@@ -61,9 +62,10 @@ const BlogsSection: FC = () => {
         <div className="flex justify-center my-10">
           {cardInfo.map(({ imgSrc, author, title, description }) => (
             <MaterialCard
-              className="w-full 2xl:w-1/5 mx-10 h-96"
+              className="w-full 2xl:w-1/5 mx-10 h-96 relative"
               key={`${title}${author}${description}`}
             >
+              <div className="tag">Courses</div>
               <div className="h-1/2 w-full image-container">
                 <Image src={imgSrc} layout="fill" />
               </div>
