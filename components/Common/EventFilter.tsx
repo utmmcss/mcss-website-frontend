@@ -10,15 +10,10 @@ interface OptionButtonProps {
 
 const OptionButton: FC<OptionButtonProps> = ({ optionName } : OptionButtonProps) => {
   const [clicked, setClicked] = useState(false);
-  const handleClick = () => {
-    setClicked(!clicked);
-  };
 
   return (
-    <button type="button" onClick={handleClick} className="m-5">
-      {clicked
-        ? <p style={{ color: '#7d25af' }}>{optionName}</p>
-        : <p style={{ color: '#7d7b76' }}>{optionName}</p>}
+    <button type="button" onClick={() => setClicked(!clicked)} className="m-5">
+      <p style={{ color: clicked ? '#7d25af' : '#7d7b76' }}>{optionName}</p>
     </button>
   );
 };
