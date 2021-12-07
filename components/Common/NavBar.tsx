@@ -2,6 +2,8 @@ import React, { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import classNames from 'classnames';
+import SearchIcon from '@mui/icons-material/Search';
 
 import Logo from '@public/mcssLogo.svg';
 import MediaQueryContainer from './MediaQueryContainer';
@@ -18,6 +20,23 @@ const NavBar: FC = () => {
     <nav className="flex items-center justify-between flex-wrap mt-8 mx-6 md:mx-14">
       <div className="flex item-center justify-start cursor-pointer w-20 md:w-48">
         <Image src={Logo} alt="MCSS logo" onClick={() => router.push('/')} />
+      </div>
+      <div
+        className={classNames('m-5 mr-0 md:mr-24 h-12 flex flex-grow items-center w-auto', {
+          block: router.pathname === '/Events',
+          hidden: router.pathname !== '/Events',
+        })}
+      >
+        <div className="bg-gray-200 h-full text-base text-gray-400 pl-3 py-3">
+          <SearchIcon className="  " />
+        </div>
+        <input
+          className="bg-gray-200 px-5 pr-16 rounded-sm text-base text-gray-400 w-full h-full focus:outline-none"
+          type="search"
+          name=""
+          id=""
+          placeholder="Search Events"
+        />
       </div>
       <MediaQueryContainer showOnMobile>
         <button onClick={() => router.push('/NavMenu')} type="button">
@@ -39,7 +58,7 @@ const NavBar: FC = () => {
         </button>
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
-        <div className="absolute right-0 mr-10">
+        <div>
           {links.map(({ label, href }) => (
             <Link passHref href={href} key={label}>
               <a href={href} className="mt-4 mr-8 text-lg">
