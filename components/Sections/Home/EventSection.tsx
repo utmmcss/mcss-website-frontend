@@ -71,7 +71,7 @@ const EventSection: FC = () => {
         <div className="event-section flex justify-center my-10">
           {eventCardInfos.map(({ imgSrc, date, author, description }) => (
             <MaterialCard
-              className="w-full 2xl:w-1/5 mx-10 h-96 relative"
+              className="w-full md:w-1/5 mx-10 h-96 relative"
               key={`${date}${author}${description}`}
             >
               <div className="tag">Food</div>
@@ -97,7 +97,7 @@ const EventSection: FC = () => {
           ))}
         </div>
       </MediaQueryContainer>
-      <div className="text-center mt-10">
+      <div className="flex justify-center mt-10">
         <IconButton className="w-48 h-14" icon={<ArrowForwardIcon className="ml-3" />}>
           More Events
         </IconButton>
