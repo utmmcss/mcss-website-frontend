@@ -2,16 +2,16 @@ import React, { FC } from 'react';
 
 import TeamMemberSection from '@components/Sections/Home/TeamMemberSection';
 import EventSection from '@components/Sections/Home/EventSection';
-import HomeIntro from '@components/Sections/Home/HomeIntro';
-import AboutUs from '@components/Sections/Home/AboutUs';
+import HomeIntroSection from '@components/Sections/Home/HomeIntroSection';
+import AboutUsSection from '@components/Sections/Home/AboutUsSection';
 import JoinUsSection from '@components/Sections/Home/JoinUsSections';
 import WhatWeDoSection from '@components/Sections/Home/WhatWeDoSection';
 import BlogsSection from '@components/Sections/Home/BlogsSection';
 
 const Home: FC = () => (
   <div>
-    <HomeIntro />
-    <AboutUs />
+    <HomeIntroSection />
+    <AboutUsSection />
     <WhatWeDoSection />
     <TeamMemberSection />
     <iframe

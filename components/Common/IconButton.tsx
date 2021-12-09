@@ -11,9 +11,9 @@ interface IProps {
 
 const IconButton: FC<IProps> = ({ children, icon, className, onClick, iconPos = 'right' }) => (
   <Button className={className} onClick={onClick}>
-    <div className="flex align-middle justify-center">
+    <div className="flex items-center justify-center">
       {iconPos === 'left' && icon}
-      {children}
+      <div className="text-left">{children}</div>
       {iconPos === 'right' && icon}
     </div>
   </Button>
