@@ -62,7 +62,7 @@ const BlogsSection: FC = () => {
         <div className="flex justify-center my-10">
           {cardInfo.map(({ imgSrc, author, title, description }) => (
             <MaterialCard
-              className="w-full md:w-1/5 mx-10 h-96 relative"
+              className="w-full md:w-1/4 mx-10 h-96 relative"
               key={`${title}${author}${description}`}
             >
               <div className="tag">Courses</div>
