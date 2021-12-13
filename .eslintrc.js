@@ -10,10 +10,14 @@ module.exports = {
     'implicit-arrow-linebreak': 0,
     'function-paren-newline': 0,
   },
+  overrides: [
+    {
+      files: ['*.ts', '*.tsx'], // Your TypeScript files extension
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+        project: ['./tsconfig.json'], // Specify it only for TypeScript files
+      },
+    },
+  ],
   parser: '@typescript-eslint/parser',
-  files: ['*.ts', '*.tsx'], // Your TypeScript files extension
-  parserOptions: {
-    tsconfigRootDir: __dirname,
-    project: ['./tsconfig.json'], // Specify it only for TypeScript files
-  },
 };
