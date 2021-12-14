@@ -13,6 +13,8 @@ type EventCardInfosTypes = {
   date: string;
   author: string;
   description: string;
+  tag: string;
+  key: string;
 };
 
 const GeneralEvents: FC<GeneralEventsProps> = ({ eventCardInfos }) => (
