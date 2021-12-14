@@ -18,13 +18,13 @@ type EventCardInfosTypes = {
 const GeneralEvents: FC<GeneralEventsProps> = ({ eventCardInfos }) => (
   <div className="event-section md:m-0 lg:mx-20 2xl:mx-40">
     <div className="flex flex-wrap mt-10">
-      {eventCardInfos.map(({ imgSrc, date, author, description, key }) => (
+      {eventCardInfos.map(({ imgSrc, date, author, description, tag, key }) => (
         <div
           className="w-full sm:w-1/3 md:w-1/4 px-6 py-4"
           key={key}
         >
           <Card className="card rounded-lg relative">
-            <div className="tag">Food</div>
+            <div className="tag">{tag}</div>
             <div className="w-full h-1/2 image-container">
               <Image src={imgSrc} layout="fill" />
             </div>
@@ -57,6 +57,7 @@ GeneralEvents.defaultProps = {
       date: 'Sept 25',
       author: 'Brian Li',
       description: 'Masterchef Series: TA vs Professors',
+      tag: "Food",
       key: '1',
     },
     {
@@ -64,6 +65,7 @@ GeneralEvents.defaultProps = {
       date: 'Sept 26',
       author: 'Brian Li',
       description: 'Masterchef Series: TA vs Professors',
+      tag: "Food",
       key: '2',
     },
     {
@@ -71,6 +73,7 @@ GeneralEvents.defaultProps = {
       date: 'Sept 27',
       author: 'Brian Li',
       description: 'Masterchef Series: TA vs Professors',
+      tag: "Food",
       key: '3',
     },
     {
@@ -78,6 +81,7 @@ GeneralEvents.defaultProps = {
       date: 'Sept 28',
       author: 'Brian Li',
       description: 'Masterchef Series: TA vs Professors',
+      tag: "Food",
       key: '4',
     },
     {
@@ -85,6 +89,7 @@ GeneralEvents.defaultProps = {
       date: 'Sept 28',
       author: 'Brian Li',
       description: 'Masterchef Series: TA vs Professors',
+      tag: "Food",
       key: '5',
     },
     {
@@ -92,6 +97,7 @@ GeneralEvents.defaultProps = {
       date: 'Sept 28',
       author: 'Brian Li',
       description: 'Masterchef Series: TA vs Professors',
+      tag: "Food",
       key: '6',
     },
     {
@@ -99,6 +105,7 @@ GeneralEvents.defaultProps = {
       date: 'Sept 28',
       author: 'Brian Li',
       description: 'Masterchef Series: TA vs Professors',
+      tag: "Food",
       key: '7',
     },
     {
@@ -106,6 +113,7 @@ GeneralEvents.defaultProps = {
       date: 'Sept 28',
       author: 'Brian Li',
       description: 'Masterchef Series: TA vs Professors',
+      tag: "Food",
       key: '8',
     },
   ],
