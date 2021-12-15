@@ -15,6 +15,7 @@ interface Event {
   registrationUrl: string;
   categories: string[];
   location: string;
+  featured: boolean;
 }
 interface EventState {
   events: Event[];
@@ -60,6 +61,7 @@ export const getAllEvents = createAsyncThunk<
         registration_url: registrationUrl,
         categories,
         location,
+        featured,
       }) => {
         const parsedCategories = categories.map(({ type }) => type);
 
@@ -73,6 +75,7 @@ export const getAllEvents = createAsyncThunk<
           registrationUrl,
           categories: parsedCategories,
           location,
+          featured,
         });
       },
     );

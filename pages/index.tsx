@@ -7,20 +7,15 @@ import AboutUsSection from '@components/Sections/Home/AboutUsSection';
 import JoinUsSection from '@components/Sections/Home/JoinUsSections';
 import WhatWeDoSection from '@components/Sections/Home/WhatWeDoSection';
 import BlogsSection from '@components/Sections/Home/BlogsSection';
-import { useAppSelector, useAppDispatch } from '@store/hooks';
+import { useAppDispatch } from '@store/hooks';
 import { getAllEvents } from '@store/eventSlice';
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();
-  const events = useAppSelector((state) => state.events);
 
   useEffect(() => {
     dispatch(getAllEvents());
   }, []);
-
-  useEffect(() => {
-    console.log(events);
-  }, [events]);
 
   return (
     <div>

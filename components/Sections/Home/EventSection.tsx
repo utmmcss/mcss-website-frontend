@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import TextLoop from 'react-text-loop';
+import { useRouter } from 'next/router';
 
 import MaterialCard from '@components/Common/MaterialCard';
 import IconButton from '@components/Common/IconButton';
@@ -31,15 +32,18 @@ const Tag: FC<{ categories: string[] }> = ({ categories }) => (
 
 const EventSection: FC = () => {
   const { events } = useAppSelector((state) => state.events);
-  const eventCardInfos = events.map(
-    ({ title, creator, startDatetime, coverImageUrl, categories }) => ({
+  const router = useRouter();
+
+  const eventCardInfos = events
+    .filter(({ featured }) => featured)
+    .slice(0, 3)
+    .map(({ title, creator, startDatetime, coverImageUrl, categories }) => ({
       title,
       creator,
       startDate: formatDate(startDatetime),
       coverImageUrl,
       categories,
-    }),
-  );
+    }));
 
   return (
     <SectionWrapper
@@ -107,7 +111,11 @@ const EventSection: FC = () => {
         </div>
       </MediaQueryContainer>
       <div className="flex justify-center mt-10">
-        <IconButton className="w-48 h-14" icon={<ArrowForwardIcon className="ml-3" />}>
+        <IconButton
+          className="w-48 h-14"
+          icon={<ArrowForwardIcon className="ml-3" />}
+          onClick={() => router.push('Events')}
+        >
           More Events
         </IconButton>
       </div>

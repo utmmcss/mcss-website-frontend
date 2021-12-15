@@ -65,7 +65,7 @@ const Footer: FC = () => (
               />
               <FooterLink
                 text="Discord"
-                href="https://www.instagram.com/utmmcss/"
+                href="https://discord.com/invite/wfJUZyXjfM"
                 icon={
                   <Image src={DiscordIcon} alt="Discord" layout="fixed" width={24} height={24} />
                 }

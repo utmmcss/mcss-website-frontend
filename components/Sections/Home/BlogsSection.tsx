@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useRouter } from 'next/router';
 
 import SectionWrapper from '@components/Common/SectionWrapper';
 import MaterialCard from '@components/Common/MaterialCard';
@@ -9,6 +10,8 @@ import Slider from '@components/Common/Slider';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 
 const BlogsSection: FC = () => {
+  const router = useRouter();
+
   const cardInfo = [
     {
       imgSrc: '/chef.jpg',
@@ -79,7 +82,11 @@ const BlogsSection: FC = () => {
         </div>
       </MediaQueryContainer>
       <div className="text-center mt-10">
-        <IconButton className="w-48 h-14" icon={<ArrowForwardIcon className="ml-3" />}>
+        <IconButton
+          className="w-48 h-14"
+          icon={<ArrowForwardIcon className="ml-3" />}
+          onClick={() => router.push('Blogs')}
+        >
           More Blogs
         </IconButton>
       </div>
