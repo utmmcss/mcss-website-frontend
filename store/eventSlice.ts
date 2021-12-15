@@ -8,11 +8,11 @@ import type { RootState } from './store';
 interface Event {
   title: string;
   creator: string;
-  start_datetime: string;
-  end_datetime: string;
-  cover_image_url: string;
+  startDatetime: string;
+  endDatetime: string;
+  coverImageUrl: string;
   content: string;
-  registration_url: string;
+  registrationUrl: string;
   categories: string[];
   location: string;
 }
@@ -28,7 +28,14 @@ export const getAllEvents = createAsyncThunk<
     state: RootState;
   }
 >('events/fetchAllEvents', async (_) => {
-  interface EventResponse extends Event {
+  interface EventResponse extends Omit<Event, 'categories'> {
+    start_datetime: string;
+    end_datetime: string;
+    cover_image_url: string;
+    registration_url: string;
+    categories: {
+      type: string;
+    }[];
     cover_image: {
       formats: {
         medium: {
@@ -46,25 +53,28 @@ export const getAllEvents = createAsyncThunk<
       ({
         title,
         creator,
-        start_datetime,
-        end_datetime,
+        start_datetime: startDatetime,
+        end_datetime: endDatetime,
         cover_image,
         content,
-        registration_url,
+        registration_url: registrationUrl,
         categories,
         location,
-      }) =>
-        parsedEvents.push({
+      }) => {
+        const parsedCategories = categories.map(({ type }) => type);
+
+        return parsedEvents.push({
           title,
           creator,
-          start_datetime,
-          end_datetime,
-          cover_image_url: `${process.env.NEXT_PUBLIC_API_URL}${cover_image[0].formats.medium.url}`,
+          startDatetime,
+          endDatetime,
+          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image[0].formats.medium.url}`,
           content,
-          registration_url,
-          categories,
+          registrationUrl,
+          categories: parsedCategories,
           location,
-        }),
+        });
+      },
     );
   }
   return parsedEvents;

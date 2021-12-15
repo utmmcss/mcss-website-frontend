@@ -46,7 +46,7 @@ const BlogsSection: FC = () => {
               <MaterialCard className="h-96 w-full relative">
                 <div className="tag">Courses</div>
                 <div className="h-1/2 w-full image-container">
-                  <Image src={imgSrc} layout="fill" />
+                  <Image src={imgSrc} layout="fill" priority />
                 </div>
                 <div className="h-1/2 p-5">
                   <h3 className="mb-2">{`By: ${author}`}</h3>
@@ -67,7 +67,7 @@ const BlogsSection: FC = () => {
             >
               <div className="tag">Courses</div>
               <div className="h-1/2 w-full image-container">
-                <Image src={imgSrc} layout="fill" />
+                <Image src={imgSrc} layout="fill" priority />
               </div>
               <div className="h-1/2 p-5">
                 <h3 className="mb-2">{`By: ${author}`}</h3>
