@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
+import eventSlice from './eventSlice';
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    events: eventSlice,
+  },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

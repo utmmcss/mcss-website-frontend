@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import Image from 'next/image';
 
 import MaterialCard from '@components/Common/MaterialCard';
@@ -90,11 +90,7 @@ const EventSection: FC = () => {
                   </div>
                 </div>
                 <div className="h-2/3">
-                  <p
-                    className="mt-2 mx-1 text-2xl font-bold text-justify"
-                  >
-                    {description}
-                  </p>
+                  <p className="mt-2 mx-1 text-2xl font-bold text-justify">{description}</p>
                 </div>
               </div>
             </MaterialCard>
