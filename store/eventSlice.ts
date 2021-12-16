@@ -40,11 +40,7 @@ export const getAllEvents = createAsyncThunk<
       type: string;
     }[];
     cover_image: {
-      formats: {
-        medium: {
-          url: string;
-        };
-      };
+      url: string;
     };
   }
 
@@ -74,7 +70,7 @@ export const getAllEvents = createAsyncThunk<
           creator,
           startDatetime,
           endDatetime,
-          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.formats.medium.url}`,
+          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.url}`,
           content,
           registrationUrl,
           categories: parsedCategories,

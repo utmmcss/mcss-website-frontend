@@ -28,11 +28,7 @@ export const getAllMembers = createAsyncThunk<
 >('members/fetchAllMembers', async () => {
   interface MemberResponse extends Member {
     avatar: {
-      formats: {
-        small: {
-          url: string;
-        };
-      };
+      url: string;
     };
     website_url: string;
   }
@@ -45,7 +41,7 @@ export const getAllMembers = createAsyncThunk<
       parsedMembers.push({
         role,
         name,
-        avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.formats.small.url}`,
+        avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.url}`,
         websiteUrl: website_url,
         executive,
       }),
