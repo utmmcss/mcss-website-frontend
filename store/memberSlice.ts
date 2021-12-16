@@ -11,6 +11,7 @@ export interface Member {
   role: string;
   avatarUrl: string;
   websiteUrl: string;
+  executive: string;
 }
 
 interface MemberState {
@@ -40,12 +41,13 @@ export const getAllMembers = createAsyncThunk<
   const parsedMembers: Member[] = [];
 
   if (response) {
-    response.forEach(({ name, role, avatar, website_url }) =>
+    response.forEach(({ name, role, avatar, website_url, executive }) =>
       parsedMembers.push({
         role,
         name,
         avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.formats.small.url}`,
         websiteUrl: website_url,
+        executive,
       }),
     );
   }
