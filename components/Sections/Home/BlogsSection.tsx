@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import Image from 'next/image';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useRouter } from 'next/router';
 
 import SectionWrapper from '@components/Common/SectionWrapper';
 import MaterialCard from '@components/Common/MaterialCard';
@@ -9,6 +10,8 @@ import Slider from '@components/Common/Slider';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 
 const BlogsSection: FC = () => {
+  const router = useRouter();
+
   const cardInfo = [
     {
       imgSrc: '/chef.jpg',
@@ -46,7 +49,7 @@ const BlogsSection: FC = () => {
               <MaterialCard className="h-96 w-full relative">
                 <div className="tag">Courses</div>
                 <div className="h-1/2 w-full image-container">
-                  <Image src={imgSrc} layout="fill" />
+                  <Image src={imgSrc} layout="fill" priority />
                 </div>
                 <div className="h-1/2 p-5">
                   <h3 className="mb-2">{`By: ${author}`}</h3>
@@ -62,12 +65,12 @@ const BlogsSection: FC = () => {
         <div className="flex justify-center my-10">
           {cardInfo.map(({ imgSrc, author, title, description }) => (
             <MaterialCard
-              className="w-full md:w-1/5 mx-10 h-96 relative"
+              className="w-full md:w-1/4 mx-10 h-96 relative"
               key={`${title}${author}${description}`}
             >
               <div className="tag">Courses</div>
               <div className="h-1/2 w-full image-container">
-                <Image src={imgSrc} layout="fill" />
+                <Image src={imgSrc} layout="fill" priority />
               </div>
               <div className="h-1/2 p-5">
                 <h3 className="mb-2">{`By: ${author}`}</h3>
@@ -79,7 +82,11 @@ const BlogsSection: FC = () => {
         </div>
       </MediaQueryContainer>
       <div className="text-center mt-10">
-        <IconButton className="w-48 h-14" icon={<ArrowForwardIcon className="ml-3" />}>
+        <IconButton
+          className="w-48 h-14"
+          icon={<ArrowForwardIcon className="ml-3" />}
+          onClick={() => router.push('Blogs')}
+        >
           More Blogs
         </IconButton>
       </div>
