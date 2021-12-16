@@ -1,12 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
+
+import { Member } from '@store/memberSlice';
 import Avatar from '@components/Common/ScrollingAvatars/Avatar';
-import type { AvatarInfo } from './ScrollingAvatarsContainer';
 
 interface IProps {
   /** pre-set width and height of each avatar */
   size?: 'sm' | 'md' | 'lg';
   /** list of objects containing the configs for the avatars, maximum size is 24 */
-  avatarInfos: AvatarInfo[];
+  avatarInfos: Member[];
   scrollDirection?: 'left' | 'right';
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
@@ -36,7 +37,7 @@ const AVATAR_SIZE_MAP = {
  * create infinte scrolling animation and return the new list of avatar infos.
  */
 const appendAvatarInfos = (
-  avatarInfos: AvatarInfo[],
+  avatarInfos: Member[],
   { size, margin }: { size: number; margin: number },
 ) => {
   const currAvatarWidth = avatarInfos.length * (size + 2 * margin);
@@ -58,7 +59,7 @@ const ScrollingAvatars: FC<IProps> = ({
   setName,
   setPosition,
 }) => {
-  const [appendedAvatarsInfos, setAppendedAvatarsInfos] = useState<AvatarInfo[]>([]);
+  const [appendedAvatarsInfos, setAppendedAvatarsInfos] = useState<Member[]>([]);
   const avatarConfig = AVATAR_SIZE_MAP[size];
 
   // we have to use useEffect since we need the component to mount first before we can call window
@@ -71,19 +72,24 @@ const ScrollingAvatars: FC<IProps> = ({
       <div
         className={`scrolling-avatars-inner-container--${size}--${avatarInfos.length}--scroll-${scrollDirection}`}
       >
-        {appendedAvatarsInfos.map(({ name, position, imgSrc }) => (
+        {appendedAvatarsInfos.map(({ name, role, avatarUrl, websiteUrl }) => (
           <Avatar
             onMouseEnter={() => {
               setName(name);
-              setPosition(position);
+              setPosition(role);
             }}
             onMouseLeave={() => {
               setName('');
               setPosition('');
             }}
+            onClick={() => {
+              if (websiteUrl) {
+                window.location.href = websiteUrl;
+              }
+            }}
             className="avatar"
             size={avatarConfig.size}
-            imgSrc={imgSrc}
+            imgSrc={avatarUrl}
           />
         ))}
       </div>

@@ -9,12 +9,14 @@ import WhatWeDoSection from '@components/Sections/Home/WhatWeDoSection';
 import BlogsSection from '@components/Sections/Home/BlogsSection';
 import { useAppDispatch } from '@store/hooks';
 import { getAllEvents } from '@store/eventSlice';
+import { getAllMembers } from '@store/memberSlice';
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     dispatch(getAllEvents());
+    dispatch(getAllMembers());
   }, []);
 
   return (
