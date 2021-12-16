@@ -1,18 +1,13 @@
 import React, { FC, useState } from 'react';
 import _ from 'underscore';
 
+import type { Member } from '@store/memberSlice';
 import ScrollingAvatars from './ScrollingAvatars';
-
-interface AvatarInfo {
-  name: string;
-  position: string;
-  imgSrc: string;
-}
 
 interface IProps {
   rows?: number;
   startScrollRight?: boolean;
-  avatarInfos: AvatarInfo[];
+  avatarInfos: Member[];
 }
 
 const ScrollingAvatarsContainer: FC<IProps> = ({ rows = 1, avatarInfos, startScrollRight }) => {
@@ -62,4 +57,3 @@ const ScrollingAvatarsContainer: FC<IProps> = ({ rows = 1, avatarInfos, startScr
 };
 
 export default ScrollingAvatarsContainer;
-export type { AvatarInfo };

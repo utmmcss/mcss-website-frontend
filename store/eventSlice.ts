@@ -45,7 +45,7 @@ export const getAllEvents = createAsyncThunk<
           url: string;
         };
       };
-    }[];
+    };
   }
 
   const response: EventResponse[] = await getAPI('/events');
@@ -74,7 +74,7 @@ export const getAllEvents = createAsyncThunk<
           creator,
           startDatetime,
           endDatetime,
-          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image[0].formats.medium.url}`,
+          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.formats.medium.url}`,
           content,
           registrationUrl,
           categories: parsedCategories,
