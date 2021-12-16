@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import _ from 'underscore';
+
 import { getAPI } from '@utils/helper';
 import type { RootState } from './store';
 
@@ -28,7 +30,7 @@ export const getAllEvents = createAsyncThunk<
   {
     state: RootState;
   }
->('events/fetchAllEvents', async (_) => {
+>('events/fetchAllEvents', async (__) => {
   interface EventResponse extends Omit<Event, 'categories'> {
     start_datetime: string;
     end_datetime: string;
@@ -63,7 +65,9 @@ export const getAllEvents = createAsyncThunk<
         location,
         featured,
       }) => {
-        const parsedCategories = categories.map(({ type }) => type);
+        const parsedCategories = !_.isEmpty(categories)
+          ? categories.map(({ type }) => type)
+          : ['Other'];
 
         return parsedEvents.push({
           title,
