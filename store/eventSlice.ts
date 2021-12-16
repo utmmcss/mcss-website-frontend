@@ -30,7 +30,7 @@ export const getAllEvents = createAsyncThunk<
   {
     state: RootState;
   }
->('events/fetchAllEvents', async (__) => {
+>('events/fetchAllEvents', async () => {
   interface EventResponse extends Omit<Event, 'categories'> {
     start_datetime: string;
     end_datetime: string;

@@ -10,6 +10,7 @@ export interface Member {
   name: string;
   role: string;
   avatarUrl: string;
+  websiteUrl: string;
 }
 
 interface MemberState {
@@ -23,7 +24,7 @@ export const getAllMembers = createAsyncThunk<
   {
     state: RootState;
   }
->('members/fetchAllMembers', async (_) => {
+>('members/fetchAllMembers', async () => {
   interface MemberResponse extends Member {
     avatar: {
       formats: {
@@ -32,17 +33,19 @@ export const getAllMembers = createAsyncThunk<
         };
       };
     };
+    website_url: string;
   }
 
   const response: MemberResponse[] = await getAPI('/team-members');
   const parsedMembers: Member[] = [];
 
   if (response) {
-    response.forEach(({ name, role, avatar }) =>
+    response.forEach(({ name, role, avatar, website_url }) =>
       parsedMembers.push({
         role,
         name,
         avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.formats.small.url}`,
+        websiteUrl: website_url,
       }),
     );
   }
