@@ -1,0 +1,25 @@
+.event-list-page {
+  .image-container {
+    position: relative;
+    img {
+      @apply rounded-t-lg;
+    }
+  }
+  .tag {
+    position: absolute;
+    padding: 2px 15px;
+    z-index: 1000;
+    top: 177px;
+    right: 5px;
+    color: white;
+    @apply bg-purple-600;
+    @apply rounded-full;
+  }
+
+  .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

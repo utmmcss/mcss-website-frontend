@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import Image from 'next/image';
-import TextLoop from 'react-text-loop';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
 
@@ -14,23 +13,8 @@ import Slider from '@components/Common/Slider';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import { useAppSelector } from '@store/hooks';
 import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
-
-const formatDate = (date: string) =>
-  new Date(date).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' });
-
-const Tag: FC<{ categories: string[] }> = ({ categories }) => (
-  <div className="tag">
-    {categories.length === 1 ? (
-      categories[0]
-    ) : (
-      <TextLoop>
-        {categories.map((category) => (
-          <div>{category}</div>
-        ))}
-      </TextLoop>
-    )}
-  </div>
-);
+import { formatDate } from '@utils/helper';
+import Tag from '@components/Common/Tag';
 
 const EventSection: FC = () => {
   const { events } = useAppSelector((state) => state.events);

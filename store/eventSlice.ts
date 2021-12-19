@@ -21,7 +21,30 @@ interface Event {
 }
 interface EventState {
   events: Event[];
+  categories: string[];
 }
+
+export const getAllCategories = createAsyncThunk<
+  string[],
+  /** no args for this async dispatch */
+  void,
+  {
+    state: RootState;
+  }
+>('events/fetchAllCategories', async () => {
+  interface CategoryResponse {
+    type: string;
+  }
+
+  const response: CategoryResponse[] = await getAPI('/event-categories');
+  let parsedCategories: string[] = [];
+
+  if (response) {
+    parsedCategories = response.map((category) => category.type);
+  }
+
+  return parsedCategories;
+});
 
 export const getAllEvents = createAsyncThunk<
   Event[],
@@ -86,6 +109,7 @@ export const getAllEvents = createAsyncThunk<
 // Define the initial state using that type
 const initialState: EventState = {
   events: [],
+  categories: [],
 };
 
 const eventSlice = createSlice({
@@ -96,6 +120,11 @@ const eventSlice = createSlice({
     // load all events
     builder.addCase(getAllEvents.fulfilled, (state, action) => {
       state.events = action.payload;
+    });
+
+    // load all event categories
+    builder.addCase(getAllCategories.fulfilled, (state, action) => {
+      state.categories = action.payload;
     });
   },
 });
