@@ -77,7 +77,7 @@ const EventSection: FC = () => {
                       </div>
                     </div>
                     <div className="h-2/3">
-                      <p className="mt-2 mx-1 text-2xl font-bold text-justify">{title}</p>
+                      <p className="mt-2 mx-1 text-2xl font-bold text-justify title">{title}</p>
                     </div>
                   </div>
                 </MaterialCard>
@@ -112,7 +112,7 @@ const EventSection: FC = () => {
                     </div>
                   </div>
                   <div className="h-2/3">
-                    <p className="mt-2 mx-1 text-2xl font-bold text-justify">{title}</p>
+                    <p className="mt-2 mx-1 text-2xl font-bold text-justify title">{title}</p>
                   </div>
                 </div>
               </MaterialCard>

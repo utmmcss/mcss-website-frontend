@@ -54,7 +54,7 @@ const BlogsSection: FC = () => {
                 <div className="h-1/2 p-5">
                   <h3 className="mb-2">{`By: ${author}`}</h3>
                   <h2 className="text-lg font-bold">{title}</h2>
-                  <p>{description}</p>
+                  <p className="description">{description}</p>
                 </div>
               </MaterialCard>
             </div>
@@ -75,7 +75,7 @@ const BlogsSection: FC = () => {
               <div className="h-1/2 p-5">
                 <h3 className="mb-2">{`By: ${author}`}</h3>
                 <h2 className="text-lg font-bold">{title}</h2>
-                <p>{description}</p>
+                <p className="description">{description}</p>
               </div>
             </MaterialCard>
           ))}
