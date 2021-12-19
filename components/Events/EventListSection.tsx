@@ -31,7 +31,7 @@ const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
       <div className="flex flex-wrap mt-10">
         {eventCardInfos.map(({ title, creator, startDate, coverImageUrl, categories }) => (
           <div
-            className={classNames('w-full sm:w-1/2 md:w-1/3 lg:w-—1/4 px-6 py-4', {
+            className={classNames('w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4', {
               hidden:
                 !selectedCategories.includes('All') &&
                 _.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
