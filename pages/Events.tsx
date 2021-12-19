@@ -32,10 +32,27 @@ const Events: FC<IProps> = () => {
       ...accOptions,
       {
         name: currOptionName,
-        onClick: () =>
-          selectedCategories.includes(currOptionName)
-            ? setSelectedCategories(removeElement(selectedCategories, currOptionName))
-            : setSelectedCategories([...selectedCategories, currOptionName]),
+        onClick: () => {
+          let newSelectedCategories = selectedCategories.includes(currOptionName)
+            ? removeElement(selectedCategories, currOptionName)
+            : [...selectedCategories, currOptionName];
+
+          /**
+           * Case 1: Nothing is selected, then we should select 'All'
+           * Case 2: Something other than 'All' is selected, then we should de-select 'All'
+           */
+          if (_.isEmpty(newSelectedCategories)) {
+            newSelectedCategories = ['All'];
+          } else if (
+            newSelectedCategories.length > 1 &&
+            currOptionName !== 'All' &&
+            newSelectedCategories.includes('All')
+          ) {
+            newSelectedCategories = removeElement(newSelectedCategories, 'All');
+          }
+
+          setSelectedCategories(newSelectedCategories);
+        },
       },
     ],
     [],
