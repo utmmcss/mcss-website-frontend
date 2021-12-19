@@ -1,14 +1,20 @@
 import { FC } from 'react';
 import Image from 'next/image';
+import _ from 'underscore';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { useAppSelector } from '@store/hooks';
+import classNames from 'classnames';
 
 import Tag from '@components/Common/Tag';
 import MaterialCard from '@components/Common/MaterialCard';
 import { formatDate } from '@utils/helper';
 
-const EventsListSection: FC = () => {
+interface IProps {
+  selectedCategories: string[];
+}
+
+const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
   const { events } = useAppSelector((state) => state.events);
   const eventCardInfos = events.map(
     ({ title, creator, startDatetime, coverImageUrl, categories }) => ({
@@ -25,7 +31,11 @@ const EventsListSection: FC = () => {
       <div className="flex flex-wrap mt-10">
         {eventCardInfos.map(({ title, creator, startDate, coverImageUrl, categories }) => (
           <div
-            className="w-full sm:w-1/2 md:w-1/4 px-6 py-4"
+            className={classNames('w-full sm:w-1/2 md:w-1/3 lg:w-—1/4 px-6 py-4', {
+              hidden:
+                !selectedCategories.includes('All') &&
+                _.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
+            })}
             key={`${startDate}${creator}${title}`}
           >
             <MaterialCard className="w-full rounded-lg relative h-96">

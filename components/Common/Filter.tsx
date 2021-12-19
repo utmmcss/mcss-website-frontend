@@ -1,30 +1,33 @@
-import React, { FC, useState } from 'react';
+import { FC } from 'react';
 
-interface FIlterProps {
-  optionNames: Array<string>;
+interface FilterProps {
+  options: Omit<Option, 'clicked'>[];
+  selectedOptions: string[];
 }
 
-interface OptionButtonProps {
-  optionName: string;
+interface Option {
+  name: string;
+  onClick: () => void;
+  clicked: boolean;
 }
 
-const OptionButton: FC<OptionButtonProps> = ({ optionName }) => {
-  const [clicked, setClicked] = useState(false);
+const OptionButton: FC<Option> = ({ name, clicked, onClick }) => (
+  <button type="button" onClick={onClick} className="m-5">
+    <p style={{ color: clicked ? '#7d25af' : '#7d7b76' }}>{name}</p>
+  </button>
+);
 
-  return (
-    <button type="button" onClick={() => setClicked(!clicked)} className="m-5">
-      <p style={{ color: clicked ? '#7d25af' : '#7d7b76' }}>{optionName}</p>
-    </button>
-  );
-};
-
-const Filter: FC<FIlterProps> = ({ optionNames }) => {
-  const options = optionNames.map((option: string) => <OptionButton optionName={option} />);
-  return (
-    <div className="ml-10 mr-10">
-      <>{options}</>
-    </div>
-  );
-};
+const Filter: FC<FilterProps> = ({ options, selectedOptions }) => (
+  <div className="ml-10 mr-10">
+    {options.map(({ name, onClick }) => (
+      <OptionButton
+        key={name}
+        name={name}
+        onClick={onClick}
+        clicked={selectedOptions.includes(name)}
+      />
+    ))}
+  </div>
+);
 
 export default Filter;
