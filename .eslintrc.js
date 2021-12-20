@@ -21,6 +21,7 @@ module.exports = {
     '@typescript-eslint/no-unused-vars': 1,
     'no-confusing-arrow': 0,
     "operator-linebreak": 0,
+    "arrow-body-style": 0,
   },
   parser: '@typescript-eslint/parser',
 };

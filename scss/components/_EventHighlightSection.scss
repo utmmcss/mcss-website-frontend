@@ -4,6 +4,7 @@
   white-space: nowrap;
   margin: 10px 50px;
 
+  // custom scrollbar
   &::-webkit-scrollbar {
     height: 8px;
   }
@@ -15,6 +16,9 @@
   &::-webkit-scrollbar-thumb {
     background-color: #c1c1c1; /* color of the scroll thumb */
     border-radius: 20px; /* roundness of the scroll thumb */
+    &:hover {
+      background-color: #b1b1b1;
+    }
   }
 
   .event-card {
@@ -36,9 +40,11 @@
 
     .title {
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
+      word-break: word;
+      white-space: normal;
     }
 
     .image-container {
@@ -48,5 +54,32 @@
         @apply rounded-l-lg;
       }
     }
+  }
+}
+.mobile-event-card {
+  .image-container {
+    position: relative;
+    img {
+      @apply rounded-t-lg;
+    }
+  }
+  .tag {
+    position: absolute;
+    padding: 2px 15px;
+    z-index: 1000;
+    top: 177px;
+    right: 5px;
+    color: white;
+    @apply bg-purple-600;
+    @apply rounded-full;
+  }
+
+  .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: word;
+    white-space: normal;
   }
 }

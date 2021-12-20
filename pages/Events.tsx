@@ -72,8 +72,9 @@ const Events: FC<IProps> = () => {
 
   return (
     <div>
-      <h1 className="text-4xl font-bold my-10 ml-14">Featured Events</h1>
+      <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
       <EventHighlightSection />
+      <h1 className="text-4xl font-bold my-10 ml-14">Events</h1>
       <Filter options={options} selectedOptions={selectedCategories} />
       <EventsListSection selectedCategories={selectedCategories} />
     </div>
