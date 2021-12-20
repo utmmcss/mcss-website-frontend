@@ -18,7 +18,7 @@ const OptionButton: FC<Option> = ({ name, clicked, onClick }) => (
 );
 
 const Filter: FC<FilterProps> = ({ options, selectedOptions }) => (
-  <div className="ml-10 mr-10">
+  <div className="mx-10">
     {options.map(({ name, onClick }) => (
       <OptionButton
         key={name}

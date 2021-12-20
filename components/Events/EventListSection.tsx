@@ -27,8 +27,8 @@ const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
   );
 
   return (
-    <div className="event-list-page md:m-0 lg:mx-20 2xl:mx-40">
-      <div className="flex flex-wrap mt-10">
+    <div className="event-list-page mx-9">
+      <div className="flex flex-wrap mt-5">
         {eventCardInfos.map(({ title, creator, startDate, coverImageUrl, categories }) => (
           <div
             className={classNames('w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4', {

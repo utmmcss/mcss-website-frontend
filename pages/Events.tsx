@@ -5,6 +5,8 @@ import { useAppDispatch, useAppSelector } from '@store/hooks';
 import Filter from '@components/Common/Filter';
 import { getAllEvents, getAllCategories } from '@store/eventSlice';
 import EventsListSection from '@components/Events/EventListSection';
+import Slider from '@components/Common/Slider';
+import EventHighlightSection from '@components/Events/EventHightSection';
 
 interface IProps {}
 
@@ -70,6 +72,8 @@ const Events: FC<IProps> = () => {
 
   return (
     <div>
+      <h1 className="text-4xl font-bold my-10 ml-14">Featured Events</h1>
+      <EventHighlightSection />
       <Filter options={options} selectedOptions={selectedCategories} />
       <EventsListSection selectedCategories={selectedCategories} />
     </div>
