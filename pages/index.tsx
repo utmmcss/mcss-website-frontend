@@ -1,12 +1,12 @@
 import { FC, useEffect } from 'react';
 
-import TeamMemberSection from '@components/Sections/Home/TeamMemberSection';
-import EventSection from '@components/Sections/Home/EventSection';
-import HomeIntroSection from '@components/Sections/Home/HomeIntroSection';
-import AboutUsSection from '@components/Sections/Home/AboutUsSection';
-import JoinUsSection from '@components/Sections/Home/JoinUsSections';
-import WhatWeDoSection from '@components/Sections/Home/WhatWeDoSection';
-import BlogsSection from '@components/Sections/Home/BlogsSection';
+import TeamMemberSection from '@components/Home/TeamMemberSection';
+import EventSection from '@components/Home/EventSection';
+import HomeIntroSection from '@components/Home/HomeIntroSection';
+import AboutUsSection from '@components/Home/AboutUsSection';
+import JoinUsSection from '@components/Home/JoinUsSections';
+import WhatWeDoSection from '@components/Home/WhatWeDoSection';
+import BlogsSection from '@components/Home/BlogsSection';
 import { useAppDispatch } from '@store/hooks';
 import { getAllEvents } from '@store/eventSlice';
 import { getAllMembers } from '@store/memberSlice';

@@ -1,11 +1,10 @@
-.blogs-section {
+.event-list-page {
   .image-container {
     position: relative;
     img {
       @apply rounded-t-lg;
     }
   }
-
   .tag {
     position: absolute;
     padding: 2px 15px;
@@ -17,7 +16,7 @@
     @apply rounded-full;
   }
 
-  .description {
+  .title {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;

@@ -1,4 +1,5 @@
 import { FC, ReactNode } from 'react';
+import classNames from 'classnames';
 
 interface IProps {
   children: ReactNode;
@@ -6,7 +7,13 @@ interface IProps {
 }
 
 const MaterialCard: FC<IProps> = ({ children, className }) => (
-  <div className={`w-40 h-56 material-card rounded-md bg-white ${className}`}>{children}</div>
+  <div
+    className={classNames('w-40 h-56 material-card rounded-md', className, {
+      'bg-white': !className?.includes('bg-'),
+    })}
+  >
+    {children}
+  </div>
 );
 
 export default MaterialCard;

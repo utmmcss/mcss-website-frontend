@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import Image from 'next/image';
-import TextLoop from 'react-text-loop';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
 
@@ -14,32 +13,18 @@ import Slider from '@components/Common/Slider';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import { useAppSelector } from '@store/hooks';
 import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
-
-const formatDate = (date: string) =>
-  new Date(date).toLocaleDateString('en-Us', { month: 'short', day: 'numeric', year: 'numeric' });
-
-const Tag: FC<{ categories: string[] }> = ({ categories }) => (
-  <div className="tag">
-    {categories.length === 1 ? (
-      categories[0]
-    ) : (
-      <TextLoop>
-        {categories.map((category) => (
-          <div>{category}</div>
-        ))}
-      </TextLoop>
-    )}
-  </div>
-);
+import { formatDate } from '@utils/helper';
+import Tag from '@components/Common/Tag';
 
 const EventSection: FC = () => {
   const { events } = useAppSelector((state) => state.events);
   const router = useRouter();
 
-  const eventCardInfos = events
-    .filter(({ featured }) => featured)
+  const eventCardInfos = Object.entries(events)
+    .filter(([__, { featured }]) => featured)
     .slice(0, 3)
-    .map(({ title, creator, startDatetime, coverImageUrl, categories }) => ({
+    .map(([id, { title, creator, startDatetime, coverImageUrl, categories }]) => ({
+      id,
       title,
       creator,
       startDate: formatDate(startDatetime),
@@ -58,8 +43,8 @@ const EventSection: FC = () => {
           <HorizontalSkeletonLoader numSkeletons={1} count={8} className="w-1/2" />
         ) : (
           <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
-            {eventCardInfos.map(({ title, creator, startDate, coverImageUrl, categories }) => (
-              <div className="w-full px-10 py-4" key={`${startDate}${creator}${title}`}>
+            {eventCardInfos.map(({ id, title, creator, startDate, coverImageUrl, categories }) => (
+              <div className="w-full px-10 py-4" key={id}>
                 <MaterialCard className="w-full rounded-lg relative h-96">
                   <Tag categories={categories} />
                   <div className="w-full h-1/2 image-container">
@@ -77,7 +62,7 @@ const EventSection: FC = () => {
                       </div>
                     </div>
                     <div className="h-2/3">
-                      <p className="mt-2 mx-1 text-2xl font-bold text-justify">{title}</p>
+                      <p className="mt-2 mx-1 text-2xl font-bold text-justify title">{title}</p>
                     </div>
                   </div>
                 </MaterialCard>
@@ -91,11 +76,8 @@ const EventSection: FC = () => {
           <HorizontalSkeletonLoader />
         ) : (
           <div className="event-section flex justify-center my-10">
-            {eventCardInfos.map(({ title, creator, startDate, coverImageUrl, categories }) => (
-              <MaterialCard
-                className="w-full md:w-1/4 mx-10 h-96 relative"
-                key={`${startDate}${creator}${title}`}
-              >
+            {eventCardInfos.map(({ id, title, creator, startDate, coverImageUrl, categories }) => (
+              <MaterialCard className="w-full md:w-1/4 mx-10 h-96 relative" key={id}>
                 <Tag categories={categories} />
                 <div className="w-full h-1/2 image-container">
                   <Image src={coverImageUrl} layout="fill" priority />
@@ -112,7 +94,7 @@ const EventSection: FC = () => {
                     </div>
                   </div>
                   <div className="h-2/3">
-                    <p className="mt-2 mx-1 text-2xl font-bold text-justify">{title}</p>
+                    <p className="mt-2 mx-1 text-2xl font-bold text-justify title">{title}</p>
                   </div>
                 </div>
               </MaterialCard>

@@ -3,6 +3,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import _ from 'underscore';
 
+import type { DataAttribute, DataAttributes } from '@store/storeTypes';
 import { getAPI } from '@utils/helper';
 import type { RootState } from './store';
 
@@ -20,11 +21,34 @@ interface Event {
   featured: boolean;
 }
 interface EventState {
-  events: Event[];
+  events: Record<number, Event>;
+  categories: string[];
 }
 
+export const getAllCategories = createAsyncThunk<
+  string[],
+  /** no args for this async dispatch */
+  void,
+  {
+    state: RootState;
+  }
+>('events/fetchAllCategories', async () => {
+  interface CategoryResponse {
+    type: string;
+  }
+
+  const response: DataAttributes<CategoryResponse> = await getAPI('/event-categories');
+  let parsedCategories: string[] = [];
+
+  if (response?.data) {
+    parsedCategories = response.data.map(({ attributes }) => attributes.type);
+  }
+
+  return parsedCategories;
+});
+
 export const getAllEvents = createAsyncThunk<
-  Event[],
+  Record<number, Event>,
   /** no args for this async dispatch */
   void,
   {
@@ -34,49 +58,54 @@ export const getAllEvents = createAsyncThunk<
   interface EventResponse extends Omit<Event, 'categories'> {
     start_datetime: string;
     end_datetime: string;
-    cover_image_url: string;
     registration_url: string;
-    categories: {
-      type: string;
-    }[];
-    cover_image: {
-      url: string;
-    };
+    categories: DataAttributes<{ type: string }>;
+    cover_image: DataAttribute<{ url: string }>;
   }
 
-  const response: EventResponse[] = await getAPI('/events');
-  const parsedEvents: Event[] = [];
+  interface APIResponse {
+    data: {
+      id: number;
+      attributes: EventResponse;
+    }[];
+  }
 
-  if (response) {
-    response.forEach(
+  const response: APIResponse = await getAPI('/events?populate=*');
+  const parsedEvents: Record<number, Event> = {};
+
+  if (response?.data) {
+    response.data.forEach(
       ({
-        title,
-        creator,
-        start_datetime: startDatetime,
-        end_datetime: endDatetime,
-        cover_image,
-        content,
-        registration_url: registrationUrl,
-        categories,
-        location,
-        featured,
+        id,
+        attributes: {
+          title,
+          creator,
+          start_datetime: startDatetime,
+          end_datetime: endDatetime,
+          cover_image,
+          content,
+          registration_url: registrationUrl,
+          categories,
+          location,
+          featured,
+        },
       }) => {
         const parsedCategories = !_.isEmpty(categories)
-          ? categories.map(({ type }) => type)
+          ? categories.data.map(({ attributes: { type } }) => type)
           : ['Other'];
 
-        return parsedEvents.push({
+        parsedEvents[id] = {
           title,
           creator,
           startDatetime,
           endDatetime,
-          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.url}`,
+          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
           content,
           registrationUrl,
           categories: parsedCategories,
           location,
           featured,
-        });
+        };
       },
     );
   }
@@ -86,6 +115,7 @@ export const getAllEvents = createAsyncThunk<
 // Define the initial state using that type
 const initialState: EventState = {
   events: [],
+  categories: [],
 };
 
 const eventSlice = createSlice({
@@ -96,6 +126,11 @@ const eventSlice = createSlice({
     // load all events
     builder.addCase(getAllEvents.fulfilled, (state, action) => {
       state.events = action.payload;
+    });
+
+    // load all event categories
+    builder.addCase(getAllCategories.fulfilled, (state, action) => {
+      state.categories = action.payload;
     });
   },
 });
