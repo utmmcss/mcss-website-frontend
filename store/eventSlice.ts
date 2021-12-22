@@ -37,11 +37,11 @@ export const getAllCategories = createAsyncThunk<
     type: string;
   }
 
-  const response: CategoryResponse[] = await getAPI('/event-categories');
+  const response: DataAttributes<CategoryResponse> = await getAPI('/event-categories');
   let parsedCategories: string[] = [];
 
-  if (response) {
-    parsedCategories = response.map((category) => category.type);
+  if (response?.data) {
+    parsedCategories = response.data.map(({ attributes }) => attributes.type);
   }
 
   return parsedCategories;
