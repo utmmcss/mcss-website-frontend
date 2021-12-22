@@ -57,17 +57,24 @@ export const getAllEvents = createAsyncThunk<
   interface EventResponse extends Omit<Event, 'categories'> {
     start_datetime: string;
     end_datetime: string;
-    cover_image_url: string;
     registration_url: string;
     categories: {
       type: string;
     }[];
     cover_image: {
-      url: string;
+      data: {
+        attributes: {
+          url: string;
+        };
+      };
     };
   }
 
-  const response: EventResponse[] = await getAPI('/events');
+  interface APIResponse {
+    data: { attributes: EventResponse }[];
+  }
+
+  const response: EventResponse[] = await getAPI('/events?populate=*');
   const parsedEvents: Event[] = [];
 
   if (response) {

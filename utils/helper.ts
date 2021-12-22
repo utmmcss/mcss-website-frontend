@@ -7,7 +7,7 @@ import axios from 'axios';
  */
 export const getAPI = async (path: string) => {
   try {
-    const response = await axios(`${process.env.NEXT_PUBLIC_API_URL}${path}`);
+    const response = await axios(`${process.env.NEXT_PUBLIC_API_URL}/api${path}`);
     const { data } = response;
     return data;
   } catch (error) {

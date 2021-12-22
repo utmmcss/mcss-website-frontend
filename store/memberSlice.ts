@@ -28,20 +28,28 @@ export const getAllMembers = createAsyncThunk<
 >('members/fetchAllMembers', async () => {
   interface MemberResponse extends Member {
     avatar: {
-      url: string;
+      data: {
+        attributes: {
+          url: string;
+        };
+      };
     };
     website_url: string;
   }
 
-  const response: MemberResponse[] = await getAPI('/team-members');
+  interface APIResponse {
+    data: { attributes: MemberResponse }[];
+  }
+
+  const response: APIResponse = await getAPI('/team-members?populate=*');
   const parsedMembers: Member[] = [];
 
-  if (response) {
-    response.forEach(({ name, role, avatar, website_url, executive }) =>
+  if (response?.data) {
+    response.data.forEach(({ attributes: { name, role, avatar, website_url, executive } }) =>
       parsedMembers.push({
         role,
         name,
-        avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.url}`,
+        avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.url}`,
         websiteUrl: website_url,
         executive,
       }),
