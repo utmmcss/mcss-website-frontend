@@ -21,7 +21,7 @@ interface Event {
   featured: boolean;
 }
 interface EventState {
-  events: Event[];
+  events: Record<number, Event>;
   categories: string[];
 }
 
@@ -48,7 +48,7 @@ export const getAllCategories = createAsyncThunk<
 });
 
 export const getAllEvents = createAsyncThunk<
-  Event[],
+  Record<number, Event>,
   /** no args for this async dispatch */
   void,
   {
@@ -63,12 +63,20 @@ export const getAllEvents = createAsyncThunk<
     cover_image: DataAttribute<{ url: string }>;
   }
 
-  const response: DataAttributes<EventResponse> = await getAPI('/events?populate=*');
-  const parsedEvents: Event[] = [];
+  interface APIResponse {
+    data: {
+      id: number;
+      attributes: EventResponse;
+    }[];
+  }
+
+  const response: APIResponse = await getAPI('/events?populate=*');
+  const parsedEvents: Record<number, Event> = {};
 
   if (response?.data) {
     response.data.forEach(
       ({
+        id,
         attributes: {
           title,
           creator,
@@ -86,7 +94,7 @@ export const getAllEvents = createAsyncThunk<
           ? categories.data.map(({ attributes: { type } }) => type)
           : ['Other'];
 
-        return parsedEvents.push({
+        parsedEvents[id] = {
           title,
           creator,
           startDatetime,
@@ -97,7 +105,7 @@ export const getAllEvents = createAsyncThunk<
           categories: parsedCategories,
           location,
           featured,
-        });
+        };
       },
     );
   }

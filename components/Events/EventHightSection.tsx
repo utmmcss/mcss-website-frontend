@@ -14,18 +14,14 @@ import Slider from '@components/Common/Slider';
 const EventHighlightSection: FC = () => {
   const { events } = useAppSelector((state) => state.events);
 
-  const eventCardInfos = events
-    .filter(({ featured }) => featured)
+  const eventCardInfos = Object.entries(events)
+    .filter(([__, { featured }]) => featured)
     .map(
-      ({
-        title,
-        creator,
-        startDatetime,
-        coverImageUrl,
-        categories,
-        location,
-        registrationUrl,
-      }) => ({
+      ([
+        id,
+        { title, creator, startDatetime, coverImageUrl, categories, location, registrationUrl },
+      ]) => ({
+        id,
         title,
         creator,
         startDate: formatDate(startDatetime),
@@ -47,8 +43,8 @@ const EventHighlightSection: FC = () => {
     <div>
       <MediaQueryContainer showOnMobile>
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
-          {eventCardInfos.map(({ title, creator, startDate, coverImageUrl, categories }) => (
-            <div className="w-full pb-4 px-14" key={`${startDate}${creator}${title}`}>
+          {eventCardInfos.map(({ id, title, creator, startDate, coverImageUrl, categories }) => (
+            <div className="w-full pb-4 px-14" key={id}>
               <MaterialCard className="mobile-event-card w-full rounded-lg relative h-96">
                 <Tag categories={categories} />
                 <div className="w-full h-1/2 image-container">
@@ -78,18 +74,15 @@ const EventHighlightSection: FC = () => {
         <div className="event-highlight-section">
           {eventCardInfos.map(
             ({
+              id,
               title,
-              creator,
               startDatetime,
               coverImageUrl,
               location,
               categories,
               registrationUrl,
             }) => (
-              <MaterialCard
-                className="event-card h-96 w-10/12 lg:w-1/2 relative mb-10"
-                key={`${startDatetime}${creator}${title}`}
-              >
+              <MaterialCard className="event-card h-96 w-10/12 lg:w-1/2 relative mb-10" key={id}>
                 <Tag categories={categories} />
                 <div className="flex h-full">
                   <div className="w-1/2 h-full image-container">

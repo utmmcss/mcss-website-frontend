@@ -5,7 +5,6 @@ import { useAppDispatch, useAppSelector } from '@store/hooks';
 import Filter from '@components/Common/Filter';
 import { getAllEvents, getAllCategories } from '@store/eventSlice';
 import EventsListSection from '@components/Events/EventListSection';
-import Slider from '@components/Common/Slider';
 import EventHighlightSection from '@components/Events/EventHightSection';
 
 interface IProps {}

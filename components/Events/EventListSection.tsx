@@ -16,8 +16,9 @@ interface IProps {
 
 const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
   const { events } = useAppSelector((state) => state.events);
-  const eventCardInfos = events.map(
-    ({ title, creator, startDatetime, coverImageUrl, categories }) => ({
+  const eventCardInfos = Object.entries(events).map(
+    ([id, { title, creator, startDatetime, coverImageUrl, categories }]) => ({
+      id,
       title,
       creator,
       startDate: formatDate(startDatetime),
