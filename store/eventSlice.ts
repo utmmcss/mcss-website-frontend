@@ -3,6 +3,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import _ from 'underscore';
 
+import type { DataAttribute, DataAttributes } from '@store/storeTypes';
 import { getAPI } from '@utils/helper';
 import type { RootState } from './store';
 
@@ -58,41 +59,31 @@ export const getAllEvents = createAsyncThunk<
     start_datetime: string;
     end_datetime: string;
     registration_url: string;
-    categories: {
-      type: string;
-    }[];
-    cover_image: {
-      data: {
-        attributes: {
-          url: string;
-        };
-      };
-    };
+    categories: DataAttributes<{ type: string }>;
+    cover_image: DataAttribute<{ url: string }>;
   }
 
-  interface APIResponse {
-    data: { attributes: EventResponse }[];
-  }
-
-  const response: EventResponse[] = await getAPI('/events?populate=*');
+  const response: DataAttributes<EventResponse> = await getAPI('/events?populate=*');
   const parsedEvents: Event[] = [];
 
-  if (response) {
-    response.forEach(
+  if (response?.data) {
+    response.data.forEach(
       ({
-        title,
-        creator,
-        start_datetime: startDatetime,
-        end_datetime: endDatetime,
-        cover_image,
-        content,
-        registration_url: registrationUrl,
-        categories,
-        location,
-        featured,
+        attributes: {
+          title,
+          creator,
+          start_datetime: startDatetime,
+          end_datetime: endDatetime,
+          cover_image,
+          content,
+          registration_url: registrationUrl,
+          categories,
+          location,
+          featured,
+        },
       }) => {
         const parsedCategories = !_.isEmpty(categories)
-          ? categories.map(({ type }) => type)
+          ? categories.data.map(({ attributes: { type } }) => type)
           : ['Other'];
 
         return parsedEvents.push({
@@ -100,7 +91,7 @@ export const getAllEvents = createAsyncThunk<
           creator,
           startDatetime,
           endDatetime,
-          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.url}`,
+          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
           content,
           registrationUrl,
           categories: parsedCategories,

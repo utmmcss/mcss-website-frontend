@@ -2,6 +2,7 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+import type { DataAttribute, DataAttributes } from '@store/storeTypes';
 import { getAPI } from '@utils/helper';
 import type { RootState } from './store';
 
@@ -27,21 +28,13 @@ export const getAllMembers = createAsyncThunk<
   }
 >('members/fetchAllMembers', async () => {
   interface MemberResponse extends Member {
-    avatar: {
-      data: {
-        attributes: {
-          url: string;
-        };
-      };
-    };
+    avatar: DataAttribute<{
+      url: string;
+    }>;
     website_url: string;
   }
 
-  interface APIResponse {
-    data: { attributes: MemberResponse }[];
-  }
-
-  const response: APIResponse = await getAPI('/team-members?populate=*');
+  const response: DataAttributes<MemberResponse> = await getAPI('/team-members?populate=*');
   const parsedMembers: Member[] = [];
 
   if (response?.data) {
