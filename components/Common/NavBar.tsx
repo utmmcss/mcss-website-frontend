@@ -18,11 +18,11 @@ const NavBar: FC = () => {
 
   return (
     <nav className="flex items-center justify-between flex-wrap mt-8 mx-6 md:mx-14">
-      <div className="flex item-center justify-start cursor-pointer w-20 md:w-48">
+      <div className="flex item-center justify-start cursor-pointer w-20 md:mr-5">
         <Image src={Logo} alt="MCSS logo" onClick={() => router.push('/')} />
       </div>
       <div
-        className={classNames('m-5 mr-0 md:mr-24 h-12 flex flex-grow items-center w-auto', {
+        className={classNames('m-5 h-12 flex flex-grow items-center', {
           block: router.pathname === '/Events',
           hidden: router.pathname !== '/Events',
         })}
@@ -31,7 +31,7 @@ const NavBar: FC = () => {
           <SearchIcon className="  " />
         </div>
         <input
-          className="bg-gray-200 px-5 pr-16 rounded-sm text-base text-gray-400 w-full h-full focus:outline-none"
+          className="bg-gray-200 px-5 rounded-sm text-base text-gray-400 w-full md:max-w-sm h-full focus:outline-none"
           type="search"
           name=""
           id=""
@@ -58,10 +58,10 @@ const NavBar: FC = () => {
         </button>
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
-        <div>
+        <div className="flex justify-around">
           {links.map(({ label, href }) => (
             <Link passHref href={href} key={label}>
-              <a href={href} className="mt-4 mr-8 text-lg">
+              <a href={href} className="mx-5 text-lg">
                 {label}
               </a>
             </Link>
