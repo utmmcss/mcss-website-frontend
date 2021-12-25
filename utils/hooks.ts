@@ -8,10 +8,10 @@ function useWindowDimensions() {
     setHeight(window.innerHeight);
     setWidth(window.innerWidth);
 
-    function updateDimensions() {
+    const updateDimensions = () => {
       setHeight(window.innerHeight);
       setWidth(window.innerWidth);
-    }
+    };
 
     window.addEventListener('resize', updateDimensions);
     return () => window.removeEventListener('resize', updateDimensions);
