@@ -1,0 +1,9 @@
+.event-detail {
+  .image-container {
+    position: relative;
+
+    img {
+      @apply rounded-l-lg;
+    }
+  }
+}
