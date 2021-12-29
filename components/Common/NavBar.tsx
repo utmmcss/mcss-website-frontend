@@ -34,6 +34,8 @@ const NavBar: FC = () => {
     { label: 'Blogs', href: '/Blogs' },
   ];
   const options = Object.entries(events).map(([id, { title }]) => ({ label: title, value: id }));
+  const searchBarWhiteList = ['/Events', '/Blogs', '/EventDetail'];
+  const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
 
   return (
     <nav className="flex items-center justify-between flex-wrap mt-8 mx-6 md:mx-14">
@@ -44,8 +46,8 @@ const NavBar: FC = () => {
       )}
       <div
         className={classNames('m-5 ml-0 h-12 flex flex-grow items-center', {
-          block: router.pathname === '/Events',
-          hidden: router.pathname !== '/Events',
+          block: partialRouteMatch,
+          hidden: !partialRouteMatch,
         })}
       >
         {(!isMobile || showSearchBar) && (
@@ -65,9 +67,15 @@ const NavBar: FC = () => {
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
               }),
+              menu: (provided: any) => ({ ...provided, zIndex: 9999 }),
             }}
             value={value}
-            onChange={(selectedOption) => setValue(selectedOption)}
+            onChange={(selectedOption) => {
+              setValue(selectedOption);
+              if (selectedOption) {
+                router.push(`/EventDetail/${selectedOption.value}`);
+              }
+            }}
             options={options}
             components={{ DropdownIndicator }}
             theme={(theme) => ({
@@ -88,8 +96,8 @@ const NavBar: FC = () => {
           {!showSearchBar && (
             <button
               className={classNames('mx-2', {
-                block: router.pathname === '/Events',
-                hidden: router.pathname !== '/Events',
+                block: partialRouteMatch,
+                hidden: !partialRouteMatch,
               })}
               type="button"
               onClick={() => setShowSearchBar(true)}

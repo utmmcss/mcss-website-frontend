@@ -100,7 +100,7 @@ export const getAllEvents = createAsyncThunk<
           startDatetime,
           endDatetime,
           coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
-          content,
+          content: content.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
           registrationUrl,
           categories: parsedCategories,
           location,

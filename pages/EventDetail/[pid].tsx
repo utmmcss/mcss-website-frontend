@@ -3,6 +3,9 @@ import { useRouter } from 'next/router';
 import Error from 'next/error';
 import Image from 'next/image';
 import _ from 'underscore';
+import Markdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 import { useAppSelector, useAppDispatch } from '@store/hooks';
 import { getAllEvents } from '@store/eventSlice';
@@ -10,6 +13,7 @@ import { HashLoader } from 'react-spinners';
 import { formatDate } from '@utils/helper';
 import Button from '@components/Common/Button';
 import MaterialCard from '@components/Common/MaterialCard';
+import Tag from '@components/Common/Tag';
 
 const EventDetail: FC = () => {
   const router = useRouter();
@@ -38,7 +42,7 @@ const EventDetail: FC = () => {
     );
   }
 
-  if (_.isEmpty(events) || _.isNull(currEvent)) {
+  if (_.isEmpty(events) || !currEvent) {
     return <Error statusCode={404} />;
   }
 
@@ -64,16 +68,18 @@ const EventDetail: FC = () => {
     categories: currEvent.categories,
     location: currEvent.location,
     registrationUrl: currEvent.registrationUrl,
+    content: currEvent.content,
   };
 
   return (
-    <div className="event-detail px-28 py-10">
-      <MaterialCard className="h-96 w-full">
-        <div className="flex h-full">
-          <div className="w-2/3 h-full image-container relative">
+    <div className="event-detail px-5 md:px-28 py-10">
+      <MaterialCard className="w-full h-full rounded-t-md relative">
+        <div className="overview-card md:h-96 flex flex-col md:flex-row">
+          <Tag categories={parsedCurrEvent.categories} />
+          <div className="w-full h-1/3 md:w-2/3 md:h-full image-container relative">
             <Image src={parsedCurrEvent.coverImageUrl} layout="fill" priority />
           </div>
-          <div className="w-1/3 h-full px-5 pt-3 pb-5">
+          <div className="h-2/3 md:w-1/3 md:h-full px-5 pt-3 pb-5">
             <div className="h-1/2">
               <h2 className="text-lg font-bold">Start time</h2>
               <p>{parsedCurrEvent.startDatetime}</p>
@@ -101,6 +107,11 @@ const EventDetail: FC = () => {
             </div>
           </div>
         </div>
+      </MaterialCard>
+      <MaterialCard className="mt-5 w-full h-full p-5 rounded-b-md">
+        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className="prose">
+          {parsedCurrEvent.content}
+        </Markdown>
       </MaterialCard>
     </div>
   );

@@ -3,7 +3,43 @@
     position: relative;
 
     img {
-      @apply rounded-l-lg;
+      @apply rounded-t-lg;
+      @apply md:rounded-tl-lg;
+    }
+  }
+
+  .overview-card {
+    @media (max-width: 768px) {
+      height: 600px;
+
+      .tag {
+        position: absolute;
+        padding: 10px 15px;
+        z-index: 2000;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        color: white;
+        @apply bg-purple-600;
+        background: rgba(124, 58, 237, 0.8);
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .tag {
+        position: absolute;
+        padding: 10px 15px;
+        z-index: 2000;
+        top: 0px;
+        left: 0px;
+        right: 33.33%;
+        color: white;
+        @apply bg-purple-600;
+        background: rgba(124, 58, 237, 0.8);
+        border-top-left-radius: 0.5rem;
+      }
     }
   }
 }
