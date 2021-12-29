@@ -45,7 +45,10 @@ const EventSection: FC = () => {
           <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
             {eventCardInfos.map(({ id, title, creator, startDate, coverImageUrl, categories }) => (
               <div className="w-full px-10 py-4" key={id}>
-                <MaterialCard className="w-full rounded-lg relative h-96">
+                <MaterialCard
+                  className="w-full rounded-lg relative h-96"
+                  onClick={() => router.push(`EventDetail/${id}`)}
+                >
                   <Tag categories={categories} />
                   <div className="w-full h-1/2 image-container">
                     <Image src={coverImageUrl} layout="fill" priority />
@@ -77,7 +80,11 @@ const EventSection: FC = () => {
         ) : (
           <div className="event-section flex justify-center my-10">
             {eventCardInfos.map(({ id, title, creator, startDate, coverImageUrl, categories }) => (
-              <MaterialCard className="w-full md:w-1/4 mx-10 h-96 relative" key={id}>
+              <MaterialCard
+                key={id}
+                className="w-full md:w-1/4 mx-10 h-96 relative"
+                onClick={() => router.push(`EventDetail/${id}`)}
+              >
                 <Tag categories={categories} />
                 <div className="w-full h-1/2 image-container">
                   <Image src={coverImageUrl} layout="fill" priority />

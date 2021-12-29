@@ -5,6 +5,7 @@ import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { useAppSelector } from '@store/hooks';
 import classNames from 'classnames';
+import { useRouter } from 'next/router';
 
 import Tag from '@components/Common/Tag';
 import MaterialCard from '@components/Common/MaterialCard';
@@ -16,6 +17,7 @@ interface IProps {
 
 const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
   const { events } = useAppSelector((state) => state.events);
+  const router = useRouter();
   const eventCardInfos = Object.entries(events).map(
     ([id, { title, creator, startDatetime, coverImageUrl, categories }]) => ({
       id,
@@ -30,7 +32,7 @@ const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
   return (
     <div className="event-list-page mx-9">
       <div className="flex flex-wrap mt-5">
-        {eventCardInfos.map(({ title, creator, startDate, coverImageUrl, categories }) => (
+        {eventCardInfos.map(({ id, title, creator, startDate, coverImageUrl, categories }) => (
           <div
             className={classNames('w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4', {
               hidden:
@@ -39,7 +41,10 @@ const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
             })}
             key={`${startDate}${creator}${title}`}
           >
-            <MaterialCard className="w-full rounded-lg relative h-96">
+            <MaterialCard
+              className="w-full rounded-lg relative h-96"
+              onClick={() => router.push(`EventDetail/${id}`)}
+            >
               <Tag categories={categories} />
               <div className="w-full h-1/2 image-container">
                 <Image src={coverImageUrl} layout="fill" priority />

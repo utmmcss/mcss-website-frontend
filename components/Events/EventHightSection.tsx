@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useAppSelector } from '@store/hooks';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import { useRouter } from 'next/router';
 
 import MaterialCard from '@components/Common/MaterialCard';
 import Button from '@components/Common/Button';
@@ -13,6 +14,7 @@ import Slider from '@components/Common/Slider';
 
 const EventHighlightSection: FC = () => {
   const { events } = useAppSelector((state) => state.events);
+  const router = useRouter();
 
   const eventCardInfos = Object.entries(events)
     .filter(([__, { featured }]) => featured)
@@ -45,7 +47,10 @@ const EventHighlightSection: FC = () => {
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
           {eventCardInfos.map(({ id, title, creator, startDate, coverImageUrl, categories }) => (
             <div className="w-full pb-4 px-14" key={id}>
-              <MaterialCard className="mobile-event-card w-full rounded-lg relative h-96">
+              <MaterialCard
+                className="mobile-event-card w-full rounded-lg relative h-96"
+                onClick={() => router.push(`EventDetail/${id}`)}
+              >
                 <Tag categories={categories} />
                 <div className="w-full h-1/2 image-container">
                   <Image src={coverImageUrl} layout="fill" priority />
@@ -82,7 +87,11 @@ const EventHighlightSection: FC = () => {
               categories,
               registrationUrl,
             }) => (
-              <MaterialCard className="event-card h-96 w-10/12 lg:w-1/2 relative mb-10" key={id}>
+              <MaterialCard
+                key={id}
+                className="event-card h-96 w-10/12 lg:w-1/2 relative mb-10"
+                onClick={() => router.push(`EventDetail/${id}`)}
+              >
                 <Tag categories={categories} />
                 <div className="flex h-full">
                   <div className="w-1/2 h-full image-container">
