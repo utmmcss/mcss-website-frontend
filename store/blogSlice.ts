@@ -8,36 +8,34 @@ import { getAPI } from '@utils/helper';
 import type { RootState } from './store';
 
 // Define a type for the slice state
-interface Event {
+interface Blog {
   title: string;
   creator: string;
-  startDatetime: string;
-  endDatetime: string;
+  updatedDatetime: string;
   coverImageUrl: string;
   content: string;
-  registrationUrl: string;
   categories: string[];
-  location: string;
   featured: boolean;
+  description: string;
 }
-interface EventState {
-  events: Record<number, Event>;
+interface BlogState {
+  blogs: Record<number, Blog>;
   categories: string[];
 }
 
-export const getAllEventCategories = createAsyncThunk<
+export const getAllBlogCategories = createAsyncThunk<
   string[],
   /** no args for this async dispatch */
   void,
   {
     state: RootState;
   }
->('events/fetchAllCategories', async () => {
+>('blogs/fetchAllCategories', async () => {
   interface CategoryResponse {
     type: string;
   }
 
-  const response: DataAttributes<CategoryResponse> = await getAPI('/event-categories');
+  const response: DataAttributes<CategoryResponse> = await getAPI('/blog-categories');
   let parsedCategories: string[] = [];
 
   if (response?.data) {
@@ -47,18 +45,16 @@ export const getAllEventCategories = createAsyncThunk<
   return parsedCategories;
 });
 
-export const getAllEvents = createAsyncThunk<
-  Record<number, Event>,
+export const getAllBlogs = createAsyncThunk<
+  Record<number, Blog>,
   /** no args for this async dispatch */
   void,
   {
     state: RootState;
   }
->('events/fetchAllEvents', async () => {
-  interface EventResponse extends Omit<Event, 'categories'> {
-    start_datetime: string;
-    end_datetime: string;
-    registration_url: string;
+>('blogs/fetchAllBlogs', async () => {
+  interface BlogResponse extends Omit<Blog, 'categories'> {
+    updatedAt: string;
     categories: DataAttributes<{ type: string }>;
     cover_image: DataAttribute<{ url: string }>;
   }
@@ -66,12 +62,12 @@ export const getAllEvents = createAsyncThunk<
   interface APIResponse {
     data: {
       id: number;
-      attributes: EventResponse;
+      attributes: BlogResponse;
     }[];
   }
 
-  const response: APIResponse = await getAPI('/events?populate=*');
-  const parsedEvents: Record<number, Event> = {};
+  const response: APIResponse = await getAPI('/blogs?populate=*');
+  const parsedBlogs: Record<number, Blog> = {};
 
   if (response?.data) {
     response.data.forEach(
@@ -80,59 +76,55 @@ export const getAllEvents = createAsyncThunk<
         attributes: {
           title,
           creator,
-          start_datetime: startDatetime,
-          end_datetime: endDatetime,
           cover_image,
           content,
-          registration_url: registrationUrl,
           categories,
-          location,
           featured,
+          updatedAt,
+          description,
         },
       }) => {
         const parsedCategories = !_.isEmpty(categories)
           ? categories.data.map(({ attributes: { type } }) => type)
           : ['Other'];
 
-        parsedEvents[id] = {
+        parsedBlogs[id] = {
           title,
           creator,
-          startDatetime,
-          endDatetime,
           coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
           content: content.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
-          registrationUrl,
           categories: parsedCategories,
-          location,
           featured,
+          updatedDatetime: updatedAt,
+          description,
         };
       },
     );
   }
-  return parsedEvents;
+  return parsedBlogs;
 });
 
 // Define the initial state using that type
-const initialState: EventState = {
-  events: [],
+const initialState: BlogState = {
+  blogs: [],
   categories: [],
 };
 
-const eventSlice = createSlice({
-  name: 'events',
+const blogSlice = createSlice({
+  name: 'blogs',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // load all events
-    builder.addCase(getAllEvents.fulfilled, (state, action) => {
-      state.events = action.payload;
+    // load all blogs
+    builder.addCase(getAllBlogs.fulfilled, (state, action) => {
+      state.blogs = action.payload;
     });
 
-    // load all event categories
-    builder.addCase(getAllEventCategories.fulfilled, (state, action) => {
+    // load all blog categories
+    builder.addCase(getAllBlogCategories.fulfilled, (state, action) => {
       state.categories = action.payload;
     });
   },
 });
 
-export default eventSlice.reducer;
+export default blogSlice.reducer;

@@ -9,6 +9,7 @@ import WhatWeDoSection from '@components/Home/WhatWeDoSection';
 import BlogsSection from '@components/Home/BlogsSection';
 import { useAppDispatch } from '@store/hooks';
 import { getAllEvents } from '@store/eventSlice';
+import { getAllBlogs } from '@store/blogSlice';
 import { getAllMembers } from '@store/memberSlice';
 
 const Home: FC = () => {
@@ -16,6 +17,7 @@ const Home: FC = () => {
 
   useEffect(() => {
     dispatch(getAllEvents());
+    dispatch(getAllBlogs());
     dispatch(getAllMembers());
   }, []);
 

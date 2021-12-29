@@ -5,11 +5,15 @@ interface IProps {
   showOnMobile?: boolean;
   hideOnMobile?: boolean;
   children: JSX.Element;
+  className?: string;
 }
 
-const MediaQueryContainer: FC<IProps> = ({ children, showOnMobile, hideOnMobile }) => (
+const MediaQueryContainer: FC<IProps> = ({ children, showOnMobile, hideOnMobile, className }) => (
   <div
-    className={classNames({ 'md:hidden': showOnMobile, 'hidden md:block': hideOnMobile })}
+    className={classNames(className, {
+      'md:hidden': showOnMobile,
+      'hidden md:block': hideOnMobile,
+    })}
   >
     {children}
   </div>

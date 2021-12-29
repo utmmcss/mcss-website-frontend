@@ -1,4 +1,4 @@
-.event-detail {
+.blog-detail {
   .image-container {
     position: relative;
 
@@ -10,7 +10,7 @@
 
   .overview-card {
     @media (max-width: 768px) {
-      height: 650px;
+      height:550px;
 
       .tag {
         position: absolute;

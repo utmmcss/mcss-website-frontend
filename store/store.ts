@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import eventSlice from './eventSlice';
 import memberSlice from './memberSlice';
+import blogSlice from './blogSlice';
 
 export const store = configureStore({
   reducer: {
     events: eventSlice,
+    blogs: blogSlice,
     members: memberSlice,
   },
 });

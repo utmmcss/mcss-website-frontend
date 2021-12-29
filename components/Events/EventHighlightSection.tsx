@@ -12,7 +12,7 @@ import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import { formatDate } from '@utils/helper';
 import Slider from '@components/Common/Slider';
 
-const EventHighlightSection: FC = () => {
+const BlogHighlightSection: FC = () => {
   const { events } = useAppSelector((state) => state.events);
   const router = useRouter();
 
@@ -49,7 +49,7 @@ const EventHighlightSection: FC = () => {
             <div className="w-full pb-4 px-14" key={id}>
               <MaterialCard
                 className="mobile-event-card w-full rounded-lg relative h-96"
-                onClick={() => router.push(`EventDetail/${id}`)}
+                onClick={() => router.push(`Events/${id}`)}
               >
                 <Tag categories={categories} />
                 <div className="w-full h-1/2 image-container">
@@ -90,7 +90,7 @@ const EventHighlightSection: FC = () => {
               <MaterialCard
                 key={id}
                 className="event-card h-96 w-10/12 lg:w-1/2 relative mb-10"
-                onClick={() => router.push(`EventDetail/${id}`)}
+                onClick={() => router.push(`Events/${id}`)}
               >
                 <Tag categories={categories} />
                 <div className="flex h-full">
@@ -130,4 +130,4 @@ const EventHighlightSection: FC = () => {
   );
 };
 
-export default EventHighlightSection;
+export default BlogHighlightSection;

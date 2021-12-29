@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -6,10 +6,13 @@ import classNames from 'classnames';
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import Select, { components, DropdownIndicatorProps } from 'react-select';
+import _ from 'underscore';
 
-import { useAppSelector } from '@store/hooks';
+import { useAppSelector, useAppDispatch } from '@store/hooks';
 import Logo from '@public/mcssLogo.svg';
 import { useIsMobile } from '@utils/hooks';
+import { getAllEvents } from '@store/eventSlice';
+import { getAllBlogs } from '@store/blogSlice';
 import MediaQueryContainer from './MediaQueryContainer';
 
 const DropdownIndicator: FC<DropdownIndicatorProps<{ value: string; label: string }, false>> = (
@@ -24,30 +27,47 @@ const DropdownIndicator: FC<DropdownIndicatorProps<{ value: string; label: strin
 
 const NavBar: FC = () => {
   const isMobile = useIsMobile();
+  const dispatch = useAppDispatch();
   const [value, setValue] = useState<{ value: string; label: string } | null>();
   const [showSearchBar, setShowSearchBar] = useState(false);
   const router = useRouter();
   const { events } = useAppSelector((state) => state.events);
+  const { blogs } = useAppSelector((state) => state.blogs);
   const links = [
     { label: 'Home', href: '/' },
     { label: 'Events', href: '/Events' },
     { label: 'Blogs', href: '/Blogs' },
   ];
-  const options = Object.entries(events).map(([id, { title }]) => ({ label: title, value: id }));
-  const searchBarWhiteList = ['/Events', '/Blogs', '/EventDetail'];
+  const searchBarWhiteList = ['/Events', '/Blogs'];
   const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
+  const options = [
+    ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
+    ...Object.entries(blogs).map(([id, { title }]) => ({ label: `Blog: ${title}`, value: id })),
+  ];
+
+  useEffect(() => {
+    if (_.isEmpty(events)) {
+      dispatch(getAllEvents());
+    }
+
+    if (_.isEmpty(blogs)) {
+      dispatch(getAllBlogs());
+    }
+  }, []);
 
   return (
-    <nav className="flex items-center justify-between flex-wrap mt-8 mx-6 md:mx-14">
+    <nav className="flex items-center flex-wrap mt-8 mx-6 md:mx-14">
       {!showSearchBar && (
         <div className="flex item-center justify-start cursor-pointer w-20 md:mr-5">
           <Image src={Logo} alt="MCSS logo" onClick={() => router.push('/')} />
         </div>
       )}
       <div
-        className={classNames('m-5 ml-0 h-12 flex flex-grow items-center', {
+        className={classNames('my-5 ml-0 h-12 flex items-center', {
           block: partialRouteMatch,
           hidden: !partialRouteMatch,
+          'w-10/12': isMobile && showSearchBar,
+          'flex-grow': !isMobile || (isMobile && !showSearchBar),
         })}
       >
         {(!isMobile || showSearchBar) && (
@@ -72,8 +92,10 @@ const NavBar: FC = () => {
             value={value}
             onChange={(selectedOption) => {
               setValue(selectedOption);
-              if (selectedOption) {
-                router.push(`/EventDetail/${selectedOption.value}`);
+              if (selectedOption?.label.includes('Event:')) {
+                router.push(`/Events/${selectedOption.value}`);
+              } else if (selectedOption?.label.includes('Blog:')) {
+                router.push(`/Blogs/${selectedOption.value}`);
               }
             }}
             options={options}
@@ -91,7 +113,7 @@ const NavBar: FC = () => {
           />
         )}
       </div>
-      <MediaQueryContainer showOnMobile>
+      <MediaQueryContainer showOnMobile className={classNames({ 'flex-grow': showSearchBar })}>
         <div className="flex align-middle">
           {!showSearchBar && (
             <button
@@ -107,12 +129,15 @@ const NavBar: FC = () => {
           )}
           {showSearchBar && (
             <button
-              className={classNames('', {
-                block: router.pathname === '/Events',
-                hidden: router.pathname !== '/Events',
+              className={classNames('w-full', {
+                'inline-block': partialRouteMatch,
+                hidden: !partialRouteMatch,
               })}
               type="button"
-              onClick={() => setShowSearchBar(false)}
+              onClick={() => {
+                setShowSearchBar(false);
+                setValue(null);
+              }}
             >
               <CloseIcon />
             </button>
