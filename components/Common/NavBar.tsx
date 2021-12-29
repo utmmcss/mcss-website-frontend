@@ -64,8 +64,6 @@ const NavBar: FC = () => {
       )}
       <div
         className={classNames('my-5 ml-0 h-12 flex items-center', {
-          block: partialRouteMatch,
-          hidden: !partialRouteMatch,
           'w-10/12': isMobile && showSearchBar,
           'flex-grow': !isMobile || (isMobile && !showSearchBar),
         })}

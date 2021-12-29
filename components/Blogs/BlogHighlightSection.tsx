@@ -38,8 +38,11 @@ const BlogHighlightSection: FC = () => {
       <MediaQueryContainer showOnMobile>
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
           {blogCardInfos.map(({ id, coverImageUrl, creator, title, description, categories }) => (
-            <div className="w-full px-10 py-4" key={id}>
-              <MaterialCard className="h-96 w-full relative">
+            <div className="w-full pb-4 px-14" key={id}>
+              <MaterialCard
+                className="mobile-blog-card h-96 w-full relative"
+                onClick={() => router.push(`Blogs/${id}`)}
+              >
                 <Tag categories={categories} />
                 <div className="h-1/2 w-full image-container">
                   <Image src={coverImageUrl} layout="fill" priority />

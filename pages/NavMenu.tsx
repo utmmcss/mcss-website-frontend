@@ -19,7 +19,7 @@ const NavMenu: FC = () => {
         <IconButton
           icon={<CloseIcon className="ml-5" />}
           className="bg-transparent px-5 py-5"
-          onClick={() => router.push('/')}
+          onClick={() => router.back()}
         >
           <p className="text-xl">CLOSE</p>
         </IconButton>
