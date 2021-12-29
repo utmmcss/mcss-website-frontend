@@ -2,7 +2,6 @@ import { FC } from 'react';
 import Image from 'next/image';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useRouter } from 'next/router';
-import _ from 'underscore';
 
 import SectionWrapper from '@components/Common/SectionWrapper';
 import MaterialCard from '@components/Common/MaterialCard';
