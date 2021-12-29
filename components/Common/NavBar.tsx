@@ -68,9 +68,10 @@ const NavBar: FC = () => {
           'flex-grow': !isMobile || (isMobile && !showSearchBar),
         })}
       >
-        {(!isMobile || showSearchBar) && (
+        {partialRouteMatch && (!isMobile || showSearchBar) && (
           <Select
             className="w-full md:max-w-sm h-full md:mx-5"
+            isClearable={!isMobile}
             styles={{
               control: (provided: any) => ({
                 ...provided,
@@ -107,7 +108,7 @@ const NavBar: FC = () => {
               },
             })}
             maxMenuHeight={130}
-            placeholder="Search events"
+            placeholder="Search events and blogs"
           />
         )}
       </div>
