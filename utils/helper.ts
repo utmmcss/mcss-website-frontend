@@ -30,3 +30,18 @@ export const formatDate = (date: string, format?: Intl.DateTimeFormatOptions) =>
     'en-Us',
     format || { month: 'short', day: 'numeric', year: 'numeric' },
   );
+
+/**
+ * given an array and element, return a new array with the element removed
+ * @param arr the original array
+ * @param element the element to be removed from the array
+ * @returns a new array with the element removed
+ */
+
+export function removeElement<Type>(arr: Type[], element: Type) {
+  const index = arr.indexOf(element);
+  if (index > -1) {
+    return [...arr.slice(0, index), ...arr.slice(index + 1)];
+  }
+  return arr;
+}

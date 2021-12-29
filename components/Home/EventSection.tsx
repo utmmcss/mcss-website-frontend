@@ -47,7 +47,7 @@ const EventSection: FC = () => {
               <div className="w-full px-10 py-4" key={id}>
                 <MaterialCard
                   className="w-full rounded-lg relative h-96"
-                  onClick={() => router.push(`EventDetail/${id}`)}
+                  onClick={() => router.push(`Events/${id}`)}
                 >
                   <Tag categories={categories} />
                   <div className="w-full h-1/2 image-container">
@@ -83,7 +83,7 @@ const EventSection: FC = () => {
               <MaterialCard
                 key={id}
                 className="w-full md:w-1/4 mx-10 h-96 relative"
-                onClick={() => router.push(`EventDetail/${id}`)}
+                onClick={() => router.push(`Events/${id}`)}
               >
                 <Tag categories={categories} />
                 <div className="w-full h-1/2 image-container">

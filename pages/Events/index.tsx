@@ -3,32 +3,23 @@ import _ from 'underscore';
 
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import Filter from '@components/Common/Filter';
-import { getAllEvents, getAllCategories } from '@store/eventSlice';
+import { getAllEvents, getAllEventCategories } from '@store/eventSlice';
 import EventsListSection from '@components/Events/EventListSection';
-import EventHighlightSection from '@components/Events/EventHightSection';
+import BlogHighlightSection from '@components/Events/EventHighlightSection';
+import { removeElement } from '@utils/helper';
 
-interface IProps {}
-
-function removeElement<Type>(arr: Type[], element: Type) {
-  const index = arr.indexOf(element);
-  if (index > -1) {
-    return [...arr.slice(0, index), ...arr.slice(index + 1)];
-  }
-  return arr;
-}
-
-const Events: FC<IProps> = () => {
+const Events: FC = () => {
   const dispatch = useAppDispatch();
   const { categories, events } = useAppSelector((state) => state.events);
   const optionNames = ['All', ...categories, 'Other'];
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
 
-  interface Test {
+  interface IOption {
     name: string;
     onClick: () => void;
   }
 
-  const options = optionNames.reduce<Test[]>(
+  const options = optionNames.reduce<IOption[]>(
     (accOptions, currOptionName) => [
       ...accOptions,
       {
@@ -65,14 +56,14 @@ const Events: FC<IProps> = () => {
     }
 
     if (_.isEmpty(categories)) {
-      dispatch(getAllCategories());
+      dispatch(getAllEventCategories());
     }
   }, []);
 
   return (
     <div>
       <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
-      <EventHighlightSection />
+      <BlogHighlightSection />
       <h1 className="text-4xl font-bold my-10 ml-14">Events</h1>
       <Filter options={options} selectedOptions={selectedCategories} />
       <EventsListSection selectedCategories={selectedCategories} />

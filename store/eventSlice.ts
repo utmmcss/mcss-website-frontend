@@ -25,7 +25,7 @@ interface EventState {
   categories: string[];
 }
 
-export const getAllCategories = createAsyncThunk<
+export const getAllEventCategories = createAsyncThunk<
   string[],
   /** no args for this async dispatch */
   void,
@@ -129,7 +129,7 @@ const eventSlice = createSlice({
     });
 
     // load all event categories
-    builder.addCase(getAllCategories.fulfilled, (state, action) => {
+    builder.addCase(getAllEventCategories.fulfilled, (state, action) => {
       state.categories = action.payload;
     });
   },

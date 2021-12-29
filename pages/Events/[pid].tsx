@@ -72,7 +72,7 @@ const EventDetail: FC = () => {
   };
 
   return (
-    <div className="event-detail px-5 md:px-28 py-10">
+    <div className="event-detail px-5 md:px-28 lg:px-64 py-10">
       <MaterialCard className="w-full h-full rounded-t-md relative">
         <div className="overview-card md:h-96 flex flex-col md:flex-row">
           <Tag categories={parsedCurrEvent.categories} />
@@ -81,12 +81,12 @@ const EventDetail: FC = () => {
           </div>
           <div className="h-2/3 md:w-1/3 md:h-full px-5 pt-3 pb-5">
             <div className="h-1/2">
-              <h2 className="text-lg font-bold">Start time</h2>
-              <p>{parsedCurrEvent.startDatetime}</p>
-              <h2 className="text-lg mt-1 font-bold">End time</h2>
-              <p>{parsedCurrEvent.endDatetime}</p>
+              <h2 className="text-lg font-bold">Event time</h2>
+              <p>{`${parsedCurrEvent.startDatetime} - ${parsedCurrEvent.endDatetime}`}</p>
               <h2 className="text-lg mt-1 font-bold">Location</h2>
               <p>{parsedCurrEvent.location}</p>
+              <h2 className="text-lg mt-1 font-bold">Creator</h2>
+              <p>{parsedCurrEvent.creator}</p>
             </div>
             <div className="h-1/2 flex flex-col justify-end">
               <div className="h-3/4">

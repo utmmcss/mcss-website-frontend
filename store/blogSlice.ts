@@ -16,13 +16,14 @@ interface Blog {
   content: string;
   categories: string[];
   featured: boolean;
+  description: string;
 }
 interface BlogState {
   blogs: Record<number, Blog>;
   categories: string[];
 }
 
-export const getAllCategories = createAsyncThunk<
+export const getAllBlogCategories = createAsyncThunk<
   string[],
   /** no args for this async dispatch */
   void,
@@ -72,7 +73,16 @@ export const getAllBlogs = createAsyncThunk<
     response.data.forEach(
       ({
         id,
-        attributes: { title, creator, cover_image, content, categories, featured, updatedAt },
+        attributes: {
+          title,
+          creator,
+          cover_image,
+          content,
+          categories,
+          featured,
+          updatedAt,
+          description,
+        },
       }) => {
         const parsedCategories = !_.isEmpty(categories)
           ? categories.data.map(({ attributes: { type } }) => type)
@@ -86,6 +96,7 @@ export const getAllBlogs = createAsyncThunk<
           categories: parsedCategories,
           featured,
           updatedDatetime: updatedAt,
+          description,
         };
       },
     );
@@ -110,7 +121,7 @@ const blogSlice = createSlice({
     });
 
     // load all blog categories
-    builder.addCase(getAllCategories.fulfilled, (state, action) => {
+    builder.addCase(getAllBlogCategories.fulfilled, (state, action) => {
       state.categories = action.payload;
     });
   },

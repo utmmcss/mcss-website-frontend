@@ -4,7 +4,6 @@ import _ from 'underscore';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { useAppSelector } from '@store/hooks';
-import classNames from 'classnames';
 import { useRouter } from 'next/router';
 
 import Tag from '@components/Common/Tag';
@@ -18,32 +17,29 @@ interface IProps {
 const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
   const { events } = useAppSelector((state) => state.events);
   const router = useRouter();
-  const eventCardInfos = Object.entries(events).map(
-    ([id, { title, creator, startDatetime, coverImageUrl, categories }]) => ({
+  const eventCardInfos = Object.entries(events)
+    .filter(
+      ([__, { categories }]) =>
+        selectedCategories.includes('All') ||
+        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
+    )
+    .map(([id, { title, creator, startDatetime, coverImageUrl, categories }]) => ({
       id,
       title,
       creator,
       startDate: formatDate(startDatetime),
       coverImageUrl,
       categories,
-    }),
-  );
+    }));
 
   return (
     <div className="event-list-page mx-9">
       <div className="flex flex-wrap mt-5">
         {eventCardInfos.map(({ id, title, creator, startDate, coverImageUrl, categories }) => (
-          <div
-            className={classNames('w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4', {
-              hidden:
-                !selectedCategories.includes('All') &&
-                _.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
-            })}
-            key={`${startDate}${creator}${title}`}
-          >
+          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4" key={id}>
             <MaterialCard
               className="w-full rounded-lg relative h-96"
-              onClick={() => router.push(`EventDetail/${id}`)}
+              onClick={() => router.push(`Events/${id}`)}
             >
               <Tag categories={categories} />
               <div className="w-full h-1/2 image-container">
