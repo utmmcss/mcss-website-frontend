@@ -10,6 +10,7 @@ import IconButton from '@components/Common/IconButton';
 import Slider from '@components/Common/Slider';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import { useAppSelector } from '@store/hooks';
+import Tag from '@components/Common/Tag';
 
 const BlogsSection: FC = () => {
   const { blogs } = useAppSelector((state) => state.blogs);
@@ -18,7 +19,7 @@ const BlogsSection: FC = () => {
   const blogCardInfos = Object.entries(blogs)
     .filter(([__, { featured }]) => featured)
     .slice(0, 3)
-    .map(([id, { title, creator, updatedDatetime, coverImageUrl, categories, description }]) => ({
+    .map(([id, { title, creator, coverImageUrl, categories, description }]) => ({
       id,
       title,
       creator,
@@ -35,10 +36,13 @@ const BlogsSection: FC = () => {
     >
       <MediaQueryContainer showOnMobile>
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
-          {blogCardInfos.map(({ id, coverImageUrl, creator, title, description }) => (
+          {blogCardInfos.map(({ id, coverImageUrl, creator, title, description, categories }) => (
             <div className="w-full px-10 py-4" key={id}>
-              <MaterialCard className="h-96 w-full relative">
-                <div className="tag">Courses</div>
+              <MaterialCard
+                className="h-96 w-full relative"
+                onClick={() => router.push(`Blogs/${id}`)}
+              >
+                <Tag categories={categories} />
                 <div className="h-1/2 w-full image-container">
                   <Image src={coverImageUrl} layout="fill" priority />
                 </div>
@@ -54,9 +58,13 @@ const BlogsSection: FC = () => {
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
         <div className="flex justify-center my-10">
-          {blogCardInfos.map(({ id, coverImageUrl, creator, title, description }) => (
-            <MaterialCard className="w-full md:w-1/4 mx-10 h-96 relative" key={id}>
-              <div className="tag">Courses</div>
+          {blogCardInfos.map(({ id, coverImageUrl, creator, title, description, categories }) => (
+            <MaterialCard
+              className="w-full md:w-1/4 mx-10 h-96 relative"
+              key={id}
+              onClick={() => router.push(`Blogs/${id}`)}
+            >
+              <Tag categories={categories} />
               <div className="h-1/2 w-full image-container">
                 <Image src={coverImageUrl} layout="fill" priority />
               </div>

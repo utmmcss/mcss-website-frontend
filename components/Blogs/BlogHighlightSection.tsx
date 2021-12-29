@@ -37,10 +37,10 @@ const BlogHighlightSection: FC = () => {
     <div>
       <MediaQueryContainer showOnMobile>
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
-          {blogCardInfos.map(({ id, coverImageUrl, creator, title, description }) => (
+          {blogCardInfos.map(({ id, coverImageUrl, creator, title, description, categories }) => (
             <div className="w-full px-10 py-4" key={id}>
               <MaterialCard className="h-96 w-full relative">
-                <div className="tag">Courses</div>
+                <Tag categories={categories} />
                 <div className="h-1/2 w-full image-container">
                   <Image src={coverImageUrl} layout="fill" priority />
                 </div>

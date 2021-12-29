@@ -84,7 +84,7 @@ export const getAllBlogs = createAsyncThunk<
           description,
         },
       }) => {
-        const parsedCategories = !_.isEmpty(categories)
+        const parsedCategories = !_.isEmpty(categories.data)
           ? categories.data.map(({ attributes: { type } }) => type)
           : ['Other'];
 

@@ -90,7 +90,7 @@ export const getAllEvents = createAsyncThunk<
           featured,
         },
       }) => {
-        const parsedCategories = !_.isEmpty(categories)
+        const parsedCategories = !_.isEmpty(categories.data)
           ? categories.data.map(({ attributes: { type } }) => type)
           : ['Other'];
 
