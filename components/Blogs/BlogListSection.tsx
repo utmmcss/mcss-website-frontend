@@ -55,7 +55,6 @@ const BlogListSection: FC<IProps> = ({ selectedCategories }) => {
               onClick={() => router.push(`Blogs/${id}`)}
             >
               <Tag categories={categories} />
-              <div className="tag">Courses</div>
               <div className="h-1/2 w-full image-container">
                 <Image src={coverImageUrl} layout="fill" priority />
               </div>
