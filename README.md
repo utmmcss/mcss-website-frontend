@@ -1,4 +1,20 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/278af8b6-18f4-49f5-840c-ca4ab58ef589/deploy-status)](https://app.netlify.com/sites/mcss-website/deploys)
+<p align="center">
+  <a href="https://docs.viaplanner.ca/" target="_blank">
+    <img alt="VIAplanner" width="300" src="https://raw.githubusercontent.com/utmmcss/mcss-website-frontend/master/public/mcssLogo.svg">
+  </a>
+</p>
+
+<p align="center"> 
+   <a href="https://app.netlify.com/sites/mcss-website/deploys">
+    <img alt="Build Status" src="https://api.netlify.com/api/v1/badges/278af8b6-18f4-49f5-840c-ca4ab58ef589/deploy-status">
+  </a>
+  <a href="https://mcss.club">
+    <img alt="Website Status" src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fmcss.club">
+  </a>
+  <a href="https://github.com/UTM-Hacklab/VIAplanner/blob/master/LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/license-GPL-green?style=flat">
+  </a>
+</p>
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
