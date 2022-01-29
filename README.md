@@ -11,8 +11,8 @@
   <a href="https://mcss.club">
     <img alt="Website Status" src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fmcss.club">
   </a>
-  <a href="https://github.com/UTM-Hacklab/VIAplanner/blob/master/LICENSE">
-    <img alt="License" src="https://img.shields.io/badge/license-GPL-green?style=flat">
+  <a href="https://github.com/utmmcss/mcss-website-frontend/blob/master/LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/license-MIT-blue?style=flat">
   </a>
 </p>
 
