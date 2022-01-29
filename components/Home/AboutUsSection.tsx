@@ -2,7 +2,6 @@ import { FC } from 'react';
 import Image from 'next/image';
 import Deerfield from 'public/deerfield.png'; // image from https://www.soundsolutions.ca/projects/featured-exterior-cladding-projects/deerfield-hall-univeristy-of-toronto-mississauga-campus
 import Experience from 'public/experience.png';
-import ProfilePlaceholder from 'public/profileplaceholder.png'; // image from https://www.pngfind.com/mpng/hJmwxix_image-placeholder-png-user-profile-placeholder-image-png/
 
 const AboutUsSection: FC = () => (
   <div className="about-us-section flex flex-col items-center md:items-stretch md:flex-row mt-20 md:m-20">
@@ -27,7 +26,7 @@ const AboutUsSection: FC = () => (
         Academic Society
       </p>
       <div className="flex">
-        <p className="text-med text-justify">
+        <p className="text-med md:text-justify">
           Hello students and welcome! UTM Mathematical and Computational Sciences Society (MCSS) is
           the official academic society for the Mathematics and Computational Sciences Department.
           The purpose of the club is to officially represent the students, promote and achieve the
@@ -38,15 +37,6 @@ const AboutUsSection: FC = () => (
           tutorial, and lab settings.
         </p>
       </div>
-      {/* <div className="flex items-center justify-center md:justify-start">
-        <div className="w-1/6 margin-auto">
-          <Image src={ProfilePlaceholder} alt="President" />
-        </div>
-        <div className="m-10">
-          <p className="text-med font-bold">BRIAN LI</p>
-          <p className="text-med text-purple-700 font-semibold">President</p>
-        </div>
-      </div> */}
     </div>
   </div>
 );
