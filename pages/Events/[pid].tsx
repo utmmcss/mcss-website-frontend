@@ -74,7 +74,7 @@ const EventDetail: FC = () => {
   return (
     <div className="event-detail px-5 md:px-28 lg:px-64 py-10">
       <MaterialCard className="w-full h-full rounded-t-md relative">
-        <div className="overview-card md:h-96 flex flex-col md:flex-row">
+        <div className="overview-card flex flex-col md:flex-row">
           <Tag categories={parsedCurrEvent.categories} />
           <div className="w-full h-1/3 md:w-2/3 md:h-full image-container relative">
             <Image src={parsedCurrEvent.coverImageUrl} layout="fill" priority />
@@ -109,7 +109,7 @@ const EventDetail: FC = () => {
         </div>
       </MaterialCard>
       <MaterialCard className="mt-5 w-full h-full p-5 rounded-b-md">
-        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className="prose">
+        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className="prose max-w-full">
           {parsedCurrEvent.content}
         </Markdown>
       </MaterialCard>
