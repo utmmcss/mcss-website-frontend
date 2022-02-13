@@ -1,4 +1,4 @@
-$avatar-configs: 'sm' 60px 15px 1s, 'md' 100px 30px 2s, 'lg' 150px 50px 3s;
+$avatar-configs: 'sm' 60px 15px 1.8s, 'md' 100px 30px 2s, 'lg' 150px 50px 3s;
 
 @for $avatars-length from 1 through 24 {
   @each $name, $size, $margin, $duration in $avatar-configs {

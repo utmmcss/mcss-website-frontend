@@ -10,19 +10,19 @@ const WhatWeDoSection: FC = () => {
     {
       title: 'CODING WORKSHOPS',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras imperdiet faucibus tellus vitae gravida. ',
+        'We offer coding workshops for students to learn how to use different technologes to build their own projects.',
       icon: <ComputerIcon fontSize="large" />,
     },
     {
       title: 'GAMING NIGHTS',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras imperdiet faucibus tellus vitae gravida. ',
+        'We offer gaming nights for students to socialize and play games with friends and other students.',
       icon: <SportsEsportsIcon fontSize="large" />,
     },
     {
       title: 'INFO SESSIONS',
       description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras imperdiet faucibus tellus vitae gravida. ',
+        'We offer info sessions for students to learn more about the MCS department as well as work opportunities.',
       icon: <InfoOutlinedIcon fontSize="large" />,
     },
   ];
