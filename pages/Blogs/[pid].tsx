@@ -3,9 +3,6 @@ import { useRouter } from 'next/router';
 import Error from 'next/error';
 import Image from 'next/image';
 import _ from 'underscore';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
 
 import { useAppSelector, useAppDispatch } from '@store/hooks';
 import { getAllBlogs } from '@store/blogSlice';
@@ -13,6 +10,7 @@ import { HashLoader } from 'react-spinners';
 import { formatDate } from '@utils/helper';
 import MaterialCard from '@components/Common/MaterialCard';
 import Tag from '@components/Common/Tag';
+import MarkdownDisplay from '@components/Common/MarkdownDisplay';
 
 const BlogDetail: FC = () => {
   const router = useRouter();
@@ -87,9 +85,7 @@ const BlogDetail: FC = () => {
         </div>
       </MaterialCard>
       <MaterialCard className="mt-5 w-full h-full p-5 rounded-b-md">
-        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className="prose">
-          {parsedCurrBlog.content}
-        </Markdown>
+        <MarkdownDisplay>{parsedCurrBlog.content}</MarkdownDisplay>
       </MaterialCard>
     </div>
   );
