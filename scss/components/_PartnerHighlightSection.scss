@@ -1,0 +1,85 @@
+.partner-highlight-section {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  margin: 10px 50px;
+
+  // custom scrollbar
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: none; /* color of the tracking area */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #c1c1c1; /* color of the scroll thumb */
+    border-radius: 20px; /* roundness of the scroll thumb */
+    &:hover {
+      background-color: #b1b1b1;
+    }
+  }
+
+  .partner-card {
+    display: inline-block;
+    margin: 10px;
+
+    .tag {
+      position: absolute;
+      padding: 10px 15px;
+      z-index: 2000;
+      top: 0px;
+      left: 0px;
+      right: 50%;
+      color: white;
+      @apply bg-purple-600;
+      background: rgba(124, 58, 237, 0.8);
+      border-top-left-radius: 0.5rem;
+    }
+
+    .title {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: word;
+      white-space: normal;
+    }
+
+    .image-container {
+      position: relative;
+
+      img {
+        @apply rounded-l-lg;
+      }
+    }
+  }
+}
+.mobile-partner-card {
+  .image-container {
+    position: relative;
+    img {
+      @apply rounded-t-lg;
+    }
+  }
+  .tag {
+    position: absolute;
+    padding: 2px 15px;
+    z-index: 1000;
+    top: 177px;
+    right: 5px;
+    color: white;
+    @apply bg-purple-600;
+    @apply rounded-full;
+  }
+
+  .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: word;
+    white-space: normal;
+  }
+}

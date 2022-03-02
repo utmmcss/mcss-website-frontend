@@ -3,14 +3,14 @@ import _ from 'underscore';
 
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import Filter from '@components/Common/Filter';
-import { getAllEvents, getAllEventCategories } from '@store/eventSlice';
-import EventsListSection from '@components/Events/EventListSection';
-import EventHighlightSection from '@components/Events/EventHighlightSection';
+import { getAllPartners, getAllPartnerCategories } from '@store/partnerSlice';
+import PartnerListSection from '@components/Partners/PartnerListSection';
+import PartnerHighlightSection from '@components/Partners/PartnerHighlightSection';
 import { removeElement } from '@utils/helper';
 
-const Events: FC = () => {
+const Partners: FC = () => {
   const dispatch = useAppDispatch();
-  const { categories, events } = useAppSelector((state) => state.events);
+  const { categories, partners } = useAppSelector((state) => state.partners);
   const optionNames = ['All', ...categories, 'Other'];
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
 
@@ -51,24 +51,24 @@ const Events: FC = () => {
   );
 
   useEffect(() => {
-    if (_.isEmpty(events)) {
-      dispatch(getAllEvents());
+    if (_.isEmpty(partners)) {
+      dispatch(getAllPartners());
     }
 
     if (_.isEmpty(categories)) {
-      dispatch(getAllEventCategories());
+      dispatch(getAllPartnerCategories());
     }
   }, []);
 
   return (
     <div>
       <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
-      <EventHighlightSection />
-      <h1 className="text-4xl font-bold my-10 ml-14">Events</h1>
+      <PartnerHighlightSection />
+      <h1 className="text-4xl font-bold my-10 ml-14">Partners</h1>
       <Filter options={options} selectedOptions={selectedCategories} />
-      <EventsListSection selectedCategories={selectedCategories} />
+      <PartnerListSection selectedCategories={selectedCategories} />
     </div>
   );
 };
 
-export default Events;
+export default Partners;

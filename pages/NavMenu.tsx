@@ -11,6 +11,7 @@ const NavMenu: FC = () => {
     { label: 'Home', href: '/' },
     { label: 'Events', href: '/Events' },
     { label: 'Blogs', href: '/Blogs' },
+    { label: 'Partners', href: '/Partners' },
   ];
 
   return (
