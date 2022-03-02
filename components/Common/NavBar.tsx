@@ -13,6 +13,7 @@ import Logo from '@public/mcssLogo.svg';
 import { useIsMobile } from '@utils/hooks';
 import { getAllEvents } from '@store/eventSlice';
 import { getAllBlogs } from '@store/blogSlice';
+import { getAllPartners } from '@store/partnerSlice';
 import MediaQueryContainer from './MediaQueryContainer';
 
 const DropdownIndicator: FC<DropdownIndicatorProps<{ value: string; label: string }, false>> = (
@@ -33,6 +34,7 @@ const NavBar: FC = () => {
   const router = useRouter();
   const { events } = useAppSelector((state) => state.events);
   const { blogs } = useAppSelector((state) => state.blogs);
+  const { partners } = useAppSelector((state) => state.partners);
   const links = [
     { label: 'Home', href: '/' },
     { label: 'Events', href: '/Events' },
@@ -44,6 +46,7 @@ const NavBar: FC = () => {
   const options = [
     ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
     ...Object.entries(blogs).map(([id, { title }]) => ({ label: `Blog: ${title}`, value: id })),
+    ...Object.entries(partners).map(([id, { title }]) => ({ label: `Partners: ${title}`, value: id })),
   ];
 
   useEffect(() => {
@@ -53,6 +56,10 @@ const NavBar: FC = () => {
 
     if (_.isEmpty(blogs)) {
       dispatch(getAllBlogs());
+    }
+
+    if (_.isEmpty(partners)) {
+      dispatch(getAllPartners());
     }
   }, []);
 
@@ -96,6 +103,8 @@ const NavBar: FC = () => {
                 router.push(`/Events/${selectedOption.value}`);
               } else if (selectedOption?.label.includes('Blog:')) {
                 router.push(`/Blogs/${selectedOption.value}`);
+              } else if (selectedOption?.label.includes('Partners:')) {
+                router.push(`/Partners/${selectedOption.value}`);
               }
             }}
             options={options}
