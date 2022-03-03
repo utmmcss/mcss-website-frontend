@@ -3,9 +3,6 @@ import { useRouter } from 'next/router';
 import Error from 'next/error';
 import Image from 'next/image';
 import _ from 'underscore';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
 
 import { useAppSelector, useAppDispatch } from '@store/hooks';
 import { getAllEvents } from '@store/eventSlice';
@@ -14,6 +11,7 @@ import { formatDate } from '@utils/helper';
 import Button from '@components/Common/Button';
 import MaterialCard from '@components/Common/MaterialCard';
 import Tag from '@components/Common/Tag';
+import MarkdownDisplay from '@components/Common/MarkdownDisplay';
 
 const EventDetail: FC = () => {
   const router = useRouter();
@@ -109,9 +107,7 @@ const EventDetail: FC = () => {
         </div>
       </MaterialCard>
       <MaterialCard className="mt-5 w-full h-full p-5 rounded-b-md">
-        <Markdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} className="prose max-w-full">
-          {parsedCurrEvent.content}
-        </Markdown>
+        <MarkdownDisplay>{parsedCurrEvent.content}</MarkdownDisplay>
       </MaterialCard>
     </div>
   );

@@ -5,27 +5,28 @@ import Image from 'next/image';
 import _ from 'underscore';
 
 import { useAppSelector, useAppDispatch } from '@store/hooks';
-import { getAllBlogs } from '@store/blogSlice';
+import { getAllPartners } from '@store/partnerSlice';
 import { HashLoader } from 'react-spinners';
 import { formatDate } from '@utils/helper';
+import Button from '@components/Common/Button';
 import MaterialCard from '@components/Common/MaterialCard';
 import Tag from '@components/Common/Tag';
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
 
-const BlogDetail: FC = () => {
+const PartnerDetail: FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const { blogs } = useAppSelector((state) => state.blogs);
-  const [loading, setLoading] = useState(_.isEmpty(blogs));
+  const { partners } = useAppSelector((state) => state.partners);
+  const [loading, setLoading] = useState(_.isEmpty(partners));
   const { pid } = router.query;
-  const currBlog =
-    _.isString(pid) && _.isNumber(parseInt(pid, 10)) ? blogs[parseInt(pid, 10)] : null;
+  const currPartner =
+    _.isString(pid) && _.isNumber(parseInt(pid, 10)) ? partners[parseInt(pid, 10)] : null;
 
   useEffect(() => {
     (async () => {
-      if (_.isEmpty(blogs)) {
-        await dispatch(getAllBlogs());
+      if (_.isEmpty(partners)) {
+        await dispatch(getAllPartners());
         setLoading(false);
       }
     })();
@@ -39,56 +40,64 @@ const BlogDetail: FC = () => {
     );
   }
 
-  if (_.isEmpty(blogs) || !currBlog) {
+  if (_.isEmpty(partners) || !currPartner) {
     return <Error statusCode={404} />;
   }
 
-  const parsedCurrBlog = {
+  const parsedCurrPartner = {
     id: pid,
-    title: currBlog.title,
-    creator: currBlog.creator,
-    lateUpdated: formatDate(currBlog.updatedDatetime, {
+    title: currPartner.title,
+    lateUpdated: formatDate(currPartner.updatedDatetime, {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
       hour: 'numeric',
       minute: 'numeric',
     }),
-    coverImageUrl: currBlog.coverImageUrl,
-    categories: currBlog.categories,
-    content: currBlog.content,
+    coverImageUrl: currPartner.coverImageUrl,
+    categories: currPartner.categories,
+    content: currPartner.content,
+    partnerUrl: currPartner.partnerUrl,
   };
 
   return (
-    <div className="blog-detail px-5 md:px-28 lg:px-64 py-10">
+    <div className="partner-detail px-5 md:px-28 lg:px-64 py-10">
       <MaterialCard className="w-full h-full rounded-t-md relative">
         <div className="overview-card md:h-96 flex flex-col md:flex-row">
-          <Tag categories={parsedCurrBlog.categories} />
+          <Tag categories={parsedCurrPartner.categories} />
           <div className="w-full h-1/2 md:w-2/3 md:h-full image-container relative">
-            <Image src={parsedCurrBlog.coverImageUrl} layout="fill" priority />
+            <Image src={parsedCurrPartner.coverImageUrl} layout="fill" priority />
           </div>
           <div className="h-1/2 md:w-1/3 md:h-full px-5 pt-3 pb-5">
-            <div className="h-1/2">
+            <div className="h-1/4">
               <h2 className="text-lg font-bold">Last Updated</h2>
-              <p>{parsedCurrBlog.lateUpdated}</p>
-              <h2 className="text-lg mt-1 font-bold">Creator</h2>
-              <p>{parsedCurrBlog.creator}</p>
+              <p>{parsedCurrPartner.lateUpdated}</p>
             </div>
-            <div className="h-1/2 flex flex-col">
-              <div className="h-3/4">
+            <div className="h-3/4 flex flex-col">
+              <div className="h-4/5">
                 <p className="text-2xl font-bold text-justify title w-full">
-                  {parsedCurrBlog.title}
+                  {parsedCurrPartner.title}
                 </p>
+              </div>
+              <div className="h-1/5">
+                <Button
+                  className="w-full h-full"
+                  onClick={() => {
+                    window.location.href = parsedCurrPartner.partnerUrl;
+                  }}
+                >
+                  More Info
+                </Button>
               </div>
             </div>
           </div>
         </div>
       </MaterialCard>
       <MaterialCard className="mt-5 w-full h-full p-5 rounded-b-md">
-        <MarkdownDisplay>{parsedCurrBlog.content}</MarkdownDisplay>
+        <MarkdownDisplay>{parsedCurrPartner.content}</MarkdownDisplay>
       </MaterialCard>
     </div>
   );
 };
 
-export default BlogDetail;
+export default PartnerDetail;
