@@ -74,10 +74,10 @@ const PartnerHighlightSection: FC = () => {
                     <p>{updatedDatetime}</p>
                   </div>
                   <div className="h-3/4 flex flex-col justify-end">
-                    <div className="h-3/4">
+                    <div className="h-4/5">
                       <p className="text-2xl font-bold text-justify title w-full">{title}</p>
                     </div>
-                    <div className="h-1/4">
+                    <div className="h-1/5">
                       <Button className="w-full h-full" onClick={() => router.push(`Partners/${id}`)}>
                         More Info
                       </Button>

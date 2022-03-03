@@ -16,6 +16,7 @@ interface Partner {
   categories: string[];
   featured: boolean;
   description: string;
+  partnerUrl: string;
 }
 interface PartnerState {
   partners: Record<number, Partner>;
@@ -56,6 +57,7 @@ export const getAllPartners = createAsyncThunk<
     updatedAt: string;
     categories: DataAttributes<{ type: string }>;
     cover_image: DataAttribute<{ url: string }>;
+    partner_url: string;
   }
 
   interface APIResponse {
@@ -72,7 +74,16 @@ export const getAllPartners = createAsyncThunk<
     response.data.forEach(
       ({
         id,
-        attributes: { title, cover_image, content, categories, featured, updatedAt, description },
+        attributes: {
+          title,
+          cover_image,
+          content,
+          categories,
+          featured,
+          updatedAt,
+          description,
+          partner_url: partnerUrl,
+        },
       }) => {
         const parsedCategories = !_.isEmpty(categories.data)
           ? categories.data.map(({ attributes: { type } }) => type)
@@ -86,6 +97,7 @@ export const getAllPartners = createAsyncThunk<
           featured,
           updatedDatetime: updatedAt,
           description,
+          partnerUrl,
         };
       },
     );

@@ -8,6 +8,7 @@ import { useAppSelector, useAppDispatch } from '@store/hooks';
 import { getAllPartners } from '@store/partnerSlice';
 import { HashLoader } from 'react-spinners';
 import { formatDate } from '@utils/helper';
+import Button from '@components/Common/Button';
 import MaterialCard from '@components/Common/MaterialCard';
 import Tag from '@components/Common/Tag';
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
@@ -56,6 +57,7 @@ const PartnerDetail: FC = () => {
     coverImageUrl: currPartner.coverImageUrl,
     categories: currPartner.categories,
     content: currPartner.content,
+    partnerUrl: currPartner.partnerUrl,
   };
 
   return (
@@ -72,10 +74,20 @@ const PartnerDetail: FC = () => {
               <p>{parsedCurrPartner.lateUpdated}</p>
             </div>
             <div className="h-3/4 flex flex-col">
-              <div className="h-3/4">
+              <div className="h-4/5">
                 <p className="text-2xl font-bold text-justify title w-full">
                   {parsedCurrPartner.title}
                 </p>
+              </div>
+              <div className="h-1/5">
+                <Button
+                  className="w-full h-full"
+                  onClick={() => {
+                    window.location.href = parsedCurrPartner.partnerUrl;
+                  }}
+                >
+                  More Info
+                </Button>
               </div>
             </div>
           </div>
