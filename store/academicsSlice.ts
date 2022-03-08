@@ -87,7 +87,6 @@ export const getAllAcademics = createAsyncThunk<
         const parsedCategories = !_.isEmpty(categories.data)
           ? categories.data.map(({ attributes: { type } }) => type)
           : ['Other'];
-        console.log(categories);
 
         parsedAcademics[id] = {
           title,
