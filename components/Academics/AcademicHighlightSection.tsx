@@ -37,8 +37,9 @@ const AcademicHighlightSection: FC = () => {
     <div>
       <MediaQueryContainer showOnMobile>
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
-          {academicCardInfos.map(({ id, coverImageUrl, creator, title, 
-          description, categories }) => (
+          {academicCardInfos.map(({
+            id, coverImageUrl, creator, title, description, categories,
+          }) => (
             <div className="w-full pb-4 px-14" key={id}>
               <MaterialCard
                 className="mobile-academic-card h-96 w-full relative"
