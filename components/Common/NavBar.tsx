@@ -42,7 +42,7 @@ const NavBar: FC = () => {
     { label: 'Events', href: '/Events' },
     { label: 'Blogs', href: '/Blogs' },
     { label: 'Partners', href: '/Partners' },
-    { label: 'Academics', href: '/Academics' }
+    { label: 'Academics', href: '/Academics' },
   ];
   const searchBarWhiteList = ['/Events', '/Blogs', '/Partners', '/Academics'];
   const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
@@ -65,7 +65,7 @@ const NavBar: FC = () => {
     if (_.isEmpty(partners)) {
       dispatch(getAllPartners());
     }
-    
+
     if (_.isEmpty(academics)) {
       dispatch(getAllAcademics());
     }
