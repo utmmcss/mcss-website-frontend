@@ -34,7 +34,7 @@ const Blogs: FC = () => {
            * Case 2: Something other than 'All' is selected, then we should de-select 'All'
            * Case 3: If 'All' is selected, then we should de-select everything other than 'All'
            */
-           if (_.isEmpty(newSelectedCategories)) {
+          if (_.isEmpty(newSelectedCategories)) {
             newSelectedCategories = ['All'];
           } else if (
             newSelectedCategories.length > 1 &&
