@@ -32,6 +32,7 @@ const Partners: FC = () => {
           /**
            * Case 1: Nothing is selected, then we should select 'All'
            * Case 2: Something other than 'All' is selected, then we should de-select 'All'
+           * Case 3: If 'All' is selected, then we should de-select everything other than 'All'
            */
           if (_.isEmpty(newSelectedCategories)) {
             newSelectedCategories = ['All'];
@@ -41,6 +42,8 @@ const Partners: FC = () => {
             newSelectedCategories.includes('All')
           ) {
             newSelectedCategories = removeElement(newSelectedCategories, 'All');
+          } else if (currOptionName === 'All') {
+            newSelectedCategories = ['All'];
           }
 
           setSelectedCategories(newSelectedCategories);
