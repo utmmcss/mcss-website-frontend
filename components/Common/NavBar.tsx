@@ -128,7 +128,7 @@ const NavBar: FC = () => {
               },
             })}
             maxMenuHeight={130}
-            placeholder="Search events, blogs and academics"
+            placeholder="Search for something"
           />
         )}
       </div>
