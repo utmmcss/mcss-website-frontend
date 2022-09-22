@@ -12,7 +12,7 @@ const TeamMemberSection: FC = () => {
   const { members } = useAppSelector((state) => state.members);
 
   return (
-    <SectionWrapper subtitle="EXECUTIVES & ASSOICATES" title="OUR TEAM">
+    <SectionWrapper subtitle="EXECUTIVES & ASSOCIATES" title="OUR TEAM">
       {_.isEmpty(members) ? (
         <HorizontalSkeletonLoader numSkeletons={1} count={8} className="w-1/2" />
       ) : (
