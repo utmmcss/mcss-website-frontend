@@ -23,7 +23,8 @@ module.exports = {
     "operator-linebreak": 0,
     "arrow-body-style": 0,
     "react/no-unescaped-entities": 0,
-    "react/require-default-props": 0
+    "react/require-default-props": 0,
+    "react/no-unused-prop-types": 1,
   },
   parser: '@typescript-eslint/parser',
 };
