@@ -24,7 +24,7 @@ module.exports = {
     "arrow-body-style": 0,
     "react/no-unescaped-entities": 0,
     "react/require-default-props": 0,
-    "react/no-unused-prop-types": 1,
+    "react/no-unused-prop-types": 0,
   },
   parser: '@typescript-eslint/parser',
 };
