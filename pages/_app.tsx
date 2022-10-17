@@ -8,6 +8,8 @@ import Footer from '@components/Common/Footer';
 import NavBar from '@components/Common/NavBar';
 import { store } from '@store/store';
 
+import Head from 'next/head';
+
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const NavBarBlackList = ['/NavMenu'];
@@ -15,6 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Provider store={store}>
+      <Head>
+        <title>MCSS</title>
+      </Head>
       {!NavBarBlackList.includes(router.pathname) && <NavBar />}
       <Component {...pageProps} />
       {!FooterBlackList.includes(router.pathname) && <Footer />}
