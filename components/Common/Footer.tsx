@@ -132,7 +132,6 @@ const Footer: FC = () => {
                   <SignupForm />
                 </FooterCol>
               </div>
-              
             </MediaQueryContainer>
           </div>
         </div>

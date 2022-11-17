@@ -26,7 +26,7 @@ const JoinUsSection: FC = () => {
               <div className="flex justify-center m-5 text-3xl font-medium">{numAssociates}</div>
             </div>
           </div>
-          <div className='flex justify-center'>
+          <div className="flex justify-center">
             <div className="flex flex-col justify-center">
               <IconButton icon={<ArrowForward className="ml-3 m-auto" />}>Join Us</IconButton>
             </div>
