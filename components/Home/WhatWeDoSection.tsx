@@ -43,7 +43,7 @@ const WhatWeDoSection: FC = () => {
               <div className=" border-2 rounded-xl p-4">{icon}</div>
               <h2 className="text-lg font-bold ml-10 w-full lg:w-40">{title}</h2>
             </div>
-            <div className="flex h-1/4 lg:h-1/2">{description}</div>
+            <div className="flex h-1/2">{description}</div>
           </MaterialCard>
         ))}
       </div>

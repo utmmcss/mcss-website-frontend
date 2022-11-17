@@ -127,9 +127,12 @@ const Footer: FC = () => {
               </MediaQueryContainer>
             </div>
             <MediaQueryContainer showOnMobile>
-              <FooterCol title="Newsletter">
-                <SignupForm />
-              </FooterCol>
+              <div className="flex justify-center">
+                <FooterCol title="Newsletter">
+                  <SignupForm />
+                </FooterCol>
+              </div>
+              
             </MediaQueryContainer>
           </div>
         </div>
