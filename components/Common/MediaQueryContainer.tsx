@@ -11,8 +11,8 @@ interface IProps {
 const MediaQueryContainer: FC<IProps> = ({ children, showOnMobile, hideOnMobile, className }) => (
   <div
     className={classNames(className, {
-      'md:hidden': showOnMobile,
-      'hidden md:block': hideOnMobile,
+      'lg:hidden': showOnMobile,
+      'hidden lg:block': hideOnMobile,
     })}
   >
     {children}

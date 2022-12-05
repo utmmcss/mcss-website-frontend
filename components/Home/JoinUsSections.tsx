@@ -19,12 +19,14 @@ const JoinUsSection: FC = () => {
           <div className="flex justify-center px-10">
             <div>
               <div className="m-5 text-grey font-semibold">EXECUTIVES</div>
-              <div className="m-5 text-3xl font-medium">{numExecs}</div>
+              <div className="flex justify-center m-5 text-3xl font-medium">{numExecs}</div>
             </div>
             <div>
               <div className="m-5 text-grey font-semibold">ASSOCIATES</div>
-              <div className="m-5 text-3xl font-medium">{numAssociates}</div>
+              <div className="flex justify-center m-5 text-3xl font-medium">{numAssociates}</div>
             </div>
+          </div>
+          <div className="flex justify-center">
             <div className="flex flex-col justify-center">
               <IconButton icon={<ArrowForward className="ml-3 m-auto" />}>Join Us</IconButton>
             </div>

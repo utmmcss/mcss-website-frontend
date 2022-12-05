@@ -16,7 +16,7 @@ const HomeIntroSection: FC = () => (
         <hr className="w-56 h-1 bg-purple-600" />
         <p className="ml-4 text-2xl">Academic Society</p>
       </div>
-      <p className="text-4xl md:text-7xl text-center md:text-left font-sans">
+      <p className="text-4xl md:text-5xl mt-3 mb-5 lg:text-7xl text-center md:text-left font-sans">
         Mathematical & Computational Sciences
       </p>
       <IconButton
