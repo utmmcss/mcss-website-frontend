@@ -8,7 +8,7 @@ const AboutUsSection: FC = () => (
     <div className="header-img w-full lg:w-1/3 lg:mx-10 lg:min-h-full">
       <Image src={Deerfield} alt="Deerfield Hall" className="min-h-full" />
     </div>
-    <div className="w-4/5 mt-10 lg:mt-0 lg:w-2/3 flex flex-col justify-between">
+    <div className="w-4/5 mt-10 lg:mt-0 lg:w-2/3 flex flex-col justify-between xl:justify-center">
       <span>
         <p className="inline-block h-1/3 mr-5 text-2xl">ABOUT US</p>
         <hr className="inline-block h-1 w-56 bg-purple-600" />
@@ -22,7 +22,7 @@ const AboutUsSection: FC = () => (
           <Image src={Experience} alt="Experience" />
         </div>
       </div>
-      <p className="hidden lg:inline-block text-lg text-purple-700 font-semibold">
+      <p className="hidden lg:inline-block text-lg text-purple-700 font-semibold xl:pb-5">
         Academic Society
       </p>
       <div className="flex">
