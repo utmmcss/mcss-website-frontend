@@ -10,6 +10,13 @@ module.exports = {
     },
   ],
   rules: {
+    'sort-imports': [
+      'error',
+      {
+        ignoreDeclarationSort: true,
+        ignoreMemberSort: true,
+      },
+    ],
     'no-console': 'off',
     '@typescript-eslint/comma-dangle': 'off',
     'import/newline-after-import': ['error', { count: 1 }],
