@@ -21,7 +21,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Setup
 
 1. run `git clone <https://github.com/utmmcss/mcss-website-frontend>` to clone the repo
-2. run `npm install` to install dependencies
+2. run `yarn install` to install dependencies
 3. add the .env file(s) from the tech team google drive and put it in the root of the project
 4. install all the workspace @recommended extensions
 
@@ -30,8 +30,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
 ```
 

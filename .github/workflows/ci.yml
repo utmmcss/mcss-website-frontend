@@ -27,10 +27,10 @@ jobs:
           key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
-        run: npm install
+        run: yarn install
 
       - name: Run lint command
-        run: npm run lint
+        run: yarn lint
 
       - name: Run check-types command
-        run: npm run check-types
+        run: yarn check-types

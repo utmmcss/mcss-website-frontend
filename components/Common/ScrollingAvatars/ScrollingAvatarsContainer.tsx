@@ -42,7 +42,7 @@ const ScrollingAvatarsContainer: FC<IProps> = ({ rows = 1, avatarInfos, startScr
           setName={setName}
           setPosition={setPosition}
         />
-      ),
+      )
     );
   }
 

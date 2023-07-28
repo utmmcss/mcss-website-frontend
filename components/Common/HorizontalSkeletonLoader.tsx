@@ -14,8 +14,9 @@ const HorizontalSkeletonLoader: FC<IProps> = ({
   className = 'w-1/4',
 }) => (
   <div className="flex justify-around">
-    {[...Array(numSkeletons)].map(() => (
-      <div className={className}>
+    {[...Array(numSkeletons)].map((e, i) => (
+      // eslint-disable-next-line react/no-array-index-key
+      <div key={i} className={className}>
         <Skeleton count={count} />
       </div>
     ))}
