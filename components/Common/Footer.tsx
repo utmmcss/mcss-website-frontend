@@ -48,12 +48,12 @@ const FooterCol: FC<ColProps> = ({ title, children }) => (
 
 const SignupForm: FC = () => {
   const [email, setEmail] = useState('');
-  const [subscribStatus, setSubscribStatus] = useState<string | null>('');
+  const [subscribeStatus, setSubscribeStatus] = useState<string | null>('');
   return (
     <MailchimpSubscribe
       url={process.env.NEXT_PUBLIC_MAILCHIMP_URL || ''}
       render={({ subscribe, status, message }) => {
-        setSubscribStatus(status);
+        setSubscribeStatus(status);
         return (
           <div className="w-72">
             {status === 'sending' && <div style={{ color: 'blue' }}>sending...</div>}
@@ -76,9 +76,9 @@ const SignupForm: FC = () => {
             <div className="flex justify-center md:justify-start">
               <Button
                 className={classNames('font-bold py-3 px-10 mt-3', {
-                  'bg-red-500': subscribStatus === 'error',
-                  'bg-yellow-400': subscribStatus === 'sending',
-                  'bg-green-400': subscribStatus === 'success',
+                  'bg-red-500': subscribeStatus === 'error',
+                  'bg-yellow-400': subscribeStatus === 'sending',
+                  'bg-green-400': subscribeStatus === 'success',
                 })}
                 onClick={() => subscribe({ EMAIL: email })}
               >

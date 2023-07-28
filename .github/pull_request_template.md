@@ -1,8 +1,6 @@
-### Ticket
-[Ticket Link](Link)
+Ticket: https://trello.com/PLACEHOLDER
 
-### What is changed / added
-- short description of the PR
+What's Inside
 
-### Screenshots
-- if applicable
+- [ ] Placeholder 1
+- [ ] Placeholder 2

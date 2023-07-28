@@ -27,7 +27,15 @@ const Avatar: FC<IProps> = ({
     onClick={onClick}
     className={className}
   >
-    <Image alt="avatar" src={imgSrc} layout="fixed" width={size} height={size} priority />
+    <Image
+      alt="avatar"
+      src={imgSrc}
+      layout="fixed"
+      width={size}
+      height={size}
+      objectFit="cover"
+      priority
+    />
   </div>
 );
 
