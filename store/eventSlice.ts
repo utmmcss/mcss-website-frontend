@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable no-param-reassign */
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import _ from 'underscore';
-
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { DataAttribute, DataAttributes } from '@store/storeTypes';
 import { getAPI } from '@utils/helper';
+import _ from 'underscore';
+
 import type { RootState } from './store';
 
 // Define a type for the slice state
@@ -106,7 +106,7 @@ export const getAllEvents = createAsyncThunk<
           location,
           featured,
         };
-      },
+      }
     );
   }
   return parsedEvents;

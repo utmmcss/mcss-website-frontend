@@ -1,9 +1,11 @@
 import { FC } from 'react';
-import SectionWrapper from '@components/Common/SectionWrapper';
-import MaterialCard from '@components/Common/MaterialCard';
+
 import ComputerIcon from '@mui/icons-material/Computer';
-import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+
+import MaterialCard from '@components/Common/MaterialCard';
+import SectionWrapper from '@components/Common/SectionWrapper';
 
 const WhatWeDoSection: FC = () => {
   const cardInfo = [

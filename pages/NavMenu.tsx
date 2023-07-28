@@ -1,9 +1,10 @@
 import { FC } from 'react';
+
 import CloseIcon from '@mui/icons-material/Close';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 import IconButton from '@components/Common/IconButton';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const NavMenu: FC = () => {
   const router = useRouter();

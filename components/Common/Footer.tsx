@@ -1,14 +1,15 @@
 import { FC, ReactNode, useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import MailchimpSubscribe from 'react-mailchimp-subscribe';
 
+import GitHubIcon from '@mui/icons-material/GitHub';
+import InstagramIcon from '@mui/icons-material/Instagram';
+
 import Button from '@components/Common/Button';
-import DiscordIcon from '@public/discord.svg';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
+import DiscordIcon from '@public/discord.svg';
 import classNames from 'classnames';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface LinkProps {
   href: string;

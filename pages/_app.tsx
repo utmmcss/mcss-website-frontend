@@ -1,12 +1,13 @@
-import '../scss/index.scss';
-import 'tailwindcss/tailwind.css';
-import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
 import { Provider } from 'react-redux';
 
 import Footer from '@components/Common/Footer';
 import NavBar from '@components/Common/NavBar';
 import { store } from '@store/store';
+import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
+
+import '../scss/index.scss';
+import 'tailwindcss/tailwind.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

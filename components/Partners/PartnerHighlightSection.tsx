@@ -1,14 +1,14 @@
 import { FC } from 'react';
-import Image from 'next/image';
-import { useAppSelector } from '@store/hooks';
-import { useRouter } from 'next/router';
 
-import MaterialCard from '@components/Common/MaterialCard';
 import Button from '@components/Common/Button';
-import Tag from '@components/Common/Tag';
+import MaterialCard from '@components/Common/MaterialCard';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
-import { formatDate } from '@utils/helper';
 import Slider from '@components/Common/Slider';
+import Tag from '@components/Common/Tag';
+import { useAppSelector } from '@store/hooks';
+import { formatDate } from '@utils/helper';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const PartnerHighlightSection: FC = () => {
   const { partners } = useAppSelector((state) => state.partners);

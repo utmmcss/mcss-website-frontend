@@ -1,5 +1,6 @@
 module.exports = {
   extends: ['next', 'next/core-web-vitals', 'airbnb', 'airbnb-typescript'],
+  plugins: ['@typescript-eslint', 'simple-import-sort'],
   overrides: [
     {
       files: ['*.ts', '*.tsx'], // Your TypeScript files extension
@@ -27,6 +28,25 @@ module.exports = {
     'react/no-unescaped-entities': 0,
     'react/require-default-props': 0,
     'react/no-unused-prop-types': 0,
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          // Packages `react` related packages come first.
+          ['^react'],
+          // MUI imports
+          ['^(@mui)(/.*|$)'],
+          // Other packages come after.
+          ['^@', '^\\w'],
+          // Parent imports. Put `..` last.
+          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+          // Other relative imports. Put same-folder imports and `.` last.
+          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+          // Style imports.
+          ['^.+\\.?(css)$'],
+        ],
+      },
+    ],
   },
   parser: '@typescript-eslint/parser',
 };

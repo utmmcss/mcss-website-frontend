@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { Member } from '@store/memberSlice';
 import Avatar from '@components/Common/ScrollingAvatars/Avatar';
+import { Member } from '@store/memberSlice';
 
 interface IProps {
   /** pre-set width and height of each avatar */

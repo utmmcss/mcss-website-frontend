@@ -1,20 +1,22 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
+import Select, { components, DropdownIndicatorProps } from 'react-select';
+
+import CloseIcon from '@mui/icons-material/Close';
+import SearchIcon from '@mui/icons-material/Search';
+
+import Logo from '@public/mcssLogo.svg';
+import { getAllAcademics } from '@store/academicsSlice';
+import { getAllBlogs } from '@store/blogSlice';
+import { getAllEvents } from '@store/eventSlice';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
+import { getAllPartners } from '@store/partnerSlice';
+import { useIsMobile } from '@utils/hooks';
+import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import classNames from 'classnames';
-import SearchIcon from '@mui/icons-material/Search';
-import CloseIcon from '@mui/icons-material/Close';
-import Select, { components, DropdownIndicatorProps } from 'react-select';
 import _ from 'underscore';
 
-import { useAppSelector, useAppDispatch } from '@store/hooks';
-import Logo from '@public/mcssLogo.svg';
-import { useIsMobile } from '@utils/hooks';
-import { getAllEvents } from '@store/eventSlice';
-import { getAllBlogs } from '@store/blogSlice';
-import { getAllPartners } from '@store/partnerSlice';
-import { getAllAcademics } from '@store/academicsSlice';
 import MediaQueryContainer from './MediaQueryContainer';
 
 const DropdownIndicator: FC<DropdownIndicatorProps<{ value: string; label: string }, false>> = (

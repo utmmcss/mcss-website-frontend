@@ -1,17 +1,17 @@
 import { FC, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import Error from 'next/error';
-import Image from 'next/image';
-import _ from 'underscore';
-
-import { useAppSelector, useAppDispatch } from '@store/hooks';
-import { getAllEvents } from '@store/eventSlice';
 import { HashLoader } from 'react-spinners';
-import { formatDate } from '@utils/helper';
+
 import Button from '@components/Common/Button';
+import MarkdownDisplay from '@components/Common/MarkdownDisplay';
 import MaterialCard from '@components/Common/MaterialCard';
 import Tag from '@components/Common/Tag';
-import MarkdownDisplay from '@components/Common/MarkdownDisplay';
+import { getAllEvents } from '@store/eventSlice';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
+import { formatDate } from '@utils/helper';
+import Error from 'next/error';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import _ from 'underscore';
 
 const EventDetail: FC = () => {
   const router = useRouter();

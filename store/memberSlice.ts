@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/indent */
 /* eslint-disable no-param-reassign */
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { DataAttribute, DataAttributes } from '@store/storeTypes';
 import { getAPI } from '@utils/helper';
+
 import type { RootState } from './store';
 
 // Define a type for the slice state
@@ -45,7 +45,7 @@ export const getAllMembers = createAsyncThunk<
         avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.url}`,
         websiteUrl: website_url,
         executive,
-      }),
+      })
     );
   }
 

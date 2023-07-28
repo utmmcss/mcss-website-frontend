@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import Image from 'next/image';
-import _ from 'underscore';
-import { useAppSelector } from '@store/hooks';
-import classNames from 'classnames';
-import { useRouter } from 'next/router';
 
-import Tag from '@components/Common/Tag';
 import MaterialCard from '@components/Common/MaterialCard';
+import Tag from '@components/Common/Tag';
+import { useAppSelector } from '@store/hooks';
 import { formatDate } from '@utils/helper';
+import classNames from 'classnames';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import _ from 'underscore';
 
 interface IProps {
   selectedCategories: string[];

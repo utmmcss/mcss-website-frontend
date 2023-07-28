@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react';
-import _ from 'underscore';
 
 import type { Member } from '@store/memberSlice';
+import _ from 'underscore';
+
 import ScrollingAvatars from './ScrollingAvatars';
 
 interface IProps {

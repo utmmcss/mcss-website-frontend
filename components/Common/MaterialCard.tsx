@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { FC, ReactNode } from 'react';
+
 import classNames from 'classnames';
 
 interface IProps {

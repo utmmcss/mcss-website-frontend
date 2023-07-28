@@ -7,7 +7,7 @@ type CardProps = {
 
 /** @deprecated
  * use MaterialCard instead
-*/
+ */
 const Card: FC<CardProps> = ({ children, className }) => (
   <div className={className}>{children}</div>
 );

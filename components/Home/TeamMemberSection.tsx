@@ -1,12 +1,13 @@
 import { FC } from 'react';
-import { useAppSelector } from '@store/hooks';
-import _ from 'underscore';
 
-import IconButton from '@components/Common/IconButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
+import IconButton from '@components/Common/IconButton';
 import ScrollingAvatars from '@components/Common/ScrollingAvatars/ScrollingAvatarsContainer';
 import SectionWrapper from '@components/Common/SectionWrapper';
-import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
+import { useAppSelector } from '@store/hooks';
+import _ from 'underscore';
 
 const TeamMemberSection: FC = () => {
   const { members } = useAppSelector((state) => state.members);
