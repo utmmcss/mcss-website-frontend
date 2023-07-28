@@ -50,7 +50,7 @@ const Events: FC = () => {
         },
       },
     ],
-    [],
+    []
   );
 
   useEffect(() => {
@@ -61,6 +61,7 @@ const Events: FC = () => {
     if (_.isEmpty(categories)) {
       dispatch(getAllEventCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

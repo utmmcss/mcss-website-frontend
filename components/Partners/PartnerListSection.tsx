@@ -18,9 +18,9 @@ const PartnerListSection: FC<IProps> = ({ selectedCategories }) => {
   const router = useRouter();
   const partnerCardInfos = Object.entries(partners)
     .filter(
-      ([__, { categories }]) =>
+      ([, { categories }]) =>
         selectedCategories.includes('All') ||
-        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
+        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category)))
     )
     .map(([id, { title, updatedDatetime, coverImageUrl, categories, description }]) => ({
       id,

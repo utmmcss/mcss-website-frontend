@@ -18,7 +18,7 @@ const BlogsSection: FC = () => {
   const router = useRouter();
 
   const blogCardInfos = Object.entries(blogs)
-    .filter(([__, { featured }]) => featured)
+    .filter(([, { featured }]) => featured)
     .slice(0, 3)
     .map(([id, { title, creator, coverImageUrl, categories, description }]) => ({
       id,

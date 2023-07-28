@@ -20,7 +20,7 @@ const AcademicDetail: FC = () => {
   const [loading, setLoading] = useState(_.isEmpty(academics));
   const { pid } = router.query;
   const currAcademic =
-        _.isString(pid) && _.isNumber(parseInt(pid, 10)) ? academics[parseInt(pid, 10)] : null;
+    _.isString(pid) && _.isNumber(parseInt(pid, 10)) ? academics[parseInt(pid, 10)] : null;
 
   useEffect(() => {
     (async () => {
@@ -29,6 +29,7 @@ const AcademicDetail: FC = () => {
         setLoading(false);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {

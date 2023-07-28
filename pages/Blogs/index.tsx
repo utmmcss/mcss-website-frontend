@@ -50,7 +50,7 @@ const Blogs: FC = () => {
         },
       },
     ],
-    [],
+    []
   );
 
   useEffect(() => {
@@ -61,6 +61,7 @@ const Blogs: FC = () => {
     if (_.isEmpty(categories)) {
       dispatch(getAllBlogCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

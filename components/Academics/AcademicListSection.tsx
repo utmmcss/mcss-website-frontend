@@ -18,9 +18,9 @@ const AcademicListSection: FC<IProps> = ({ selectedCategories }) => {
   const router = useRouter();
   const academicCardInfos = Object.entries(academics)
     .filter(
-      ([__, { categories }]) =>
+      ([, { categories }]) =>
         selectedCategories.includes('All') ||
-        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
+        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category)))
     )
     .map(([id, { title, creator, updatedDatetime, coverImageUrl, categories, description }]) => ({
       id,

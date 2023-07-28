@@ -17,7 +17,7 @@ const BlogHighlightSection: FC = () => {
   const router = useRouter();
 
   const eventCardInfos = Object.entries(events)
-    .filter(([__, { featured }]) => featured)
+    .filter(([, { featured }]) => featured)
     .map(
       ([
         id,
@@ -38,7 +38,7 @@ const BlogHighlightSection: FC = () => {
         categories,
         location,
         registrationUrl,
-      }),
+      })
     );
 
   return (
@@ -122,7 +122,7 @@ const BlogHighlightSection: FC = () => {
                   </div>
                 </div>
               </MaterialCard>
-            ),
+            )
           )}
         </div>
       </MediaQueryContainer>

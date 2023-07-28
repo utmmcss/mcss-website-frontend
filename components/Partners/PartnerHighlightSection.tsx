@@ -15,7 +15,7 @@ const PartnerHighlightSection: FC = () => {
   const router = useRouter();
 
   const partnerCardInfos = Object.entries(partners)
-    .filter(([__, { featured }]) => featured)
+    .filter(([, { featured }]) => featured)
     .slice(0, 3)
     .map(([id, { title, updatedDatetime, coverImageUrl, categories, description }]) => ({
       id,
@@ -78,7 +78,10 @@ const PartnerHighlightSection: FC = () => {
                       <p className="text-2xl font-bold text-justify title w-full">{title}</p>
                     </div>
                     <div className="h-1/5">
-                      <Button className="w-full h-full" onClick={() => router.push(`Partners/${id}`)}>
+                      <Button
+                        className="w-full h-full"
+                        onClick={() => router.push(`Partners/${id}`)}
+                      >
                         More Info
                       </Button>
                     </div>

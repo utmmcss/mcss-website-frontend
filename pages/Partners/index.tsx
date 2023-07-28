@@ -50,7 +50,7 @@ const Partners: FC = () => {
         },
       },
     ],
-    [],
+    []
   );
 
   useEffect(() => {
@@ -61,6 +61,7 @@ const Partners: FC = () => {
     if (_.isEmpty(categories)) {
       dispatch(getAllPartnerCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

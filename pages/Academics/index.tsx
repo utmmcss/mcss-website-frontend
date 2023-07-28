@@ -47,7 +47,7 @@ const Academics: FC = () => {
         },
       },
     ],
-    [],
+    []
   );
 
   useEffect(() => {
@@ -58,6 +58,7 @@ const Academics: FC = () => {
     if (_.isEmpty(categories)) {
       dispatch(getAllAcademicCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

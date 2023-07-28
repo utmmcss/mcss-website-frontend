@@ -19,9 +19,9 @@ const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
   const router = useRouter();
   const eventCardInfos = Object.entries(events)
     .filter(
-      ([__, { categories }]) =>
+      ([, { categories }]) =>
         selectedCategories.includes('All') ||
-        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
+        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category)))
     )
     .map(([id, { title, creator, startDatetime, coverImageUrl, categories }]) => ({
       id,

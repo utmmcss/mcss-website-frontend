@@ -10,6 +10,7 @@ module.exports = {
     },
   ],
   rules: {
+    'no-console': 'off',
     '@typescript-eslint/comma-dangle': 'off',
     'import/newline-after-import': ['error', { count: 1 }],
     'object-curly-newline': 'off',

@@ -15,7 +15,7 @@ const AcademicHighlightSection: FC = () => {
   const router = useRouter();
 
   const academicCardInfos = Object.entries(academics)
-    .filter(([__, { featured }]) => featured)
+    .filter(([, { featured }]) => featured)
     .slice(0, 3)
     .map(([id, { title, creator, updatedDatetime, coverImageUrl, categories, description }]) => ({
       id,
@@ -37,26 +37,26 @@ const AcademicHighlightSection: FC = () => {
     <div>
       <MediaQueryContainer showOnMobile>
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
-          {academicCardInfos.map(({
-            id, coverImageUrl, creator, title, description, categories,
-          }) => (
-            <div className="w-full pb-4 px-14" key={id}>
-              <MaterialCard
-                className="mobile-academic-card h-96 w-full relative"
-                onClick={() => router.push(`Academics/${id}`)}
-              >
-                <Tag categories={categories} />
-                <div className="h-1/2 w-full image-container">
-                  <Image src={coverImageUrl} layout="fill" priority />
-                </div>
-                <div className="h-1/2 p-5">
-                  <h3 className="mb-2">{`By: ${creator}`}</h3>
-                  <h2 className="text-lg font-bold">{title}</h2>
-                  <p className="description">{description}</p>
-                </div>
-              </MaterialCard>
-            </div>
-          ))}
+          {academicCardInfos.map(
+            ({ id, coverImageUrl, creator, title, description, categories }) => (
+              <div className="w-full pb-4 px-14" key={id}>
+                <MaterialCard
+                  className="mobile-academic-card h-96 w-full relative"
+                  onClick={() => router.push(`Academics/${id}`)}
+                >
+                  <Tag categories={categories} />
+                  <div className="h-1/2 w-full image-container">
+                    <Image src={coverImageUrl} layout="fill" priority />
+                  </div>
+                  <div className="h-1/2 p-5">
+                    <h3 className="mb-2">{`By: ${creator}`}</h3>
+                    <h2 className="text-lg font-bold">{title}</h2>
+                    <p className="description">{description}</p>
+                  </div>
+                </MaterialCard>
+              </div>
+            )
+          )}
         </Slider>
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
@@ -96,7 +96,7 @@ const AcademicHighlightSection: FC = () => {
                   </div>
                 </div>
               </MaterialCard>
-            ),
+            )
           )}
         </div>
       </MediaQueryContainer>

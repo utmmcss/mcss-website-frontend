@@ -21,7 +21,7 @@ const EventSection: FC = () => {
   const router = useRouter();
 
   const eventCardInfos = Object.entries(events)
-    .filter(([__, { featured }]) => featured)
+    .filter(([, { featured }]) => featured)
     .slice(0, 3)
     .map(([id, { title, creator, startDatetime, coverImageUrl, categories }]) => ({
       id,

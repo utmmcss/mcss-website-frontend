@@ -18,9 +18,9 @@ const BlogListSection: FC<IProps> = ({ selectedCategories }) => {
   const router = useRouter();
   const blogCardInfos = Object.entries(blogs)
     .filter(
-      ([__, { categories }]) =>
+      ([, { categories }]) =>
         selectedCategories.includes('All') ||
-        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
+        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category)))
     )
     .map(([id, { title, creator, updatedDatetime, coverImageUrl, categories, description }]) => ({
       id,

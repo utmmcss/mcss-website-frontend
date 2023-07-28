@@ -19,6 +19,7 @@ const Home: FC = () => {
     dispatch(getAllEvents());
     dispatch(getAllBlogs());
     dispatch(getAllMembers());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

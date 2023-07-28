@@ -18,7 +18,7 @@ import { getAllAcademics } from '@store/academicsSlice';
 import MediaQueryContainer from './MediaQueryContainer';
 
 const DropdownIndicator: FC<DropdownIndicatorProps<{ value: string; label: string }, false>> = (
-  props,
+  props
 ) => {
   return (
     <components.DropdownIndicator {...props}>
@@ -49,8 +49,14 @@ const NavBar: FC = () => {
   const options = [
     ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
     ...Object.entries(blogs).map(([id, { title }]) => ({ label: `Blog: ${title}`, value: id })),
-    ...Object.entries(partners).map(([id, { title }]) => ({ label: `Partners: ${title}`, value: id })),
-    ...Object.entries(blogs).map(([id, { title }]) => ({ label: `Academics: ${title}`, value: id })),
+    ...Object.entries(partners).map(([id, { title }]) => ({
+      label: `Partners: ${title}`,
+      value: id,
+    })),
+    ...Object.entries(blogs).map(([id, { title }]) => ({
+      label: `Academics: ${title}`,
+      value: id,
+    })),
   ];
 
   useEffect(() => {
@@ -69,6 +75,7 @@ const NavBar: FC = () => {
     if (_.isEmpty(academics)) {
       dispatch(getAllAcademics());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
