@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import _ from 'underscore';
 
-import { useAppDispatch, useAppSelector } from '@store/hooks';
 import Filter from '@components/Common/Filter';
-import { getAllEvents, getAllEventCategories } from '@store/eventSlice';
-import EventsListSection from '@components/Events/EventListSection';
 import EventHighlightSection from '@components/Events/EventHighlightSection';
+import EventsListSection from '@components/Events/EventListSection';
+import { getAllEventCategories, getAllEvents } from '@store/eventSlice';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { removeElement } from '@utils/helper';
+import _ from 'underscore';
 
 const Events: FC = () => {
   const dispatch = useAppDispatch();
@@ -50,7 +50,7 @@ const Events: FC = () => {
         },
       },
     ],
-    [],
+    []
   );
 
   useEffect(() => {
@@ -61,6 +61,7 @@ const Events: FC = () => {
     if (_.isEmpty(categories)) {
       dispatch(getAllEventCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

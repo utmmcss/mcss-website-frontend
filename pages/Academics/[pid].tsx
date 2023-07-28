@@ -1,16 +1,16 @@
 import { FC, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import Error from 'next/error';
-import Image from 'next/image';
-import _ from 'underscore';
-
-import { useAppSelector, useAppDispatch } from '@store/hooks';
-import { getAllAcademics } from '@store/academicsSlice';
 import { HashLoader } from 'react-spinners';
-import { formatDate } from '@utils/helper';
+
+import MarkdownDisplay from '@components/Common/MarkdownDisplay';
 import MaterialCard from '@components/Common/MaterialCard';
 import Tag from '@components/Common/Tag';
-import MarkdownDisplay from '@components/Common/MarkdownDisplay';
+import { getAllAcademics } from '@store/academicsSlice';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
+import { formatDate } from '@utils/helper';
+import Error from 'next/error';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import _ from 'underscore';
 
 const AcademicDetail: FC = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const AcademicDetail: FC = () => {
   const [loading, setLoading] = useState(_.isEmpty(academics));
   const { pid } = router.query;
   const currAcademic =
-        _.isString(pid) && _.isNumber(parseInt(pid, 10)) ? academics[parseInt(pid, 10)] : null;
+    _.isString(pid) && _.isNumber(parseInt(pid, 10)) ? academics[parseInt(pid, 10)] : null;
 
   useEffect(() => {
     (async () => {
@@ -29,6 +29,7 @@ const AcademicDetail: FC = () => {
         setLoading(false);
       }
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (loading) {

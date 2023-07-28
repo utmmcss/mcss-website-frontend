@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { FC } from 'react';
+
 import Image from 'next/image';
 
 interface IProps {
@@ -27,7 +28,15 @@ const Avatar: FC<IProps> = ({
     onClick={onClick}
     className={className}
   >
-    <Image alt="avatar" src={imgSrc} layout="fixed" width={size} height={size} priority />
+    <Image
+      alt="avatar"
+      src={imgSrc}
+      layout="fixed"
+      width={size}
+      height={size}
+      objectFit="cover"
+      priority
+    />
   </div>
 );
 

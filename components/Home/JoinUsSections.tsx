@@ -1,11 +1,12 @@
 import { FC } from 'react';
-import { useAppSelector } from '@store/hooks';
 
-import IconButton from '@components/Common/IconButton';
 import ArrowForward from '@mui/icons-material/ArrowForward';
+
 import Card from '@components/Common/Card';
-import SectionWrapper from '@components/Common/SectionWrapper';
+import IconButton from '@components/Common/IconButton';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
+import SectionWrapper from '@components/Common/SectionWrapper';
+import { useAppSelector } from '@store/hooks';
 
 const JoinUsSection: FC = () => {
   const { members } = useAppSelector((state) => state.members);

@@ -1,24 +1,25 @@
 import { FC } from 'react';
-import Image from 'next/image';
+
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
+import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
+import IconButton from '@components/Common/IconButton';
+import MaterialCard from '@components/Common/MaterialCard';
+import MediaQueryContainer from '@components/Common/MediaQueryContainer';
+import SectionWrapper from '@components/Common/SectionWrapper';
+import Slider from '@components/Common/Slider';
+import Tag from '@components/Common/Tag';
+import { useAppSelector } from '@store/hooks';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
-
-import SectionWrapper from '@components/Common/SectionWrapper';
-import MaterialCard from '@components/Common/MaterialCard';
-import IconButton from '@components/Common/IconButton';
-import Slider from '@components/Common/Slider';
-import MediaQueryContainer from '@components/Common/MediaQueryContainer';
-import { useAppSelector } from '@store/hooks';
-import Tag from '@components/Common/Tag';
-import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
 
 const BlogsSection: FC = () => {
   const { blogs } = useAppSelector((state) => state.blogs);
   const router = useRouter();
 
   const blogCardInfos = Object.entries(blogs)
-    .filter(([__, { featured }]) => featured)
+    .filter(([, { featured }]) => featured)
     .slice(0, 3)
     .map(([id, { title, creator, coverImageUrl, categories, description }]) => ({
       id,

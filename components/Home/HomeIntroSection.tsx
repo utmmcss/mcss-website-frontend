@@ -1,9 +1,10 @@
 import React, { FC } from 'react';
-import Image from 'next/image';
-import HomeImage from 'public/homeImage.png';
+
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 import IconButton from '@components/Common/IconButton';
+import Image from 'next/image';
+import HomeImage from 'public/homeImage.png';
 
 const HomeIntroSection: FC = () => (
   <div className="flex flex-col md:flex-row items-center md:items-stretch mt-10 md:m-20 md:mt-10">

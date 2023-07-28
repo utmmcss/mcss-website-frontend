@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import _ from 'underscore';
 
-import { useAppDispatch, useAppSelector } from '@store/hooks';
-import Filter from '@components/Common/Filter';
-import { getAllAcademics, getAllAcademicCategories } from '@store/academicsSlice';
-import AcademicListSection from '@components/Academics/AcademicListSection';
 import AcademicHighlightSection from '@components/Academics/AcademicHighlightSection';
+import AcademicListSection from '@components/Academics/AcademicListSection';
+import Filter from '@components/Common/Filter';
+import { getAllAcademicCategories, getAllAcademics } from '@store/academicsSlice';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { removeElement } from '@utils/helper';
+import _ from 'underscore';
 
 const Academics: FC = () => {
   const dispatch = useAppDispatch();
@@ -47,7 +47,7 @@ const Academics: FC = () => {
         },
       },
     ],
-    [],
+    []
   );
 
   useEffect(() => {
@@ -58,6 +58,7 @@ const Academics: FC = () => {
     if (_.isEmpty(categories)) {
       dispatch(getAllAcademicCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,27 +1,28 @@
 import { FC } from 'react';
+
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+
+import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
+import IconButton from '@components/Common/IconButton';
+import MaterialCard from '@components/Common/MaterialCard';
+import MediaQueryContainer from '@components/Common/MediaQueryContainer';
+import SectionWrapper from '@components/Common/SectionWrapper';
+import Slider from '@components/Common/Slider';
+import Tag from '@components/Common/Tag';
+import { useAppSelector } from '@store/hooks';
+import { formatDate } from '@utils/helper';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
-
-import MaterialCard from '@components/Common/MaterialCard';
-import IconButton from '@components/Common/IconButton';
-import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import SectionWrapper from '@components/Common/SectionWrapper';
-import Slider from '@components/Common/Slider';
-import MediaQueryContainer from '@components/Common/MediaQueryContainer';
-import { useAppSelector } from '@store/hooks';
-import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
-import { formatDate } from '@utils/helper';
-import Tag from '@components/Common/Tag';
 
 const EventSection: FC = () => {
   const { events } = useAppSelector((state) => state.events);
   const router = useRouter();
 
   const eventCardInfos = Object.entries(events)
-    .filter(([__, { featured }]) => featured)
+    .filter(([, { featured }]) => featured)
     .slice(0, 3)
     .map(([id, { title, creator, startDatetime, coverImageUrl, categories }]) => ({
       id,

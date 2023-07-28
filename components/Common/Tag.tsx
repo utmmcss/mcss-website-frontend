@@ -12,8 +12,9 @@ const Tag: FC<{ categories: string[] }> = ({ categories }) => (
       categories[0]
     ) : (
       <TextLoop>
-        {categories.map((category) => (
-          <div>{category}</div>
+        {categories.map((category, i) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <div key={i}>{category}</div>
         ))}
       </TextLoop>
     )}

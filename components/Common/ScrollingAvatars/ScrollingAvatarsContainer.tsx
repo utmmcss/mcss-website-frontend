@@ -1,7 +1,8 @@
 import React, { FC, useState } from 'react';
-import _ from 'underscore';
 
 import type { Member } from '@store/memberSlice';
+import _ from 'underscore';
+
 import ScrollingAvatars from './ScrollingAvatars';
 
 interface IProps {
@@ -42,7 +43,7 @@ const ScrollingAvatarsContainer: FC<IProps> = ({ rows = 1, avatarInfos, startScr
           setName={setName}
           setPosition={setPosition}
         />
-      ),
+      )
     );
   }
 

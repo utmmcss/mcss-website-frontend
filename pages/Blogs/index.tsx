@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import _ from 'underscore';
 
-import { useAppDispatch, useAppSelector } from '@store/hooks';
-import Filter from '@components/Common/Filter';
-import { getAllBlogs, getAllBlogCategories } from '@store/blogSlice';
-import BlogListSection from '@components/Blogs/BlogListSection';
 import BlogHighlightSection from '@components/Blogs/BlogHighlightSection';
+import BlogListSection from '@components/Blogs/BlogListSection';
+import Filter from '@components/Common/Filter';
+import { getAllBlogCategories, getAllBlogs } from '@store/blogSlice';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { removeElement } from '@utils/helper';
+import _ from 'underscore';
 
 const Blogs: FC = () => {
   const dispatch = useAppDispatch();
@@ -50,7 +50,7 @@ const Blogs: FC = () => {
         },
       },
     ],
-    [],
+    []
   );
 
   useEffect(() => {
@@ -61,6 +61,7 @@ const Blogs: FC = () => {
     if (_.isEmpty(categories)) {
       dispatch(getAllBlogCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

@@ -1,14 +1,15 @@
 import { FC } from 'react';
-import Image from 'next/image';
-import _ from 'underscore';
+
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { useAppSelector } from '@store/hooks';
-import { useRouter } from 'next/router';
 
-import Tag from '@components/Common/Tag';
 import MaterialCard from '@components/Common/MaterialCard';
+import Tag from '@components/Common/Tag';
+import { useAppSelector } from '@store/hooks';
 import { formatDate } from '@utils/helper';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import _ from 'underscore';
 
 interface IProps {
   selectedCategories: string[];
@@ -19,9 +20,9 @@ const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
   const router = useRouter();
   const eventCardInfos = Object.entries(events)
     .filter(
-      ([__, { categories }]) =>
+      ([, { categories }]) =>
         selectedCategories.includes('All') ||
-        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
+        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category)))
     )
     .map(([id, { title, creator, startDatetime, coverImageUrl, categories }]) => ({
       id,

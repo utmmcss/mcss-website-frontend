@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import Image from 'next/image';
 import Deerfield from 'public/deerfield.png'; // image from https://www.soundsolutions.ca/projects/featured-exterior-cladding-projects/deerfield-hall-univeristy-of-toronto-mississauga-campus
 import Experience from 'public/experience.png';

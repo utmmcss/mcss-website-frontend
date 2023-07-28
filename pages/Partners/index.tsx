@@ -1,12 +1,12 @@
 import { FC, useEffect, useState } from 'react';
-import _ from 'underscore';
 
-import { useAppDispatch, useAppSelector } from '@store/hooks';
 import Filter from '@components/Common/Filter';
-import { getAllPartners, getAllPartnerCategories } from '@store/partnerSlice';
-import PartnerListSection from '@components/Partners/PartnerListSection';
 import PartnerHighlightSection from '@components/Partners/PartnerHighlightSection';
+import PartnerListSection from '@components/Partners/PartnerListSection';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
+import { getAllPartnerCategories, getAllPartners } from '@store/partnerSlice';
 import { removeElement } from '@utils/helper';
+import _ from 'underscore';
 
 const Partners: FC = () => {
   const dispatch = useAppDispatch();
@@ -50,7 +50,7 @@ const Partners: FC = () => {
         },
       },
     ],
-    [],
+    []
   );
 
   useEffect(() => {
@@ -61,6 +61,7 @@ const Partners: FC = () => {
     if (_.isEmpty(categories)) {
       dispatch(getAllPartnerCategories());
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

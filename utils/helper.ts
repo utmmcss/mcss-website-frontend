@@ -28,7 +28,7 @@ export const getAPI = async (path: string) => {
 export const formatDate = (date: string, format?: Intl.DateTimeFormatOptions) =>
   new Date(date).toLocaleDateString(
     'en-Us',
-    format || { month: 'short', day: 'numeric', year: 'numeric' },
+    format || { month: 'short', day: 'numeric', year: 'numeric' }
   );
 
 /**

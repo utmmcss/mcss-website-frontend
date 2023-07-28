@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 
-import { Member } from '@store/memberSlice';
 import Avatar from '@components/Common/ScrollingAvatars/Avatar';
+import { Member } from '@store/memberSlice';
 
 interface IProps {
   /** pre-set width and height of each avatar */
@@ -34,11 +34,11 @@ const AVATAR_SIZE_MAP = {
 
 /**
  * Given a list of avatar infos, calculate the total number of avatars needed to be appended to
- * create infinte scrolling animation and return the new list of avatar infos.
+ * create infinite scrolling animation and return the new list of avatar infos.
  */
 const appendAvatarInfos = (
   avatarInfos: Member[],
-  { size, margin }: { size: number; margin: number },
+  { size, margin }: { size: number; margin: number }
 ) => {
   const currAvatarWidth = avatarInfos.length * (size + 2 * margin);
   const desiredWidth = window.innerWidth + 20 * currAvatarWidth;
@@ -46,7 +46,7 @@ const appendAvatarInfos = (
   const remainingAvatars = Math.ceil(remainingWidth / currAvatarWidth);
   const appendedAvatarsInfos = [...avatarInfos];
   [...new Array(remainingAvatars)].forEach((_, i) =>
-    appendedAvatarsInfos.push(avatarInfos[i % avatarInfos.length]),
+    appendedAvatarsInfos.push(avatarInfos[i % avatarInfos.length])
   );
 
   return appendedAvatarsInfos;

@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import Image from 'next/image';
-import _ from 'underscore';
-import { useAppSelector } from '@store/hooks';
-import classNames from 'classnames';
-import { useRouter } from 'next/router';
 
-import Tag from '@components/Common/Tag';
 import MaterialCard from '@components/Common/MaterialCard';
+import Tag from '@components/Common/Tag';
+import { useAppSelector } from '@store/hooks';
 import { formatDate } from '@utils/helper';
+import classNames from 'classnames';
+import Image from 'next/image';
+import { useRouter } from 'next/router';
+import _ from 'underscore';
 
 interface IProps {
   selectedCategories: string[];
@@ -18,9 +18,9 @@ const BlogListSection: FC<IProps> = ({ selectedCategories }) => {
   const router = useRouter();
   const blogCardInfos = Object.entries(blogs)
     .filter(
-      ([__, { categories }]) =>
+      ([, { categories }]) =>
         selectedCategories.includes('All') ||
-        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category))),
+        !_.isEmpty(categories.filter((category) => selectedCategories.includes(category)))
     )
     .map(([id, { title, creator, updatedDatetime, coverImageUrl, categories, description }]) => ({
       id,

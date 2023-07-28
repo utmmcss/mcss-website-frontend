@@ -1,15 +1,15 @@
 import { FC, useEffect } from 'react';
 
-import TeamMemberSection from '@components/Home/TeamMemberSection';
+import AboutUsSection from '@components/Home/AboutUsSection';
+import BlogsSection from '@components/Home/BlogsSection';
 import EventSection from '@components/Home/EventSection';
 import HomeIntroSection from '@components/Home/HomeIntroSection';
-import AboutUsSection from '@components/Home/AboutUsSection';
 import JoinUsSection from '@components/Home/JoinUsSections';
+import TeamMemberSection from '@components/Home/TeamMemberSection';
 import WhatWeDoSection from '@components/Home/WhatWeDoSection';
-import BlogsSection from '@components/Home/BlogsSection';
-import { useAppDispatch } from '@store/hooks';
-import { getAllEvents } from '@store/eventSlice';
 import { getAllBlogs } from '@store/blogSlice';
+import { getAllEvents } from '@store/eventSlice';
+import { useAppDispatch } from '@store/hooks';
 import { getAllMembers } from '@store/memberSlice';
 
 const Home: FC = () => {
@@ -19,6 +19,7 @@ const Home: FC = () => {
     dispatch(getAllEvents());
     dispatch(getAllBlogs());
     dispatch(getAllMembers());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
