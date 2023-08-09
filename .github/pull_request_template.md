@@ -1,6 +1,13 @@
-Ticket: https://trello.com/PLACEHOLDER
-
-What's Inside
+# What's Inside
 
 - [ ] Placeholder 1
 - [ ] Placeholder 2
+
+... full details of acceptance criteria documented in the linked GitHub issue
+
+[//]: <> 'Self Checklist When Opening a Pull Request'
+
+[//]: # 'Branch Name Follows mcss-<github issues number>, e.g. mcss-123'
+[//]: # 'Pull Request Title Follows MCSS-<github issue number>: <Issue Title>, e.g. MCSS-123: Example Title (Commit messages do not need to follow convention but recommended)'
+[//]: # 'All ticket requirements are met. If not, then create a draft PR'
+[//]: # 'Link GitHub Issue & Correct Label to this Branch (Can be done after PR is created)'
