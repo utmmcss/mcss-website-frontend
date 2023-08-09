@@ -1,4 +1,4 @@
-Ticket: https://trello.com/PLACEHOLDER
+Ticket: <https://github.com/utmmcss/mcss-website-frontend/issues/XXXX>
 
 What's Inside
 
