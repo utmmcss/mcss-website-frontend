@@ -2,8 +2,8 @@ import { FC } from 'react';
 
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import Button from '@mui/material/Button';
 
-import Button from '@components/Common/Button';
 import MaterialCard from '@components/Common/MaterialCard';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import Slider from '@components/Common/Slider';
@@ -112,6 +112,7 @@ const BlogHighlightSection: FC = () => {
                       <div className="h-1/4">
                         <Button
                           className="w-full h-full"
+                          variant="contained"
                           onClick={() => {
                             window.location.href = registrationUrl;
                           }}

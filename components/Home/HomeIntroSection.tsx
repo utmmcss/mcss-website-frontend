@@ -1,39 +1,40 @@
-import React, { FC } from 'react';
-
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import LinearProgress from '@mui/material/LinearProgress';
+import Typography from '@mui/material/Typography';
 
-import IconButton from '@components/Common/IconButton';
 import Image from 'next/image';
-import HomeImage from 'public/homeImage.png';
+import HomeImage from 'public/hero.png';
 
-const HomeIntroSection: FC = () => (
-  <div className="flex flex-col md:flex-row items-center md:items-stretch mt-10 md:m-20 md:mt-10">
-    <div className="flex flex-col w-2/3 justify-evenly">
-      <div className="flex flex-col items-center mb-4 md:hidden">
-        <p className="text-2xl mb-2">Academic Society</p>
-        <hr className="w-16 h-1 bg-purple-600" />
-      </div>
-      <div className="hidden md:flex items-center">
-        <hr className="w-56 h-1 bg-purple-600" />
-        <p className="ml-4 text-2xl">Academic Society</p>
-      </div>
-      <p className="text-4xl md:text-5xl mt-3 mb-5 lg:text-7xl text-center md:text-left font-sans">
-        Mathematical & Computational Sciences
-      </p>
-      <IconButton
-        className="w-48 h-14 hidden md:inline-block"
-        icon={<ArrowForwardIcon className="ml-3" />}
-      >
-        Learn More
-      </IconButton>
-    </div>
-    <div className="my-7 md:my-0 w-1/2 md:w-1/3">
-      <Image src={HomeImage} alt="Home Image" />
-    </div>
-    <IconButton className="w-48 h-14 md:hidden" icon={<ArrowForwardIcon className="ml-3" />}>
-      Learn More
-    </IconButton>
-  </div>
-);
+const HomeIntroSection = () => {
+  return (
+    <Grid container spacing={2}>
+      <Grid container item xs={8} gap={2}>
+        <Box display="flex" alignItems="center">
+          <LinearProgress className="w-56" />
+          <Typography className="ml-4 text-2xl">University of Toronto Mississauga</Typography>
+        </Box>
+        <Typography className="text-4xl md:text-5xl mt-3 mb-5 lg:text-7xl text-center md:text-left font-sans">
+          Mathematical and Computational Sciences Society
+        </Typography>
+        <Box>
+          <Button
+            variant="contained"
+            endIcon={<ArrowForwardIcon />}
+            className="hidden md:inline-flex"
+            href="#about"
+          >
+            Learn More
+          </Button>
+        </Box>
+      </Grid>
+      <Grid item xs={4}>
+        <Image src={HomeImage} alt="Home Image" draggable="false" />
+      </Grid>
+    </Grid>
+  );
+};
 
 export default HomeIntroSection;

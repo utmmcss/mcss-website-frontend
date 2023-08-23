@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Button from '@mui/material/Button';
 
 import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
-import IconButton from '@components/Common/IconButton';
 import ScrollingAvatars from '@components/Common/ScrollingAvatars/ScrollingAvatarsContainer';
 import SectionWrapper from '@components/Common/SectionWrapper';
 import { useAppSelector } from '@store/hooks';
@@ -20,9 +20,9 @@ const TeamMemberSection: FC = () => {
         <ScrollingAvatars rows={2} avatarInfos={members} />
       )}
       <div className="text-center mt-10">
-        <IconButton className="w-48 h-14" icon={<ArrowForwardIcon className="ml-3" />}>
+        <Button variant="contained" endIcon={<ArrowForwardIcon />}>
           Join Us
-        </IconButton>
+        </Button>
       </div>
     </SectionWrapper>
   );

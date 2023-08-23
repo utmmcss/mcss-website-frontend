@@ -1,5 +1,7 @@
 import { FC, useEffect } from 'react';
 
+import Box from '@mui/material/Box';
+
 import AboutUsSection from '@components/Home/AboutUsSection';
 import BlogsSection from '@components/Home/BlogsSection';
 import EventSection from '@components/Home/EventSection';
@@ -11,6 +13,7 @@ import { getAllBlogs } from '@store/blogSlice';
 import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch } from '@store/hooks';
 import { getAllMembers } from '@store/memberSlice';
+import Head from 'next/head';
 
 const Home: FC = () => {
   const dispatch = useAppDispatch();
@@ -23,23 +26,20 @@ const Home: FC = () => {
   }, []);
 
   return (
-    <div>
-      <HomeIntroSection />
-      <AboutUsSection />
-      <WhatWeDoSection />
-      <TeamMemberSection />
-      <iframe
-        width="100%"
-        height="550"
-        src="https://www.youtube.com/embed/_pZ0IyExtQ4"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
-      <JoinUsSection />
-      <EventSection />
-      <BlogsSection />
-    </div>
+    <>
+      <Head>
+        <title>UTM MCSS</title>
+      </Head>
+      <Box px={8}>
+        <HomeIntroSection />
+        <AboutUsSection />
+        <WhatWeDoSection />
+        <TeamMemberSection />
+        <JoinUsSection />
+        <EventSection />
+        <BlogsSection />
+      </Box>
+    </>
   );
 };
 

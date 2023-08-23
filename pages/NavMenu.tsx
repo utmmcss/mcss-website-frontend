@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
 import CloseIcon from '@mui/icons-material/Close';
+import Button from '@mui/material/Button';
 
-import IconButton from '@components/Common/IconButton';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -19,13 +19,14 @@ const NavMenu: FC = () => {
   return (
     <div className="nav-menu bg-black h-screen w-full text-white">
       <div className="flex justify-end">
-        <IconButton
-          icon={<CloseIcon className="ml-5" />}
+        <Button
+          variant="contained"
+          endIcon={<CloseIcon className="ml-5" />}
           className="bg-transparent px-5 py-5"
           onClick={() => router.back()}
         >
           <p className="text-xl">CLOSE</p>
-        </IconButton>
+        </Button>
       </div>
       <div className="px-10">
         {links.map(({ label, href }) => (
@@ -36,7 +37,7 @@ const NavMenu: FC = () => {
           </Link>
         ))}
         <hr />
-        <p className="my-10 font-bold">UTM MATHEMATICAL COMPUTATIONAL SCIENCES SOCEITY</p>
+        <p className="my-10 font-bold">UTM MATHEMATICAL COMPUTATIONAL SCIENCES SOCIETY</p>
         <p>mcss@utmsu.ca</p>
       </div>
     </div>

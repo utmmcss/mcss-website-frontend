@@ -3,8 +3,11 @@ import Select, { components, DropdownIndicatorProps } from 'react-select';
 
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
+import Button from '@mui/material/Button';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 
-import Logo from '@public/mcssLogo.svg';
+import Logo from '@public/MCSSText.svg';
 import { getAllAcademics } from '@store/academicsSlice';
 import { getAllBlogs } from '@store/blogSlice';
 import { getAllEvents } from '@store/eventSlice';
@@ -13,7 +16,6 @@ import { getAllPartners } from '@store/partnerSlice';
 import { useIsMobile } from '@utils/hooks';
 import classNames from 'classnames';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
 
@@ -40,11 +42,9 @@ const NavBar: FC = () => {
   const { partners } = useAppSelector((state) => state.partners);
   const { academics } = useAppSelector((state) => state.academics);
   const links = [
-    { label: 'Home', href: '/' },
     { label: 'Events', href: '/Events' },
     { label: 'Blogs', href: '/Blogs' },
     { label: 'Partners', href: '/Partners' },
-    { label: 'Academics', href: '/Academics' },
   ];
   const searchBarWhiteList = ['/Events', '/Blogs', '/Partners', '/Academics'];
   const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
@@ -81,10 +81,12 @@ const NavBar: FC = () => {
   }, []);
 
   return (
-    <nav className="flex items-center flex-wrap mt-8 mx-6 md:mx-14">
+    <nav className="flex items-center flex-wrap my-8 mx-6 md:mx-14">
       {!showSearchBar && (
         <div className="flex item-center justify-start cursor-pointer w-20 md:mr-5">
-          <Image src={Logo} alt="MCSS logo" onClick={() => router.push('/')} />
+          <Button className="p-0">
+            <Image src={Logo} alt="MCSS logo" onClick={() => router.push('/')} draggable="false" />
+          </Button>
         </div>
       )}
       <div
@@ -192,15 +194,24 @@ const NavBar: FC = () => {
         </div>
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
-        <div className="flex justify-around">
+        <Tabs
+          value={value}
+          onChange={(e: React.SyntheticEvent, newValue) => {
+            setValue(newValue);
+          }}
+          aria-label="wrapped label tabs example"
+        >
           {links.map(({ label, href }) => (
-            <Link passHref href={href} key={label}>
-              <a href={href} className="mx-5 text-lg">
-                {label}
-              </a>
-            </Link>
+            <Tab
+              key={label}
+              label={label}
+              value={{ label, href }}
+              onClick={() => {
+                router.push(href);
+              }}
+            />
           ))}
-        </div>
+        </Tabs>
       </MediaQueryContainer>
     </nav>
   );

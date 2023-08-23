@@ -1,7 +1,8 @@
 import { FC, useEffect, useState } from 'react';
 import { HashLoader } from 'react-spinners';
 
-import Button from '@components/Common/Button';
+import Button from '@mui/material/Button';
+
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
 import MaterialCard from '@components/Common/MaterialCard';
 import Tag from '@components/Common/Tag';
@@ -95,6 +96,7 @@ const EventDetail: FC = () => {
               </div>
               <div className="h-1/4">
                 <Button
+                  variant="contained"
                   className="w-full h-full"
                   onClick={() => {
                     window.location.href = parsedCurrEvent.registrationUrl;
