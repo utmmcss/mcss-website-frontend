@@ -1,6 +1,7 @@
 import { FC } from 'react';
 
-import Button from '@components/Common/Button';
+import Button from '@mui/material/Button';
+
 import MaterialCard from '@components/Common/MaterialCard';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import Slider from '@components/Common/Slider';
@@ -86,6 +87,7 @@ const AcademicHighlightSection: FC = () => {
                       </div>
                       <div className="h-1/4">
                         <Button
+                          variant="contained"
                           className="w-full h-full"
                           onClick={() => router.push(`Academics/${id}`)}
                         >

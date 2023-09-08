@@ -3,8 +3,13 @@ import Select, { components, DropdownIndicatorProps } from 'react-select';
 
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
+import Button from '@mui/material/Button';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import Typography from '@mui/material/Typography';
 
-import Logo from '@public/mcssLogo.svg';
+import Logo from '@public/MCSSText.svg';
 import { getAllAcademics } from '@store/academicsSlice';
 import { getAllBlogs } from '@store/blogSlice';
 import { getAllEvents } from '@store/eventSlice';
@@ -13,7 +18,6 @@ import { getAllPartners } from '@store/partnerSlice';
 import { useIsMobile } from '@utils/hooks';
 import classNames from 'classnames';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
 
@@ -34,17 +38,16 @@ const NavBar: FC = () => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState<{ value: string; label: string } | null>();
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
   const router = useRouter();
   const { events } = useAppSelector((state) => state.events);
   const { blogs } = useAppSelector((state) => state.blogs);
   const { partners } = useAppSelector((state) => state.partners);
   const { academics } = useAppSelector((state) => state.academics);
   const links = [
-    { label: 'Home', href: '/' },
     { label: 'Events', href: '/Events' },
     { label: 'Blogs', href: '/Blogs' },
     { label: 'Partners', href: '/Partners' },
-    { label: 'Academics', href: '/Academics' },
   ];
   const searchBarWhiteList = ['/Events', '/Blogs', '/Partners', '/Academics'];
   const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
@@ -81,10 +84,12 @@ const NavBar: FC = () => {
   }, []);
 
   return (
-    <nav className="flex items-center flex-wrap mt-8 mx-6 md:mx-14">
+    <nav className="flex items-center flex-wrap py-4 px-6 md:px-6">
       {!showSearchBar && (
         <div className="flex item-center justify-start cursor-pointer w-20 md:mr-5">
-          <Image src={Logo} alt="MCSS logo" onClick={() => router.push('/')} />
+          <Button className="p-0">
+            <Image src={Logo} alt="MCSS logo" onClick={() => router.push('/')} draggable="false" />
+          </Button>
         </div>
       )}
       <div
@@ -171,36 +176,85 @@ const NavBar: FC = () => {
             </button>
           )}
           {!showSearchBar && (
-            <button className="ml-2" onClick={() => router.push('/NavMenu')} type="button">
-              <svg
-                xmlns="<http://www.w3.org/2000/svg>"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                display="block"
-                id="TextAlignJustified"
+            <>
+              <Button onClick={() => setShowDrawer(true)}>
+                <svg
+                  xmlns="<http://www.w3.org/2000/svg>"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  display="block"
+                  id="TextAlignJustified"
+                >
+                  <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+              </Button>
+              <SwipeableDrawer
+                anchor="right"
+                open={showDrawer}
+                onOpen={() => {}}
+                onClose={() => setShowDrawer(false)}
+                PaperProps={{
+                  sx: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    p: 2,
+                  },
+                }}
               >
-                <path d="M3 6h18M3 12h18M3 18h18" />
-              </svg>
-            </button>
+                <Tabs
+                  value={value?.label}
+                  orientation="vertical"
+                  onChange={(e: React.SyntheticEvent, newValue) => {
+                    setValue(newValue);
+                  }}
+                  aria-label="wrapped label tabs example"
+                >
+                  {links.map(({ label, href }) => (
+                    <Tab
+                      key={label}
+                      label={label}
+                      value={{ label, href }}
+                      onClick={() => {
+                        router.push(href);
+                        setShowDrawer(false);
+                      }}
+                    />
+                  ))}
+                </Tabs>
+                <Typography variant="subtitle1">mcss@utmsu.ca</Typography>
+              </SwipeableDrawer>
+            </>
           )}
         </div>
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
-        <div className="flex justify-around">
+        <Tabs
+          value={value?.label}
+          onChange={(e: React.SyntheticEvent, newValue) => {
+            setValue(newValue);
+          }}
+          aria-label="wrapped label tabs example"
+        >
           {links.map(({ label, href }) => (
-            <Link passHref href={href} key={label}>
-              <a href={href} className="mx-5 text-lg">
-                {label}
-              </a>
-            </Link>
+            <Tab
+              key={label}
+              label={label}
+              value={{ label, href }}
+              onClick={() => {
+                router.push(href);
+                setShowDrawer(false);
+              }}
+            />
           ))}
-        </div>
+        </Tabs>
       </MediaQueryContainer>
     </nav>
   );

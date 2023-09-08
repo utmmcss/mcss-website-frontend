@@ -5,9 +5,17 @@ import Deerfield from 'public/deerfield.png'; // image from https://www.soundsol
 import Experience from 'public/experience.png';
 
 const AboutUsSection: FC = () => (
-  <div className="about-us-section flex flex-col items-center lg:items-stretch lg:flex-row mt-20 lg:m-20">
-    <div className="header-img w-full lg:w-1/3 lg:mx-10 lg:min-h-full">
-      <Image src={Deerfield} alt="Deerfield Hall" className="min-h-full" />
+  <div
+    id="about"
+    className="about-us-section flex flex-col items-center lg:items-stretch lg:flex-row gap-8"
+  >
+    <div className="header-img w-full lg:w-1/3 lg:min-h-full hidden lg:block">
+      <Image
+        src={Deerfield}
+        alt="Deerfield Hall"
+        className="min-h-full rounded-lg overflow-hidden"
+        draggable="false"
+      />
     </div>
     <div className="w-4/5 mt-10 lg:mt-0 lg:w-2/3 flex flex-col justify-between xl:justify-center">
       <span>
@@ -20,7 +28,7 @@ const AboutUsSection: FC = () => (
           <p className="lg:hidden text-lg text-purple-700 font-semibold">Academic Society</p>
         </div>
         <div className="w-1/4 md:w-1/6 m-auto">
-          <Image src={Experience} alt="Experience" />
+          <Image src={Experience} alt="Experience" draggable="false" />
         </div>
       </div>
       <p className="hidden lg:inline-block text-lg text-purple-700 font-semibold xl:pb-5">

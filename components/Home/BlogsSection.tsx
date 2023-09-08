@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Button from '@mui/material/Button';
 
 import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
-import IconButton from '@components/Common/IconButton';
 import MaterialCard from '@components/Common/MaterialCard';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import SectionWrapper from '@components/Common/SectionWrapper';
@@ -88,13 +88,13 @@ const BlogsSection: FC = () => {
         )}
       </MediaQueryContainer>
       <div className="text-center mt-10">
-        <IconButton
-          className="w-48 h-14"
-          icon={<ArrowForwardIcon className="ml-3" />}
+        <Button
+          variant="contained"
+          endIcon={<ArrowForwardIcon />}
           onClick={() => router.push('Blogs')}
         >
           More Blogs
-        </IconButton>
+        </Button>
       </div>
     </SectionWrapper>
   );

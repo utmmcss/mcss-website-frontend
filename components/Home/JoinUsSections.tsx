@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-import ArrowForward from '@mui/icons-material/ArrowForward';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Button from '@mui/material/Button';
 
 import Card from '@components/Common/Card';
-import IconButton from '@components/Common/IconButton';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import SectionWrapper from '@components/Common/SectionWrapper';
 import { useAppSelector } from '@store/hooks';
@@ -29,7 +29,9 @@ const JoinUsSection: FC = () => {
           </div>
           <div className="flex justify-center">
             <div className="flex flex-col justify-center">
-              <IconButton icon={<ArrowForward className="ml-3 m-auto" />}>Join Us</IconButton>
+              <Button variant="contained" endIcon={<ArrowForwardIcon />}>
+                Join Us
+              </Button>
             </div>
           </div>
         </SectionWrapper>
@@ -51,7 +53,9 @@ const JoinUsSection: FC = () => {
               <div className="m-5 text-6xl font-medium">{numAssociates}</div>
             </div>
             <div className="flex flex-col justify-center">
-              <IconButton icon={<ArrowForward className="ml-3 m-auto" />}>Join Us</IconButton>
+              <Button variant="contained" endIcon={<ArrowForwardIcon />}>
+                Join Us
+              </Button>
             </div>
           </div>
         </Card>

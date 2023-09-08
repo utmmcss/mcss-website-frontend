@@ -3,9 +3,9 @@ import { FC } from 'react';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import Button from '@mui/material/Button';
 
 import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
-import IconButton from '@components/Common/IconButton';
 import MaterialCard from '@components/Common/MaterialCard';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import SectionWrapper from '@components/Common/SectionWrapper';
@@ -111,13 +111,13 @@ const EventSection: FC = () => {
         )}
       </MediaQueryContainer>
       <div className="flex justify-center mt-10">
-        <IconButton
-          className="w-48 h-14"
-          icon={<ArrowForwardIcon className="ml-3" />}
+        <Button
+          variant="contained"
+          endIcon={<ArrowForwardIcon />}
           onClick={() => router.push('Events')}
         >
           More Events
-        </IconButton>
+        </Button>
       </div>
     </SectionWrapper>
   );
