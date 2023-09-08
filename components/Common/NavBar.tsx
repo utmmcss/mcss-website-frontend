@@ -224,6 +224,7 @@ const NavBar: FC = () => {
                       value={{ label, href }}
                       onClick={() => {
                         router.push(href);
+                        setShowDrawer(false);
                       }}
                     />
                   ))}
@@ -249,6 +250,7 @@ const NavBar: FC = () => {
               value={{ label, href }}
               onClick={() => {
                 router.push(href);
+                setShowDrawer(false);
               }}
             />
           ))}
