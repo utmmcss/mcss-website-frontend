@@ -6,6 +6,7 @@ import Filter from '@components/Common/Filter';
 import { getAllAcademicCategories, getAllAcademics } from '@store/academicsSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { removeElement } from '@utils/helper';
+import Head from 'next/head';
 import _ from 'underscore';
 
 const Academics: FC = () => {
@@ -62,13 +63,18 @@ const Academics: FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
-      <AcademicHighlightSection />
-      <h1 className="text-4xl font-bold my-10 ml-14">Academics</h1>
-      <Filter options={options} selectedOptions={selectedCategories} />
-      <AcademicListSection selectedCategories={selectedCategories} />
-    </div>
+    <>
+      <Head>
+        <title>UTM MCSS | Academics</title>
+      </Head>
+      <div>
+        <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
+        <AcademicHighlightSection />
+        <h1 className="text-4xl font-bold my-10 ml-14">Academics</h1>
+        <Filter options={options} selectedOptions={selectedCategories} />
+        <AcademicListSection selectedCategories={selectedCategories} />
+      </div>
+    </>
   );
 };
 

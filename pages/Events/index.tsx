@@ -6,6 +6,7 @@ import EventsListSection from '@components/Events/EventListSection';
 import { getAllEventCategories, getAllEvents } from '@store/eventSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { removeElement } from '@utils/helper';
+import Head from 'next/head';
 import _ from 'underscore';
 
 const Events: FC = () => {
@@ -65,13 +66,18 @@ const Events: FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
-      <EventHighlightSection />
-      <h1 className="text-4xl font-bold my-10 ml-14">Events</h1>
-      <Filter options={options} selectedOptions={selectedCategories} />
-      <EventsListSection selectedCategories={selectedCategories} />
-    </div>
+    <>
+      <Head>
+        <title>UTM MCSS | Events</title>
+      </Head>
+      <div>
+        <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
+        <EventHighlightSection />
+        <h1 className="text-4xl font-bold my-10 ml-14">Events</h1>
+        <Filter options={options} selectedOptions={selectedCategories} />
+        <EventsListSection selectedCategories={selectedCategories} />
+      </div>
+    </>
   );
 };
 

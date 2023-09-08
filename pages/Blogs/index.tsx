@@ -6,6 +6,7 @@ import Filter from '@components/Common/Filter';
 import { getAllBlogCategories, getAllBlogs } from '@store/blogSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { removeElement } from '@utils/helper';
+import Head from 'next/head';
 import _ from 'underscore';
 
 const Blogs: FC = () => {
@@ -65,13 +66,18 @@ const Blogs: FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
-      <BlogHighlightSection />
-      <h1 className="text-4xl font-bold my-10 ml-14">Blogs</h1>
-      <Filter options={options} selectedOptions={selectedCategories} />
-      <BlogListSection selectedCategories={selectedCategories} />
-    </div>
+    <>
+      <Head>
+        <title>UTM MCSS | Blogs</title>
+      </Head>
+      <div>
+        <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
+        <BlogHighlightSection />
+        <h1 className="text-4xl font-bold my-10 ml-14">Blogs</h1>
+        <Filter options={options} selectedOptions={selectedCategories} />
+        <BlogListSection selectedCategories={selectedCategories} />
+      </div>
+    </>
   );
 };
 
