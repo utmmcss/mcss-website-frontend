@@ -24,7 +24,15 @@ const HomeIntroSection = () => {
       minHeight="100vh"
       mt={-8}
     >
-      <Grid container item xs={8} gap={8} textAlign={{ xs: 'center', md: 'left' }}>
+      <Grid
+        container
+        item
+        xs={12}
+        md={8}
+        gap={{ xs: 4, md: 8 }}
+        textAlign={{ xs: 'center', md: 'left' }}
+        justifyContent={{ xs: 'center', md: 'left' }}
+      >
         <Box
           display="flex"
           alignItems="center"
@@ -46,7 +54,7 @@ const HomeIntroSection = () => {
           </Button>
         </Box>
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={6} md={4}>
         <Image src={HomeImage} alt="Home Image" draggable="false" priority />
       </Grid>
     </Grid>

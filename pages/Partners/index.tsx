@@ -6,6 +6,7 @@ import PartnerListSection from '@components/Partners/PartnerListSection';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { getAllPartnerCategories, getAllPartners } from '@store/partnerSlice';
 import { removeElement } from '@utils/helper';
+import Head from 'next/head';
 import _ from 'underscore';
 
 const Partners: FC = () => {
@@ -65,13 +66,18 @@ const Partners: FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
-      <PartnerHighlightSection />
-      <h1 className="text-4xl font-bold my-10 ml-14">Partners</h1>
-      <Filter options={options} selectedOptions={selectedCategories} />
-      <PartnerListSection selectedCategories={selectedCategories} />
-    </div>
+    <>
+      <Head>
+        <title>UTM MCSS | Partners</title>
+      </Head>
+      <div>
+        <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
+        <PartnerHighlightSection />
+        <h1 className="text-4xl font-bold my-10 ml-14">Partners</h1>
+        <Filter options={options} selectedOptions={selectedCategories} />
+        <PartnerListSection selectedCategories={selectedCategories} />
+      </div>
+    </>
   );
 };
 

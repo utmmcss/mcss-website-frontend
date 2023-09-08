@@ -84,7 +84,10 @@ const NavBar: FC = () => {
   }, []);
 
   return (
-    <nav className="flex items-center flex-wrap py-4 px-6 md:px-6">
+    <nav
+      className="flex items-center flex-wrap py-4 px-6 md:px-6 relative"
+      style={{ zIndex: 1000 }}
+    >
       {!showSearchBar && (
         <div className="flex item-center justify-start cursor-pointer w-20 md:mr-5">
           <Button className="p-0">

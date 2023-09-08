@@ -3,8 +3,6 @@ import { useEffect } from 'react';
 import Container from '@mui/material/Container';
 
 import AboutUsSection from '@components/Home/AboutUsSection';
-import BlogsSection from '@components/Home/BlogsSection';
-import EventSection from '@components/Home/EventSection';
 import HomeIntroSection from '@components/Home/HomeIntroSection';
 import TeamMemberSection from '@components/Home/TeamMemberSection';
 import WhatWeDoSection from '@components/Home/WhatWeDoSection';
@@ -34,8 +32,6 @@ const Home = () => {
         <AboutUsSection />
         <WhatWeDoSection />
         <TeamMemberSection />
-        <EventSection />
-        <BlogsSection />
       </Container>
     </>
   );
