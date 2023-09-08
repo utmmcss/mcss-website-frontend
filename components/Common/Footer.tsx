@@ -77,11 +77,14 @@ const SignupForm: FC = () => {
             <div className="flex justify-center md:justify-start">
               <Button
                 variant="contained"
-                className={classNames({
-                  'bg-red-500': subscribeStatus === 'error',
-                  'bg-yellow-400': subscribeStatus === 'sending',
-                  'bg-green-400': subscribeStatus === 'success',
-                })}
+                className={
+                  (classNames({
+                    'bg-red-500': subscribeStatus === 'error',
+                    'bg-yellow-400': subscribeStatus === 'sending',
+                    'bg-green-400': subscribeStatus === 'success',
+                  }),
+                  'w-full mt-4')
+                }
                 onClick={() => subscribe({ EMAIL: email })}
               >
                 Sign me up!
@@ -100,7 +103,7 @@ const Footer: FC = () => {
       <footer className="relative z-50 dark:bg-gray-900 mt-24 bg-gray-100">
         <div className=" border-t border-b border-gray-200 dark:border-gray-700 py-16">
           <div className="mx-auto container px-4 xl:px-12 2xl:px-4">
-            <div className="w-full lg:w-4/5 mb-6 md:mb-16 lg:mb-0 flex justify-evenly">
+            <div className="w-full mb-6 md:mb-16 lg:mb-0 flex justify-between">
               <FooterCol title="Get In Touch">
                 <FooterLink text="mcss@utmsu.ca" href="mailto:mcss@utmsu.ca" />
                 <p className="mt-3 text-xs lg:text-sm">

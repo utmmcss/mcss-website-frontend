@@ -7,10 +7,15 @@ import Experience from 'public/experience.png';
 const AboutUsSection: FC = () => (
   <div
     id="about"
-    className="about-us-section flex flex-col items-center lg:items-stretch lg:flex-row mt-20 lg:m-20"
+    className="about-us-section flex flex-col items-center lg:items-stretch lg:flex-row gap-8"
   >
-    <div className="header-img w-full lg:w-1/3 lg:mx-10 lg:min-h-full">
-      <Image src={Deerfield} alt="Deerfield Hall" className="min-h-full" draggable="false" />
+    <div className="header-img w-full lg:w-1/3 lg:min-h-full hidden lg:block">
+      <Image
+        src={Deerfield}
+        alt="Deerfield Hall"
+        className="min-h-full rounded-lg overflow-hidden"
+        draggable="false"
+      />
     </div>
     <div className="w-4/5 mt-10 lg:mt-0 lg:w-2/3 flex flex-col justify-between xl:justify-center">
       <span>

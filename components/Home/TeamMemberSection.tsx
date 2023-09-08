@@ -1,8 +1,5 @@
 import { FC } from 'react';
 
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import Button from '@mui/material/Button';
-
 import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';
 import ScrollingAvatars from '@components/Common/ScrollingAvatars/ScrollingAvatarsContainer';
 import SectionWrapper from '@components/Common/SectionWrapper';
@@ -19,11 +16,6 @@ const TeamMemberSection: FC = () => {
       ) : (
         <ScrollingAvatars rows={2} avatarInfos={members} />
       )}
-      <div className="text-center mt-10">
-        <Button variant="contained" endIcon={<ArrowForwardIcon />}>
-          Join Us
-        </Button>
-      </div>
     </SectionWrapper>
   );
 };

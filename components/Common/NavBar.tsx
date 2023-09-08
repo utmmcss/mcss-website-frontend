@@ -4,8 +4,10 @@ import Select, { components, DropdownIndicatorProps } from 'react-select';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from '@mui/material/Button';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import Typography from '@mui/material/Typography';
 
 import Logo from '@public/MCSSText.svg';
 import { getAllAcademics } from '@store/academicsSlice';
@@ -36,6 +38,7 @@ const NavBar: FC = () => {
   const dispatch = useAppDispatch();
   const [value, setValue] = useState<{ value: string; label: string } | null>();
   const [showSearchBar, setShowSearchBar] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
   const router = useRouter();
   const { events } = useAppSelector((state) => state.events);
   const { blogs } = useAppSelector((state) => state.blogs);
@@ -81,7 +84,7 @@ const NavBar: FC = () => {
   }, []);
 
   return (
-    <nav className="flex items-center flex-wrap my-8 mx-6 md:mx-14">
+    <nav className="flex items-center flex-wrap py-4 px-6 md:px-6">
       {!showSearchBar && (
         <div className="flex item-center justify-start cursor-pointer w-20 md:mr-5">
           <Button className="p-0">
@@ -173,29 +176,67 @@ const NavBar: FC = () => {
             </button>
           )}
           {!showSearchBar && (
-            <button className="ml-2" onClick={() => router.push('/NavMenu')} type="button">
-              <svg
-                xmlns="<http://www.w3.org/2000/svg>"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                display="block"
-                id="TextAlignJustified"
+            <>
+              <Button onClick={() => setShowDrawer(true)}>
+                <svg
+                  xmlns="<http://www.w3.org/2000/svg>"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  display="block"
+                  id="TextAlignJustified"
+                >
+                  <path d="M3 6h18M3 12h18M3 18h18" />
+                </svg>
+              </Button>
+              <SwipeableDrawer
+                anchor="right"
+                open={showDrawer}
+                onOpen={() => {}}
+                onClose={() => setShowDrawer(false)}
+                PaperProps={{
+                  sx: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    p: 2,
+                  },
+                }}
               >
-                <path d="M3 6h18M3 12h18M3 18h18" />
-              </svg>
-            </button>
+                <Tabs
+                  value={value?.label}
+                  orientation="vertical"
+                  onChange={(e: React.SyntheticEvent, newValue) => {
+                    setValue(newValue);
+                  }}
+                  aria-label="wrapped label tabs example"
+                >
+                  {links.map(({ label, href }) => (
+                    <Tab
+                      key={label}
+                      label={label}
+                      value={{ label, href }}
+                      onClick={() => {
+                        router.push(href);
+                      }}
+                    />
+                  ))}
+                </Tabs>
+                <Typography variant="subtitle1">mcss@utmsu.ca</Typography>
+              </SwipeableDrawer>
+            </>
           )}
         </div>
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
         <Tabs
-          value={value}
+          value={value?.label}
           onChange={(e: React.SyntheticEvent, newValue) => {
             setValue(newValue);
           }}

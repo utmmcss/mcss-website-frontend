@@ -7,29 +7,41 @@ import Footer from '@components/Common/Footer';
 import NavBar from '@components/Common/NavBar';
 import { store } from '@store/store';
 import type { AppProps } from 'next/app';
-import { useRouter } from 'next/router';
+import Script from 'next/script';
 import theme from 'style/theme';
 
 import '../scss/index.scss';
 import 'tailwindcss/tailwind.css';
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  const NavBarBlackList = ['/NavMenu'];
-  const FooterBlackList = ['/NavMenu'];
-
+/**
+ * https://nextjs.org/docs/pages/building-your-application/routing/custom-app
+ */
+export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <StyledEngineProvider injectFirst>
         <ThemeProvider theme={theme}>
           <CssBaseline>
-            {!NavBarBlackList.includes(router.pathname) && <NavBar />}
+            <Script
+              strategy="lazyOnload"
+              src="https://www.googletagmanager.com/gtag/js?id=G-BDH3ZFVNEG"
+            />
+            <Script strategy="lazyOnload">
+              {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-BDH3ZFVNEG', {
+                page_path: window.location.pathname,
+                });
+              `}
+            </Script>
+            <NavBar />
             <Component {...pageProps} />
-            {!FooterBlackList.includes(router.pathname) && <Footer />}
+            <Footer />
           </CssBaseline>
         </ThemeProvider>
       </StyledEngineProvider>
     </Provider>
   );
 }
-export default MyApp;

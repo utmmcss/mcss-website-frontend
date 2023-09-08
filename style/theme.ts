@@ -2,7 +2,7 @@ import { createTheme } from '@mui/material/styles';
 
 import COLORS from 'style/colors';
 
-const palette = createTheme({
+const base = createTheme({
   palette: {
     primary: {
       main: '#001834',
@@ -20,49 +20,41 @@ const palette = createTheme({
       primary: '#1D354B',
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 576,
+      md: 768,
+      lg: 992,
+      xl: 1200,
+    },
+  },
 });
 
-const theme = createTheme(palette, {
+const theme = createTheme(base, {
   palette: {
-    main: palette.palette.augmentColor({
+    main: base.palette.augmentColor({
       color: {
         main: COLORS.PRIMARY,
       },
       name: 'main',
     }),
   },
-  breakpoints: {
-    values: {
-      xs: 480,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1536,
-    },
-  },
   typography: {
     fontFamily: "'Roboto','Helvetica','BlinkMacSystemFont','Segoe UI','Oxygen'",
     fontSize: 16,
     h1: {
       fontSize: '2rem',
-      fontWeight: 700,
+      [base.breakpoints.up('md')]: {
+        fontSize: '3rem',
+      },
+      [base.breakpoints.up('lg')]: {
+        fontSize: '4.5rem',
+      },
+      fontWeight: 600,
     },
     h2: {
       fontSize: '1.5rem',
-      fontWeight: 700,
-    },
-    h3: {
-      fontSize: '1.4rem',
-      fontWeight: 700,
-    },
-    h4: {
-      fontWeight: 700,
-    },
-    h5: {
-      fontWeight: 700,
-    },
-    h6: {
-      fontWeight: 700,
     },
     allVariants: {
       color: '#1D354B',
@@ -86,6 +78,20 @@ const theme = createTheme(palette, {
     MuiLinearProgress: {
       defaultProps: {
         color: 'main',
+      },
+    },
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          maxWidth: 1400,
+          position: 'relative',
+          [base.breakpoints.up('lg')]: {
+            maxWidth: 1140,
+          },
+          [base.breakpoints.up('xl')]: {
+            maxWidth: 1320,
+          },
+        },
       },
     },
   },

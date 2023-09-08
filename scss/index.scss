@@ -26,6 +26,8 @@
 @import './components/AcademicsDetail';
 @import './components/AcademicsSection';
 
-body {
-  overflow-x: hidden;
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
 }
