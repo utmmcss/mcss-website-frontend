@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 
 type Props = {
   children: ReactNode;
@@ -9,14 +9,9 @@ type Props = {
 const DetailPageContainer = (props: Props) => {
   const { children } = props;
   return (
-    <Grid
-      display="flex"
-      flexDirection="column"
-      rowGap="2rem"
-      sx={{ padding: { xs: '2.5rem 1.25rem', md: '2.5rem 8rem', lg: '2.5rem 16rem' } }}
-    >
+    <Container style={{ display: 'flex', flexDirection: 'column', rowGap: '2rem' }}>
       {children}
-    </Grid>
+    </Container>
   );
 };
 
