@@ -36,6 +36,7 @@
     "**/.git": true,
     "**/.DS_Store": true
   },
+  "files.eol": "\n",
   "search.exclude": {
     "node_modules": true,
     "build/**": true
