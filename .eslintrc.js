@@ -15,6 +15,7 @@ module.exports = {
     'no-console': 'off',
     '@typescript-eslint/comma-dangle': 'off',
     'import/newline-after-import': ['error', { count: 1 }],
+    'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
     'object-curly-newline': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-props-no-spreading': 'off',

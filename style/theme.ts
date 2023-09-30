@@ -94,6 +94,77 @@ const theme = createTheme(base, {
         },
       },
     },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          boxShadow: '3px 5px 11px 3px rgba(0, 0, 0, 0.13)',
+
+          flexDirection: 'column',
+          [base.breakpoints.up('md')]: {
+            flexDirection: 'row',
+          },
+          borderRadius: '0.375rem',
+        },
+      },
+    },
+    MuiCardMedia: {
+      styleOverrides: {
+        root: {
+          width: '100%',
+          minHeight: '200px',
+          position: 'relative',
+          maxWidth: '100%',
+          backgroundColor: 'rgb(205, 180, 248)',
+          [base.breakpoints.up('md')]: {
+            flexDirection: 'row',
+            maxWidth: '66%',
+          },
+
+          '.tag': {
+            position: 'absolute',
+            padding: '10px 15px',
+            zIndex: 1000,
+            top: 0,
+            left: 0,
+            right: 0,
+            color: 'white',
+            background: 'rgba(124, 58, 237, 0.8)',
+          },
+        },
+      },
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+
+          [base.breakpoints.up('md')]: {
+            width: '50%',
+          },
+
+          '.MuiTypography-h1': {
+            fontWeight: 700,
+            fontSize: '1.5rem',
+            lineHeight: '2rem',
+            marginBottom: '1rem',
+          },
+
+          '.MuiTypography-h2': {
+            fontWeight: 700,
+            fontSize: '1.125rem',
+            lineHeight: '1.75rem',
+          },
+
+          '.MuiButton-root': {
+            minHeight: '40px',
+            marginTop: '1rem',
+          },
+        },
+      },
+    },
   },
 });
 
