@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
