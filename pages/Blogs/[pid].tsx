@@ -1,14 +1,13 @@
 import { FC, useEffect, useState } from 'react';
 import { HashLoader } from 'react-spinners';
 
+import DetailPageContainer from '@components/Common/DetailPageContainer';
+import HeadingCard from '@components/Common/HeadingCard';
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
-import MaterialCard from '@components/Common/MaterialCard';
-import Tag from '@components/Common/Tag';
 import { getAllBlogs } from '@store/blogSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { formatDate } from '@utils/helper';
 import Error from 'next/error';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
 
@@ -48,7 +47,7 @@ const BlogDetail: FC = () => {
     id: pid,
     title: currBlog.title,
     creator: currBlog.creator,
-    lateUpdated: formatDate(currBlog.updatedDatetime, {
+    lastUpdated: formatDate(currBlog.updatedDatetime, {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -61,34 +60,24 @@ const BlogDetail: FC = () => {
   };
 
   return (
-    <div className="blog-detail px-5 md:px-28 lg:px-64 py-10">
-      <MaterialCard className="w-full h-full rounded-t-md relative">
-        <div className="overview-card md:h-96 flex flex-col md:flex-row">
-          <Tag categories={parsedCurrBlog.categories} />
-          <div className="w-full h-1/2 md:w-2/3 md:h-full image-container relative">
-            <Image src={parsedCurrBlog.coverImageUrl} layout="fill" priority />
-          </div>
-          <div className="h-1/2 md:w-1/3 md:h-full px-5 pt-3 pb-5">
-            <div className="h-1/2">
-              <h2 className="text-lg font-bold">Last Updated</h2>
-              <p>{parsedCurrBlog.lateUpdated}</p>
-              <h2 className="text-lg mt-1 font-bold">Creator</h2>
-              <p>{parsedCurrBlog.creator}</p>
-            </div>
-            <div className="h-1/2 flex flex-col">
-              <div className="h-3/4">
-                <p className="text-2xl font-bold text-justify title w-full">
-                  {parsedCurrBlog.title}
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </MaterialCard>
-      <MaterialCard className="mt-5 w-full h-full p-5 rounded-b-md">
-        <MarkdownDisplay>{parsedCurrBlog.content}</MarkdownDisplay>
-      </MaterialCard>
-    </div>
+    <DetailPageContainer>
+      <HeadingCard
+        title={parsedCurrBlog.title}
+        details={[
+          {
+            subHeading: 'Last Updated',
+            info: parsedCurrBlog.lastUpdated,
+          },
+          {
+            subHeading: 'Creator',
+            info: parsedCurrBlog.creator,
+          },
+        ]}
+        categories={parsedCurrBlog.categories}
+        coverImageUrl={parsedCurrBlog.coverImageUrl}
+      />
+      <MarkdownDisplay>{parsedCurrBlog.content}</MarkdownDisplay>
+    </DetailPageContainer>
   );
 };
 

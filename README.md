@@ -1,7 +1,7 @@
 # MCSS Website
 
 <p align="center">
-    <img alt="MCSS Logo" width="300" src="https://raw.githubusercontent.com/utmmcss/mcss-website-frontend/master/public/mcssLogo.svg">
+    <img alt="MCSS Logo" width="300" src="https://raw.githubusercontent.com/utmmcss/mcss-website-frontend/master/public/MCSS.svg">
 </p>
 
 <p align="center">
