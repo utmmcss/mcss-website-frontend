@@ -1,9 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { HashLoader } from 'react-spinners';
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-
 import DetailPageContainer from '@components/Common/DetailPageContainer';
 import HeadingCard from '@components/Common/HeadingCard';
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
@@ -77,7 +74,7 @@ const EventDetail: FC = () => {
         title={parsedCurrEvent.title}
         details={[
           {
-            subHeading: 'Event time',
+            subHeading: 'Event Time',
             info: `${parsedCurrEvent.startDatetime} - ${parsedCurrEvent.endDatetime}`,
           },
           {
@@ -96,11 +93,7 @@ const EventDetail: FC = () => {
           url: parsedCurrEvent.registrationUrl,
         }}
       />
-      <Card sx={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
-        <CardContent sx={{ wordWrap: 'break-word' }}>
-          <MarkdownDisplay>{parsedCurrEvent.content}</MarkdownDisplay>
-        </CardContent>
-      </Card>
+      <MarkdownDisplay>{parsedCurrEvent.content}</MarkdownDisplay>
     </DetailPageContainer>
   );
 };

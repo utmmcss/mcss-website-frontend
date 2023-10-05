@@ -95,16 +95,18 @@ const theme = createTheme(base, {
       },
     },
     MuiCard: {
+      defaultProps: {
+        elevation: 7,
+      },
       styleOverrides: {
         root: {
           display: 'flex',
-          boxShadow: '3px 5px 11px 3px rgba(0, 0, 0, 0.13)',
+          borderRadius: '0.375rem',
 
           flexDirection: 'column',
           [base.breakpoints.up('md')]: {
             flexDirection: 'row',
           },
-          borderRadius: '0.375rem',
         },
       },
     },
@@ -114,8 +116,7 @@ const theme = createTheme(base, {
           width: '100%',
           minHeight: '200px',
           position: 'relative',
-          maxWidth: '100%',
-          backgroundColor: 'rgb(205, 180, 248)',
+          backgroundColor: COLORS.LIGHT_PURPLE,
           [base.breakpoints.up('md')]: {
             flexDirection: 'row',
             maxWidth: '66%',
@@ -125,11 +126,9 @@ const theme = createTheme(base, {
             position: 'absolute',
             padding: '10px 15px',
             zIndex: 1000,
-            top: 0,
-            left: 0,
-            right: 0,
+            inset: '0 0 auto 0',
             color: 'white',
-            background: 'rgba(124, 58, 237, 0.8)',
+            background: COLORS.PRIMARY_TRANSLUCENT,
           },
         },
       },
@@ -140,10 +139,7 @@ const theme = createTheme(base, {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
-
-          [base.breakpoints.up('md')]: {
-            width: '50%',
-          },
+          wordWrap: 'break-word',
 
           '.MuiTypography-h1': {
             fontWeight: 700,

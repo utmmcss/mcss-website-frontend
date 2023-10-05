@@ -1,9 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { HashLoader } from 'react-spinners';
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-
 import DetailPageContainer from '@components/Common/DetailPageContainer';
 import HeadingCard from '@components/Common/HeadingCard';
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
@@ -68,7 +65,7 @@ const PartnerDetail: FC = () => {
         title={parsedCurrPartner.title}
         details={[
           {
-            subHeading: 'lastUpdated',
+            subHeading: 'Last Updated',
             info: parsedCurrPartner.lastUpdated,
           },
         ]}
@@ -79,11 +76,7 @@ const PartnerDetail: FC = () => {
           url: parsedCurrPartner.partnerUrl,
         }}
       />
-      <Card sx={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
-        <CardContent sx={{ wordWrap: 'break-word' }}>
-          <MarkdownDisplay>{parsedCurrPartner.content}</MarkdownDisplay>
-        </CardContent>
-      </Card>
+      <MarkdownDisplay>{parsedCurrPartner.content}</MarkdownDisplay>
     </DetailPageContainer>
   );
 };

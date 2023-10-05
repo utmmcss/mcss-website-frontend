@@ -9,7 +9,7 @@ type Props = {
 const DetailPageContainer = (props: Props) => {
   const { children } = props;
   return (
-    <Container style={{ display: 'flex', flexDirection: 'column', rowGap: '2rem' }}>
+    <Container sx={{ display: 'flex', flexDirection: 'column', rowGap: '2rem' }}>
       {children}
     </Container>
   );

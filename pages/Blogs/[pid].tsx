@@ -1,9 +1,6 @@
 import { FC, useEffect, useState } from 'react';
 import { HashLoader } from 'react-spinners';
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-
 import DetailPageContainer from '@components/Common/DetailPageContainer';
 import HeadingCard from '@components/Common/HeadingCard';
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
@@ -50,7 +47,7 @@ const BlogDetail: FC = () => {
     id: pid,
     title: currBlog.title,
     creator: currBlog.creator,
-    lateUpdated: formatDate(currBlog.updatedDatetime, {
+    lastUpdated: formatDate(currBlog.updatedDatetime, {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
@@ -69,7 +66,7 @@ const BlogDetail: FC = () => {
         details={[
           {
             subHeading: 'Last Updated',
-            info: parsedCurrBlog.lateUpdated,
+            info: parsedCurrBlog.lastUpdated,
           },
           {
             subHeading: 'Creator',
@@ -79,11 +76,7 @@ const BlogDetail: FC = () => {
         categories={parsedCurrBlog.categories}
         coverImageUrl={parsedCurrBlog.coverImageUrl}
       />
-      <Card sx={{ borderTopLeftRadius: 0, borderTopRightRadius: 0 }}>
-        <CardContent sx={{ wordWrap: 'break-word' }}>
-          <MarkdownDisplay>{parsedCurrBlog.content}</MarkdownDisplay>
-        </CardContent>
-      </Card>
+      <MarkdownDisplay>{parsedCurrBlog.content}</MarkdownDisplay>
     </DetailPageContainer>
   );
 };

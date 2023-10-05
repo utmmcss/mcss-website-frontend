@@ -36,9 +36,15 @@ const HeadingCard = (props: Props) => {
     >
       <CardMedia>
         <Tag categories={categories} />
-        <Image src={coverImageUrl} layout="fill" objectFit="contain" priority />
+        <Image
+          src={coverImageUrl}
+          layout="fill"
+          objectFit="contain"
+          alt={`${title} Cover Image`}
+          priority
+        />
       </CardMedia>
-      <CardContent>
+      <CardContent sx={{ width: { md: '50%' } }}>
         <Box>
           <Typography variant="h1">{title}</Typography>
           {details.map((detail) => {
