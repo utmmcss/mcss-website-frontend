@@ -1,56 +1,21 @@
-import _ from 'underscore';
+import { CategoryResponse, DataAttributes } from '../types';
+import { APIResponseAcademic } from '../types/Academics';
+import { APIResponseBlog } from '../types/Blogs';
+import { APIResponseEvent } from '../types/Events';
+import { MemberResponse } from '../types/Members';
+import { APIResponsePartner } from '../types/Partners';
 
-import {
-  Academic, APIResponseAcademic, APIResponseBlog, APIResponseEvent,
-  APIResponsePartner, Blog, CategoryResponse,
-  DataAttributes, Event, Member, MemberResponse, Partner
-} from './schemaTypes';
 import { CustomFetch } from './useFetch';
 
 const academics = (customFetch: CustomFetch) =>
   ({
     academicCategoriesList: async () => {
       const res = await customFetch('CMS', 'academic-categories');
-      const parsedCategories = (res.data as DataAttributes<CategoryResponse>)
-        .data.map(({ attributes }) => attributes.type);
-      return parsedCategories;
+      return res.data as DataAttributes<CategoryResponse>;
     },
     academicsList: async () => {
       const res = await customFetch('CMS', 'academics?populate=*');
-      const response: APIResponseAcademic = res.data;
-      const parsedAcademics: Record<number, Academic> = {};
-
-      response.data.forEach(
-        ({
-          id,
-          attributes: {
-            title,
-            creator,
-            cover_image,
-            content,
-            categories,
-            featured,
-            updatedAt,
-            description
-          },
-        }) => {
-          const parsedCategories = !_.isEmpty(categories.data)
-            ? categories.data.map(({ attributes }) => attributes.type)
-            : ['Other'];
-
-          parsedAcademics[id] = {
-            title,
-            creator,
-            coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
-            content: content.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
-            categories: parsedCategories,
-            featured,
-            updatedDatetime: updatedAt,
-            description,
-          };
-        }
-      );
-      return parsedAcademics;
+      return res.data as APIResponseAcademic;
     },
   });
 
@@ -58,46 +23,11 @@ const blogs = (customFetch: CustomFetch) =>
   ({
     blogCategoriesList: async () => {
       const res = await customFetch('CMS', 'blog-categories');
-      const parsedCategories = (res.data as DataAttributes<CategoryResponse>)
-        .data.map(({ attributes }) => attributes.type);
-      return parsedCategories;
+      return res.data as DataAttributes<CategoryResponse>;
     },
     blogsList: async () => {
       const res = await customFetch('CMS', 'blogs?populate=*');
-      const response: APIResponseBlog = res.data;
-      const parsedBlogs: Record<number, Blog> = {};
-
-      response.data.forEach(
-        ({
-          id,
-          attributes: {
-            title,
-            creator,
-            cover_image,
-            content,
-            categories,
-            featured,
-            updatedAt,
-            description,
-          }
-        }) => {
-          const parsedCategories = !_.isEmpty(categories.data)
-            ? categories.data.map(({ attributes }) => attributes.type)
-            : ['Other'];
-
-          parsedBlogs[id] = {
-            title,
-            creator,
-            coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
-            content: content.replaceAll('/uploads', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
-            categories: parsedCategories,
-            featured,
-            updatedDatetime: updatedAt,
-            description,
-          };
-        }
-      );
-      return parsedBlogs;
+      return res.data as APIResponseBlog;
     },
   } as const);
 
@@ -105,50 +35,11 @@ const events = (customFetch: CustomFetch) =>
   ({
     eventCategoriesList: async () => {
       const res = await customFetch('CMS', 'event-categories');
-      const parsedCategories = (res.data as DataAttributes<CategoryResponse>)
-        .data.map(({ attributes }) => attributes.type);
-      return parsedCategories;
+      return res.data as DataAttributes<CategoryResponse>;
     },
     eventsList: async () => {
       const res = await customFetch('CMS', 'events?populate=*');
-      const response: APIResponseEvent = res.data;
-      const parsedEvents: Record<number, Event> = {};
-
-      response.data.forEach(
-        ({
-          id,
-          attributes: {
-            title,
-            creator,
-            start_datetime: startDatetime,
-            end_datetime: endDatetime,
-            cover_image,
-            content,
-            registration_url: registrationUrl,
-            categories,
-            location,
-            featured,
-          },
-        }) => {
-          const parsedCategories = !_.isEmpty(categories.data)
-            ? categories.data.map(({ attributes: { type } }) => type)
-            : ['Other'];
-
-          parsedEvents[id] = {
-            title,
-            creator,
-            startDatetime,
-            endDatetime,
-            coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
-            content: content.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
-            registrationUrl,
-            categories: parsedCategories,
-            location,
-            featured,
-          };
-        }
-      );
-      return parsedEvents;
+      return res.data as APIResponseEvent;
     },
   } as const);
 
@@ -156,19 +47,7 @@ const members = (customFetch: CustomFetch) =>
   ({
     membersList: async () => {
       const res = await customFetch('CMS', 'team-members?populate=*');
-      const response: DataAttributes<MemberResponse> = res.data;
-      const parsedMembers: Member[] = [];
-
-      response.data.forEach(({ attributes: { name, role, avatar, website_url, executive } }) =>
-        parsedMembers.push({
-          role,
-          name,
-          avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.url}`,
-          websiteUrl: website_url,
-          executive,
-        })
-      );
-      return parsedMembers;
+      return res.data as DataAttributes<MemberResponse>;
     },
   });
 
@@ -176,46 +55,11 @@ const partners = (customFetch: CustomFetch) =>
   ({
     partnerCategoriesList: async () => {
       const res = await customFetch('CMS', 'partner-categories');
-      const parsedCategories = (res.data as DataAttributes<CategoryResponse>)
-        .data.map(({ attributes }) => attributes.type);
-      return parsedCategories;
+      return res.data as DataAttributes<CategoryResponse>;
     },
     partnersList: async () => {
       const res = await customFetch('CMS', 'partners?populate=*');
-      const response: APIResponsePartner = res.data;
-      const parsedPartners: Record<number, Partner> = {};
-
-      response.data.forEach(
-        ({
-          id,
-          attributes: {
-            title,
-            cover_image,
-            content,
-            categories,
-            featured,
-            updatedAt,
-            description,
-            partner_url: partnerUrl,
-          },
-        }) => {
-          const parsedCategories = !_.isEmpty(categories.data)
-            ? categories.data.map(({ attributes: { type } }) => type)
-            : ['Other'];
-
-          parsedPartners[id] = {
-            title,
-            coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
-            content: content.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
-            categories: parsedCategories,
-            featured,
-            updatedDatetime: updatedAt,
-            description,
-            partnerUrl,
-          };
-        }
-      );
-      return parsedPartners;
+      return res.data as APIResponsePartner;
     },
   });
 
