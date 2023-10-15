@@ -1,7 +1,7 @@
 import { useAPI } from '../contexts/useAPI';
 
-const useAllMembers = () => {
-  return useAPI().useQuery(['allMembersGet', null], {});
+const useMembers = () => {
+  return useAPI().useQuery(['membersList', null], {});
 };
 
-export default useAllMembers;
+export default useMembers;

@@ -1,9 +1,9 @@
 import { useAPI } from '../contexts/useAPI';
 
-export const useAllBlogCategories = () => {
-  return useAPI().useQuery(['allBlogCategoriesGet', null], {});
+export const useBlogCategories = () => {
+  return useAPI().useQuery(['blogCategoriesList', null], {});
 };
 
-export const useAllBlogs = () => {
-  return useAPI().useQuery(['allBlogsGet', null], {});
+export const useBlogs = () => {
+  return useAPI().useQuery(['blogsList', null], {});
 };
