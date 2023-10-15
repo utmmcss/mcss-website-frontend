@@ -3,19 +3,14 @@ import {
   InvalidateQueryFilters,
   QueryClient,
   QueryKey,
-  useMutation as __useMutation,
-  UseMutationOptions,
-  UseMutationResult,
   useQuery as __useQuery,
   UseQueryOptions,
 } from '@tanstack/react-query';
 
 import {
   APITemplate,
-  ClientMutations,
   ClientQueries,
   InferHandlerInput,
-  MutationPaths,
   QueryPaths,
 } from './types';
 
@@ -47,23 +42,6 @@ export default class API<APISchema extends APITemplate> {
     return __useQuery(
       pathAndInput as QueryKey,
       () => endpoint(args).catch(this.validateApiError()),
-      opts
-    );
-  }
-
-  public useMutation<
-    TPath extends MutationPaths<APISchema> & string,
-    TMutationOutput extends ClientMutations<APISchema>[TPath]['awaitedResponse'],
-    TMutationInput extends InferHandlerInput<APISchema[TPath]>
-  >(
-    path: [TPath] | TPath,
-    opts?: UseMutationOptions<TMutationOutput, unknown, TMutationInput>
-  ): UseMutationResult<TMutationOutput, unknown, TMutationInput> {
-    const actualPath = Array.isArray(path) ? path[0] : path;
-    const endpoint = this.contract[actualPath];
-
-    return __useMutation(
-      (input: TMutationInput) => endpoint(input).catch(this.validateApiError()),
       opts
     );
   }

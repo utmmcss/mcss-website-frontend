@@ -3,11 +3,6 @@ export interface APITemplate {
   [methodName: string]: (...args: any) => Promise<any>
 }
 
-/** all api request paths in schema config */
-type AllPaths<Config extends APITemplate> = {
-  [MethodName in keyof Config]-?: Config[MethodName] extends Function ? MethodName : never
-}[keyof Config];
-
 const querySuffixes = ['Get', 'List'] as const;
 type QuerySuffix = (typeof querySuffixes)[number];
 
@@ -20,12 +15,6 @@ export type QueryPaths<Contract extends APITemplate> = {
     : never
 }[keyof Contract];
 
-/** api paths that mutate (doesn't end in querySuffixes) */
-export type MutationPaths<Contract extends APITemplate> = Exclude<
-AllPaths<Contract>,
-QueryPaths<Contract>
->;
-
 export type Awaited<T> = T extends PromiseLike<infer U> ? Awaited<U> : T;
 
 /** api query paths mapped to args, response, and whatever awaitedResponse is */
@@ -34,15 +23,6 @@ export type ClientQueries<Contract extends APITemplate> = {
     args: Parameters<Contract[Query]>[0]
     response: ReturnType<Contract[Query]>
     awaitedResponse: Awaited<ReturnType<Contract[Query]>>
-  }
-};
-
-/** Api mutation paths mapped to args, response, and whatever awaitedResponse is */
-export type ClientMutations<Contract extends APITemplate> = {
-  [Mutation in MutationPaths<Contract>]: {
-    args: Parameters<Contract[Mutation]>[0]
-    response: ReturnType<Contract[Mutation]>
-    awaitedResponse: Awaited<ReturnType<Contract[Mutation]>>
   }
 };
 
