@@ -10,13 +10,13 @@ import { CustomFetch } from './useFetch';
 const academics = (customFetch: CustomFetch) =>
   ({
     allAcademicCategoriesGet: async () => {
-      const res = await customFetch('GET', 'CMS', 'academic-categories');
+      const res = await customFetch('CMS', 'academic-categories');
       const parsedCategories = (res.data as DataAttributes<CategoryResponse>)
         .data.map(({ attributes }) => attributes.type);
       return parsedCategories;
     },
     allAcademicsGet: async () => {
-      const res = await customFetch('GET', 'CMS', 'academics?populate=*');
+      const res = await customFetch('CMS', 'academics?populate=*');
       const response: APIResponseAcademic = res.data;
       const parsedAcademics: Record<number, Academic> = {};
 
@@ -57,13 +57,13 @@ const academics = (customFetch: CustomFetch) =>
 const blogs = (customFetch: CustomFetch) =>
   ({
     allBlogCategoriesGet: async () => {
-      const res = await customFetch('GET', 'CMS', 'blog-categories');
+      const res = await customFetch('CMS', 'blog-categories');
       const parsedCategories = (res.data as DataAttributes<CategoryResponse>)
         .data.map(({ attributes }) => attributes.type);
       return parsedCategories;
     },
     allBlogsGet: async () => {
-      const res = await customFetch('GET', 'CMS', 'blogs?populate=*');
+      const res = await customFetch('CMS', 'blogs?populate=*');
       const response: APIResponseBlog = res.data;
       const parsedBlogs: Record<number, Blog> = {};
 
@@ -104,13 +104,13 @@ const blogs = (customFetch: CustomFetch) =>
 const events = (customFetch: CustomFetch) =>
   ({
     allEventCategoriesGet: async () => {
-      const res = await customFetch('GET', 'CMS', 'event-categories');
+      const res = await customFetch('CMS', 'event-categories');
       const parsedCategories = (res.data as DataAttributes<CategoryResponse>)
         .data.map(({ attributes }) => attributes.type);
       return parsedCategories;
     },
     allEventsGet: async () => {
-      const res = await customFetch('GET', 'CMS', 'events?populate=*');
+      const res = await customFetch('CMS', 'events?populate=*');
       const response: APIResponseEvent = res.data;
       const parsedEvents: Record<number, Event> = {};
 
@@ -155,7 +155,7 @@ const events = (customFetch: CustomFetch) =>
 const members = (customFetch: CustomFetch) =>
   ({
     allMembersGet: async () => {
-      const res = await customFetch('GET', 'CMS', 'team-members?populate=*');
+      const res = await customFetch('CMS', 'team-members?populate=*');
       const response: DataAttributes<MemberResponse> = res.data;
       const parsedMembers: Member[] = [];
 
@@ -175,13 +175,13 @@ const members = (customFetch: CustomFetch) =>
 const partners = (customFetch: CustomFetch) =>
   ({
     allPartnerCategoriesGet: async () => {
-      const res = await customFetch('GET', 'CMS', 'partner-categories');
+      const res = await customFetch('CMS', 'partner-categories');
       const parsedCategories = (res.data as DataAttributes<CategoryResponse>)
         .data.map(({ attributes }) => attributes.type);
       return parsedCategories;
     },
     allPartnersGet: async () => {
-      const res = await customFetch('GET', 'CMS', 'partners?populate=*');
+      const res = await customFetch('CMS', 'partners?populate=*');
       const response: APIResponsePartner = res.data;
       const parsedPartners: Record<number, Partner> = {};
 

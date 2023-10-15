@@ -1,22 +1,17 @@
 import { useCallback } from 'react';
 
-const methodKeys = ['GET', 'POST'] as const;
-type Method = (typeof methodKeys)[number];
-
 const baseURLKeys = ['CMS', 'CUSTOM'] as const;
 type BaseURL = (typeof baseURLKeys)[number];
 
 const CMS_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 type Props = {
-  method: Method;
   base: BaseURL;
   url: string;
-  body: any;
 };
 
 const fetchHelper = async (props: Props): Promise<{ data: any; error: any; statusCode: any }> => {
-  const { method, base, url, body } = props;
+  const { base, url } = props;
 
   const api = () => {
     switch (base) {
@@ -28,10 +23,7 @@ const fetchHelper = async (props: Props): Promise<{ data: any; error: any; statu
   };
 
   const req = {
-    method,
-    ...(method !== 'GET' && {
-      body: JSON.stringify({ ...body, ts: Date.now() }),
-    }),
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -57,13 +49,11 @@ const fetchHelper = async (props: Props): Promise<{ data: any; error: any; statu
 
 /** DO NOT use this directly, use useAPI */
 const useFetch = () => {
-  return useCallback(async (method: Method, base: BaseURL, url: string, body?: Object) => {
+  return useCallback(async (base: BaseURL, url: string) => {
     try {
       return await fetchHelper({
-        method,
         base,
         url,
-        body,
       });
     } catch (error) {
       console.log(error);
