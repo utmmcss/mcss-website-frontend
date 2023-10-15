@@ -11,11 +11,11 @@ import { formatDate } from '@utils/helper';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-const PartnerHighlightSection: FC = () => {
-  const { partners } = useAppSelector((state) => state.partners);
+const SponsorHighlightSection: FC = () => {
+  const { sponsors } = useAppSelector((state) => state.sponsors);
   const router = useRouter();
 
-  const partnerCardInfos = Object.entries(partners)
+  const sponsorCardInfos = Object.entries(sponsors)
     .filter(([, { featured }]) => featured)
     .slice(0, 3)
     .map(([id, { title, updatedDatetime, coverImageUrl, description }]) => ({
@@ -36,11 +36,11 @@ const PartnerHighlightSection: FC = () => {
     <div>
       <MediaQueryContainer showOnMobile>
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
-          {partnerCardInfos.map(({ id, coverImageUrl, title, description }) => (
+          {sponsorCardInfos.map(({ id, coverImageUrl, title, description }) => (
             <div className="w-full pb-4 px-14" key={id}>
               <MaterialCard
-                className="mobile-partner-card h-96 w-full relative"
-                onClick={() => router.push(`Partners/${id}`)}
+                className="mobile-sponsor-card h-96 w-full relative"
+                onClick={() => router.push(`Sponsors/${id}`)}
               >
                 <div className="h-1/2 w-full image-container">
                   <Image src={coverImageUrl} layout="fill" priority />
@@ -55,12 +55,12 @@ const PartnerHighlightSection: FC = () => {
         </Slider>
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
-        <div className="partner-highlight-section">
-          {partnerCardInfos.map(({ id, title, updatedDatetime, coverImageUrl }) => (
+        <div className="sponsor-highlight-section">
+          {sponsorCardInfos.map(({ id, title, updatedDatetime, coverImageUrl }) => (
             <MaterialCard
               key={id}
-              className="partner-card h-96 w-10/12 lg:w-1/2 relative mb-10"
-              onClick={() => router.push(`Partners/${id}`)}
+              className="sponsor-card h-96 w-10/12 lg:w-1/2 relative mb-10"
+              onClick={() => router.push(`Sponsors/${id}`)}
             >
               <div className="flex h-full">
                 <div className="w-1/2 h-full image-container">
@@ -79,7 +79,7 @@ const PartnerHighlightSection: FC = () => {
                       <Button
                         variant="contained"
                         className="w-full h-full"
-                        onClick={() => router.push(`Partners/${id}`)}
+                        onClick={() => router.push(`Sponsors/${id}`)}
                       >
                         More Info
                       </Button>
@@ -95,4 +95,4 @@ const PartnerHighlightSection: FC = () => {
   );
 };
 
-export default PartnerHighlightSection;
+export default SponsorHighlightSection;

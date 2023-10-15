@@ -13,7 +13,6 @@ interface Partner {
   updatedDatetime: string;
   coverImageUrl: string;
   content: string;
-  categories: string[];
   featured: boolean;
   description: string;
   partnerUrl: string;
@@ -55,7 +54,6 @@ export const getAllPartners = createAsyncThunk<
 >('partners/fetchAllPartners', async () => {
   interface PartnerResponse extends Omit<Partner, 'categories'> {
     updatedAt: string;
-    categories: DataAttributes<{ type: string }>;
     cover_image: DataAttribute<{ url: string }>;
     partner_url: string;
   }
@@ -78,22 +76,16 @@ export const getAllPartners = createAsyncThunk<
           title,
           cover_image,
           content,
-          categories,
           featured,
           updatedAt,
           description,
           partner_url: partnerUrl,
         },
       }) => {
-        const parsedCategories = !_.isEmpty(categories.data)
-          ? categories.data.map(({ attributes: { type } }) => type)
-          : ['Other'];
-
         parsedPartners[id] = {
           title,
           coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
           content: content.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
-          categories: parsedCategories,
           featured,
           updatedDatetime: updatedAt,
           description,

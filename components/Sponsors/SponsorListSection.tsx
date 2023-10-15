@@ -13,10 +13,10 @@ interface IProps {
   selectedCategories: string[];
 }
 
-const PartnerListSection: FC<IProps> = ({ selectedCategories }) => {
-  const { partners } = useAppSelector((state) => state.partners);
+const SponsorListSection: FC<IProps> = ({ selectedCategories }) => {
+  const { sponsors } = useAppSelector((state) => state.sponsors);
   const router = useRouter();
-  const partnerCardInfos = Object.entries(partners).map(
+  const sponsorCardInfos = Object.entries(sponsors).map(
     ([id, { title, updatedDatetime, coverImageUrl, description }]) => ({
       id,
       title,
@@ -33,13 +33,13 @@ const PartnerListSection: FC<IProps> = ({ selectedCategories }) => {
   );
 
   return (
-    <div className="partner-list-page mx-9">
+    <div className="sponsor-list-page mx-9">
       <div className="flex flex-wrap mt-5">
-        {partnerCardInfos.map(({ id, title, description, coverImageUrl }) => (
+        {sponsorCardInfos.map(({ id, title, description, coverImageUrl }) => (
           <div className={classNames('w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-6 py-4')} key={id}>
             <MaterialCard
               className="w-full rounded-lg relative h-96"
-              onClick={() => router.push(`Partners/${id}`)}
+              onClick={() => router.push(`Sponsors/${id}`)}
             >
               <div className="h-1/2 w-full image-container">
                 <Image src={coverImageUrl} layout="fill" priority />
@@ -56,4 +56,4 @@ const PartnerListSection: FC<IProps> = ({ selectedCategories }) => {
   );
 };
 
-export default PartnerListSection;
+export default SponsorListSection;

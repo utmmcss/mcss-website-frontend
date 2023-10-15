@@ -43,10 +43,11 @@ const EventDetail: FC = () => {
     return <Error statusCode={404} />;
   }
 
+  const tagStrings = currEvent.tags.map((tagObject) => tagObject.Tag);
+
   const parsedCurrEvent = {
     id: pid,
     title: currEvent.title,
-    creator: currEvent.creator,
     startDatetime: formatDate(currEvent.startDatetime, {
       month: 'short',
       day: 'numeric',
@@ -62,9 +63,8 @@ const EventDetail: FC = () => {
       minute: 'numeric',
     }),
     coverImageUrl: currEvent.coverImageUrl,
-    categories: currEvent.categories,
+    categories: tagStrings,
     location: currEvent.location,
-    registrationUrl: currEvent.registrationUrl,
     content: currEvent.content,
   };
 
@@ -81,19 +81,11 @@ const EventDetail: FC = () => {
             subHeading: 'Location',
             info: parsedCurrEvent.location,
           },
-          {
-            subHeading: 'Creator',
-            info: parsedCurrEvent.creator,
-          },
         ]}
         categories={parsedCurrEvent.categories}
         coverImageUrl={parsedCurrEvent.coverImageUrl}
-        buttonProps={{
-          text: 'Register',
-          url: parsedCurrEvent.registrationUrl,
-        }}
       />
-      <MarkdownDisplay>{parsedCurrEvent.content}</MarkdownDisplay>
+      {parsedCurrEvent.content && <MarkdownDisplay>{parsedCurrEvent.content}</MarkdownDisplay>}
     </DetailPageContainer>
   );
 };

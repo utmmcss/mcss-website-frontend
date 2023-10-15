@@ -11,8 +11,15 @@ export interface Member {
   name: string;
   role: string;
   avatarUrl: string;
-  websiteUrl: string;
+  year: string;
   executive: string;
+  markdown?: string;
+  links: {
+    website: string | null;
+    linkedin: string | null;
+    instagram: string | null;
+    github: string | null;
+  };
 }
 
 interface MemberState {
@@ -31,21 +38,23 @@ export const getAllMembers = createAsyncThunk<
     avatar: DataAttribute<{
       url: string;
     }>;
-    website_url: string;
   }
 
   const response: DataAttributes<MemberResponse> = await getAPI('/team-members?populate=*');
   const parsedMembers: Member[] = [];
 
   if (response?.data) {
-    response.data.forEach(({ attributes: { name, role, avatar, website_url, executive } }) =>
-      parsedMembers.push({
-        role,
-        name,
-        avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.url}`,
-        websiteUrl: website_url,
-        executive,
-      })
+    response.data.forEach(
+      ({ attributes: { name, role, avatar, executive, year, markdown, links } }) =>
+        parsedMembers.push({
+          role,
+          name,
+          avatarUrl: `${process.env.NEXT_PUBLIC_API_URL}${avatar.data.attributes.url}`,
+          executive,
+          year,
+          markdown,
+          links,
+        })
     );
   }
 

@@ -1,34 +1,18 @@
 import { FC, useEffect, useState } from 'react';
 
-import BlogHighlightSection from '@components/Blogs/BlogHighlightSection';
-import BlogListSection from '@components/Blogs/BlogListSection';
 import Filter from '@components/Common/Filter';
-import { getAllBlogs } from '@store/blogSlice';
+import SponsorHighlightSection from '@components/Sponsors/SponsorHighlightSection';
+import SponsorListSection from '@components/Sponsors/SponsorListSection';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
+import { getAllSponsors } from '@store/sponsorSlice';
 import { removeElement } from '@utils/helper';
 import Head from 'next/head';
 import _ from 'underscore';
 
-const Blogs: FC = () => {
+const Sponsors: FC = () => {
   const dispatch = useAppDispatch();
-  const { blogs } = useAppSelector((state) => state.blogs);
-  const optionNames = [
-    'All',
-    'Computer Science',
-    'Mathematics',
-    'Statistics',
-    'PEY',
-    'Student Life',
-    'Informational',
-    'Guide',
-    'MCSS',
-    'Partner',
-    'In Person',
-    'Remote',
-    'Hybrid',
-    'Partner Event',
-    'Other',
-  ];
+  const { sponsors } = useAppSelector((state) => state.sponsors);
+  const optionNames = ['All'];
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
 
   interface IOption {
@@ -71,8 +55,8 @@ const Blogs: FC = () => {
   );
 
   useEffect(() => {
-    if (_.isEmpty(blogs)) {
-      dispatch(getAllBlogs());
+    if (_.isEmpty(sponsors)) {
+      dispatch(getAllSponsors());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -80,17 +64,17 @@ const Blogs: FC = () => {
   return (
     <>
       <Head>
-        <title>UTM MCSS | Blogs</title>
+        <title>UTM MCSS | Sponsors</title>
       </Head>
       <div>
         <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
-        <BlogHighlightSection />
-        <h1 className="text-4xl font-bold my-10 ml-14">Blogs</h1>
+        <SponsorHighlightSection />
+        <h1 className="text-4xl font-bold my-10 ml-14">Sponsors</h1>
         <Filter options={options} selectedOptions={selectedCategories} />
-        <BlogListSection selectedCategories={selectedCategories} />
+        <SponsorListSection selectedCategories={selectedCategories} />
       </div>
     </>
   );
 };
 
-export default Blogs;
+export default Sponsors;

@@ -5,26 +5,26 @@ import DetailPageContainer from '@components/Common/DetailPageContainer';
 import HeadingCard from '@components/Common/HeadingCard';
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { getAllPartners } from '@store/partnerSlice';
+import { getAllSponsors } from '@store/sponsorSlice';
 import { formatDate } from '@utils/helper';
 import Error from 'next/error';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
 
-const PartnerDetail: FC = () => {
+const SponsorDetail: FC = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const { partners } = useAppSelector((state) => state.partners);
-  const [loading, setLoading] = useState(_.isEmpty(partners));
+  const { sponsors } = useAppSelector((state) => state.sponsors);
+  const [loading, setLoading] = useState(_.isEmpty(sponsors));
   const { pid } = router.query;
-  const currPartner =
-    _.isString(pid) && _.isNumber(parseInt(pid, 10)) ? partners[parseInt(pid, 10)] : null;
+  const currSponsor =
+    _.isString(pid) && _.isNumber(parseInt(pid, 10)) ? sponsors[parseInt(pid, 10)] : null;
 
   useEffect(() => {
     (async () => {
-      if (_.isEmpty(partners)) {
-        await dispatch(getAllPartners());
+      if (_.isEmpty(sponsors)) {
+        await dispatch(getAllSponsors());
         setLoading(false);
       }
     })();
@@ -39,44 +39,44 @@ const PartnerDetail: FC = () => {
     );
   }
 
-  if (_.isEmpty(partners) || !currPartner) {
+  if (_.isEmpty(sponsors) || !currSponsor) {
     return <Error statusCode={404} />;
   }
 
-  const parsedCurrPartner = {
+  const parsedCurrSponsor = {
     id: pid,
-    title: currPartner.title,
-    lastUpdated: formatDate(currPartner.updatedDatetime, {
+    title: currSponsor.title,
+    lastUpdated: formatDate(currSponsor.updatedDatetime, {
       month: 'short',
       day: 'numeric',
       year: 'numeric',
       hour: 'numeric',
       minute: 'numeric',
     }),
-    coverImageUrl: currPartner.coverImageUrl,
-    content: currPartner.content,
-    partnerUrl: currPartner.partnerUrl,
+    coverImageUrl: currSponsor.coverImageUrl,
+    content: currSponsor.content,
+    sponsorUrl: currSponsor.sponsorUrl,
   };
 
   return (
     <DetailPageContainer>
       <HeadingCard
-        title={parsedCurrPartner.title}
+        title={parsedCurrSponsor.title}
         details={[
           {
             subHeading: 'Last Updated',
-            info: parsedCurrPartner.lastUpdated,
+            info: parsedCurrSponsor.lastUpdated,
           },
         ]}
-        coverImageUrl={parsedCurrPartner.coverImageUrl}
+        coverImageUrl={parsedCurrSponsor.coverImageUrl}
         buttonProps={{
           text: 'More Info',
-          url: parsedCurrPartner.partnerUrl,
+          url: parsedCurrSponsor.sponsorUrl,
         }}
       />
-      <MarkdownDisplay>{parsedCurrPartner.content}</MarkdownDisplay>
+      <MarkdownDisplay>{parsedCurrSponsor.content}</MarkdownDisplay>
     </DetailPageContainer>
   );
 };
 
-export default PartnerDetail;
+export default SponsorDetail;

@@ -21,12 +21,12 @@ const BlogsSection: FC = () => {
   const blogCardInfos = Object.entries(blogs)
     .filter(([, { featured }]) => featured)
     .slice(0, 3)
-    .map(([id, { title, creator, coverImageUrl, categories, description }]) => ({
+    .map(([id, { title, author, coverImageUrl, tags, description }]) => ({
       id,
       title,
-      creator,
+      author,
       coverImageUrl,
-      categories,
+      tags: tags.map((t) => t.Tag),
       description,
     }));
 
@@ -41,18 +41,18 @@ const BlogsSection: FC = () => {
           <HorizontalSkeletonLoader numSkeletons={1} count={8} className="w-1/2" />
         ) : (
           <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
-            {blogCardInfos.map(({ id, coverImageUrl, creator, title, description, categories }) => (
+            {blogCardInfos.map(({ id, coverImageUrl, author, title, description, tags }) => (
               <div className="w-full px-10 py-4" key={id}>
                 <MaterialCard
                   className="h-96 w-full relative"
                   onClick={() => router.push(`Blogs/${id}`)}
                 >
-                  <Tag categories={categories} />
+                  <Tag categories={tags} />
                   <div className="h-1/2 w-full image-container">
                     <Image src={coverImageUrl} layout="fill" priority />
                   </div>
                   <div className="h-1/2 p-5">
-                    <h3 className="mb-2">{`By: ${creator}`}</h3>
+                    <h3 className="mb-2">{`By: ${author}`}</h3>
                     <h2 className="text-lg font-bold">{title}</h2>
                     <p className="description">{description}</p>
                   </div>
@@ -67,18 +67,18 @@ const BlogsSection: FC = () => {
           <HorizontalSkeletonLoader />
         ) : (
           <div className="flex justify-center my-10">
-            {blogCardInfos.map(({ id, coverImageUrl, creator, title, description, categories }) => (
+            {blogCardInfos.map(({ id, coverImageUrl, author, title, description, tags }) => (
               <MaterialCard
                 className="w-full md:w-1/4 mx-10 h-96 relative"
                 key={id}
                 onClick={() => router.push(`Blogs/${id}`)}
               >
-                <Tag categories={categories} />
+                <Tag categories={tags} />
                 <div className="h-1/2 w-full image-container">
                   <Image src={coverImageUrl} layout="fill" priority />
                 </div>
                 <div className="h-1/2 p-5">
-                  <h3 className="mb-2">{`By: ${creator}`}</h3>
+                  <h3 className="mb-2">{`By: ${author}`}</h3>
                   <h2 className="text-lg font-bold">{title}</h2>
                   <p className="description">{description}</p>
                 </div>
