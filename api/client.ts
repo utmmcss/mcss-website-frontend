@@ -14,6 +14,12 @@ import {
   QueryPaths,
 } from './types';
 
+const validateApiError = () => {
+  return (apiError: any) => {
+    throw new Error(apiError.toString());
+  };
+};
+
 export default class API<APISchema extends APITemplate> {
   public queryClient: QueryClient;
 
@@ -22,13 +28,6 @@ export default class API<APISchema extends APITemplate> {
   constructor(contract: APISchema) {
     this.queryClient = new QueryClient();
     this.contract = contract;
-  }
-
-  private validateApiError() {
-    console.log(this.contract);
-    return (apiError: any) => {
-      throw new Error(apiError.toString());
-    };
   }
 
   public useQuery<
@@ -41,7 +40,7 @@ export default class API<APISchema extends APITemplate> {
 
     return __useQuery(
       pathAndInput as QueryKey,
-      () => endpoint(args).catch(this.validateApiError()),
+      () => endpoint(args).catch(validateApiError()),
       opts
     );
   }
