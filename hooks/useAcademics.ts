@@ -1,9 +1,9 @@
 import { useAPI } from '../contexts/useAPI';
 
 export const useAcademicCategories = () => {
-  return useAPI().useQuery(['academicCategoriesList', null], {});
+  return useAPI().useQuery(['academicCategoriesList', null]);
 };
 
 export const useAcademics = () => {
-  return useAPI().useQuery(['academicsList', null], {});
+  return useAPI().useQuery(['academicsList', null]);
 };
