@@ -4,8 +4,6 @@ import academicSlice from './academicsSlice';
 import blogSlice from './blogSlice';
 import eventSlice from './eventSlice';
 import memberSlice from './memberSlice';
-import partnerSlice from './partnerSlice';
-import sponsorSlice from './sponsorSlice';
 
 export const store = configureStore({
   reducer: {
@@ -13,8 +11,6 @@ export const store = configureStore({
     blogs: blogSlice,
     members: memberSlice,
     academics: academicSlice,
-    sponsors: sponsorSlice,
-    partners: partnerSlice,
   },
 });
 

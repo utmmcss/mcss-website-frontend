@@ -14,7 +14,6 @@ import { getAllAcademics } from '@store/academicsSlice';
 import { getAllBlogs } from '@store/blogSlice';
 import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { getAllSponsors } from '@store/sponsorSlice';
 import { useIsMobile } from '@utils/hooks';
 import classNames from 'classnames';
 import Image from 'next/image';
@@ -42,22 +41,16 @@ const NavBar: FC = () => {
   const router = useRouter();
   const { events } = useAppSelector((state) => state.events);
   const { blogs } = useAppSelector((state) => state.blogs);
-  const { sponsors } = useAppSelector((state) => state.sponsors);
   const { academics } = useAppSelector((state) => state.academics);
   const links = [
     { label: 'Events', href: '/Events' },
     { label: 'Blogs', href: '/Blogs' },
-    { label: 'Sponsors', href: '/Sponsors' },
   ];
-  const searchBarWhiteList = ['/Events', '/Blogs', '/Sponsors', '/Academics'];
+  const searchBarWhiteList = ['/Events', '/Blogs', '/Academics'];
   const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
   const options = [
     ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
     ...Object.entries(blogs).map(([id, { title }]) => ({ label: `Blog: ${title}`, value: id })),
-    ...Object.entries(sponsors).map(([id, { title }]) => ({
-      label: `Sponsors: ${title}`,
-      value: id,
-    })),
     ...Object.entries(blogs).map(([id, { title }]) => ({
       label: `Academics: ${title}`,
       value: id,
@@ -71,10 +64,6 @@ const NavBar: FC = () => {
 
     if (_.isEmpty(blogs)) {
       dispatch(getAllBlogs());
-    }
-
-    if (_.isEmpty(sponsors)) {
-      dispatch(getAllSponsors());
     }
 
     if (_.isEmpty(academics)) {
@@ -128,8 +117,6 @@ const NavBar: FC = () => {
                 router.push(`/Events/${selectedOption.value}`);
               } else if (selectedOption?.label.includes('Blog:')) {
                 router.push(`/Blogs/${selectedOption.value}`);
-              } else if (selectedOption?.label.includes('Sponsors:')) {
-                router.push(`/Sponsors/${selectedOption.value}`);
               } else if (selectedOption?.label.includes('Academic:')) {
                 router.push(`/Academics/${selectedOption.value}`);
               }
