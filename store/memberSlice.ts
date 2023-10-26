@@ -15,10 +15,10 @@ export interface Member {
   executive: string;
   markdown?: string;
   links: {
-    website: string | null;
-    linkedin: string | null;
-    instagram: string | null;
-    github: string | null;
+    Website: string | null;
+    Linkedin: string | null;
+    Instagram: string | null;
+    Github: string | null;
   };
 }
 

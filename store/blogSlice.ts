@@ -10,11 +10,11 @@ import type { RootState } from './store';
 // Define a type for the slice state
 interface Blog {
   title: string;
-  author?: string;
-  updatedDatetime: string;
   coverImageUrl: string;
-  content?: string;
   featured: boolean;
+  updatedDatetime: string;
+  author?: string;
+  content?: string;
   description?: string;
   tags:
     | {
@@ -47,23 +47,24 @@ export const getAllBlogs = createAsyncThunk<
     }[];
   }
 
-  const response: APIResponse = await getAPI('/blogs?populate=*');
   const parsedBlogs: Record<number, Blog> = {};
+  const response: APIResponse = await getAPI('/blogs?populate=*');
 
   if (response?.data) {
     response.data.forEach(
       ({
         id,
-        attributes: { title, author, cover, content, featured, updatedAt, description, tags },
+        attributes: { title, cover, featured, updatedAt, author, content, description, tags },
       }) => {
+        console.log('here');
         parsedBlogs[id] = {
           title,
           coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover.data.attributes.url}`,
           featured,
+          updatedDatetime: updatedAt,
           author,
           content: content?.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
           description,
-          updatedDatetime: updatedAt,
           tags,
         };
       }

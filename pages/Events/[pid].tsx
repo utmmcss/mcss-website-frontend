@@ -66,6 +66,7 @@ const EventDetail: FC = () => {
     categories: tagStrings,
     location: currEvent.location,
     content: currEvent.content,
+    descr: currEvent.description,
   };
 
   return (
@@ -80,6 +81,10 @@ const EventDetail: FC = () => {
           {
             subHeading: 'Location',
             info: parsedCurrEvent.location,
+          },
+          {
+            subHeading: 'Description',
+            info: parsedCurrEvent.descr,
           },
         ]}
         categories={parsedCurrEvent.categories}

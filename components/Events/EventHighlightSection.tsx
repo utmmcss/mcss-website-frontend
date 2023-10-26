@@ -13,7 +13,7 @@ import { formatDate } from '@utils/helper';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-const BlogHighlightSection: FC = () => {
+const EventHighlightSection: FC = () => {
   const { events } = useAppSelector((state) => state.events);
   const router = useRouter();
 
@@ -100,4 +100,4 @@ const BlogHighlightSection: FC = () => {
   );
 };
 
-export default BlogHighlightSection;
+export default EventHighlightSection;

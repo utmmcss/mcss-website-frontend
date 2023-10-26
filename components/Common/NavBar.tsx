@@ -10,7 +10,6 @@ import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 
 import Logo from '@public/MCSSText.svg';
-import { getAllAcademics } from '@store/academicsSlice';
 import { getAllBlogs } from '@store/blogSlice';
 import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
@@ -41,20 +40,15 @@ const NavBar: FC = () => {
   const router = useRouter();
   const { events } = useAppSelector((state) => state.events);
   const { blogs } = useAppSelector((state) => state.blogs);
-  const { academics } = useAppSelector((state) => state.academics);
   const links = [
     { label: 'Events', href: '/Events' },
     { label: 'Blogs', href: '/Blogs' },
   ];
-  const searchBarWhiteList = ['/Events', '/Blogs', '/Academics'];
+  const searchBarWhiteList = ['/Events', '/Blogs'];
   const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
   const options = [
     ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
     ...Object.entries(blogs).map(([id, { title }]) => ({ label: `Blog: ${title}`, value: id })),
-    ...Object.entries(blogs).map(([id, { title }]) => ({
-      label: `Academics: ${title}`,
-      value: id,
-    })),
   ];
 
   useEffect(() => {
@@ -64,10 +58,6 @@ const NavBar: FC = () => {
 
     if (_.isEmpty(blogs)) {
       dispatch(getAllBlogs());
-    }
-
-    if (_.isEmpty(academics)) {
-      dispatch(getAllAcademics());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -117,8 +107,6 @@ const NavBar: FC = () => {
                 router.push(`/Events/${selectedOption.value}`);
               } else if (selectedOption?.label.includes('Blog:')) {
                 router.push(`/Blogs/${selectedOption.value}`);
-              } else if (selectedOption?.label.includes('Academic:')) {
-                router.push(`/Academics/${selectedOption.value}`);
               }
             }}
             options={options}

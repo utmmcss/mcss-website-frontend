@@ -59,6 +59,7 @@ const BlogDetail: FC = () => {
     coverImageUrl: currBlog.coverImageUrl,
     categories: tagStrings,
     content: currBlog.content,
+    descr: currBlog.description,
   };
 
   return (
@@ -73,6 +74,10 @@ const BlogDetail: FC = () => {
           {
             subHeading: 'Creator',
             info: parsedCurrBlog.creator,
+          },
+          {
+            subHeading: 'Description',
+            info: parsedCurrBlog.descr,
           },
         ]}
         categories={parsedCurrBlog.categories}

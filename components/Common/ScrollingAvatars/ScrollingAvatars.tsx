@@ -72,7 +72,7 @@ const ScrollingAvatars: FC<IProps> = ({
       <div
         className={`scrolling-avatars-inner-container--${size}--${avatarInfos.length}--scroll-${scrollDirection}`}
       >
-        {appendedAvatarsInfos.map(({ name, role, avatarUrl }) => (
+        {appendedAvatarsInfos.map(({ name, role, avatarUrl, links }) => (
           <Avatar
             onMouseEnter={() => {
               setName(name);
@@ -81,6 +81,17 @@ const ScrollingAvatars: FC<IProps> = ({
             onMouseLeave={() => {
               setName('');
               setPosition('');
+            }}
+            onClick={() => {
+              if (typeof links.Website === 'string' && links.Website !== null) {
+                window.location.href = links.Website;
+              } else if (typeof links.Linkedin === 'string' && links.Linkedin !== null) {
+                window.location.href = links.Linkedin;
+              } else if (typeof links.Github === 'string' && links.Github !== null) {
+                window.location.href = links.Github;
+              } else if (typeof links.Instagram === 'string' && links.Instagram !== null) {
+                window.location.href = links.Instagram;
+              }
             }}
             className="avatar"
             size={avatarConfig.size}
