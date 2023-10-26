@@ -18,15 +18,19 @@ interface IProps {
 const EventsListSection: FC<IProps> = ({ selectedCategories }) => {
   const { events } = useAppSelector((state) => state.events);
   const router = useRouter();
-  const eventCardInfos = Object.entries(events).map(
-    ([id, { title, startDatetime, coverImageUrl, tags }]) => ({
+  const eventCardInfos = Object.entries(events)
+    .filter(
+      ([, { tags }]) =>
+        selectedCategories.includes('All') ||
+        !_.isEmpty(tags.filter((category) => selectedCategories.includes(category.Tag)))
+    )
+    .map(([id, { title, startDatetime, coverImageUrl, tags }]) => ({
       id,
       title,
       startDate: formatDate(startDatetime),
       coverImageUrl,
       tags: tags.map((t) => t.Tag),
-    })
-  );
+    }));
 
   return (
     <div className="event-list-page mx-9">

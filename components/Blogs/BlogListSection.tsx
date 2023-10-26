@@ -16,8 +16,13 @@ interface IProps {
 const BlogListSection: FC<IProps> = ({ selectedCategories }) => {
   const { blogs } = useAppSelector((state) => state.blogs);
   const router = useRouter();
-  const blogCardInfos = Object.entries(blogs).map(
-    ([id, { title, author, updatedDatetime, coverImageUrl, tags, description }]) => ({
+  const blogCardInfos = Object.entries(blogs)
+    .filter(
+      ([, { tags }]) =>
+        selectedCategories.includes('All') ||
+        !_.isEmpty(tags.filter((category) => selectedCategories.includes(category.Tag)))
+    )
+    .map(([id, { title, author, updatedDatetime, coverImageUrl, tags, description }]) => ({
       id,
       title,
       author,
@@ -31,8 +36,7 @@ const BlogListSection: FC<IProps> = ({ selectedCategories }) => {
       coverImageUrl,
       tags: tags.map((t) => t.Tag),
       description,
-    })
-  );
+    }));
 
   return (
     <div className="blog-list-page mx-9">
