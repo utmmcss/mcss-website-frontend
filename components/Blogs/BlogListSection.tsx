@@ -59,7 +59,7 @@ const BlogListSection: FC<IProps> = ({ selectedCategories }) => {
                 <Image src={coverImageUrl} layout="fill" priority />
               </div>
               <div className="h-1/2 p-5">
-                <h3 className="mb-2">{`By: ${author}`}</h3>
+                {author && <h3 className="mb-2">{`By: ${author}`}</h3>}
                 <h2 className="text-lg font-bold">{title}</h2>
                 <p className="description">{description}</p>
               </div>

@@ -75,7 +75,7 @@ const BlogHighlightSection: FC = () => {
                   <div className="h-1/2">
                     <h2 className="text-lg font-bold">Last Updated</h2>
                     <p>{updatedDatetime}</p>
-                    <h2 className="text-lg mt-5 font-bold">Creator</h2>
+                    {author && <h2 className="text-lg mt-5 font-bold">Creator</h2>}
                     <p>{author}</p>
                   </div>
                   <div className="h-1/2 flex flex-col justify-end">

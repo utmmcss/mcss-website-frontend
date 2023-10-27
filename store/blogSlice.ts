@@ -56,7 +56,6 @@ export const getAllBlogs = createAsyncThunk<
         id,
         attributes: { title, cover, featured, updatedAt, author, content, description, tags },
       }) => {
-        console.log('here');
         parsedBlogs[id] = {
           title,
           coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover.data.attributes.url}`,
