@@ -15,10 +15,10 @@ export interface Member {
   executive: string;
   markdown?: string;
   links: {
-    Website: string | null;
-    Linkedin: string | null;
-    Instagram: string | null;
-    Github: string | null;
+    Website?: string;
+    Linkedin?: string;
+    Instagram?: string;
+    Github?: string;
   };
 }
 
@@ -57,7 +57,6 @@ export const getAllMembers = createAsyncThunk<
         })
     );
   }
-
   return parsedMembers;
 });
 
