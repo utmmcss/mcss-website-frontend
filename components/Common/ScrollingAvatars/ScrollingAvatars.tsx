@@ -83,13 +83,13 @@ const ScrollingAvatars: FC<IProps> = ({
               setPosition('');
             }}
             onClick={() => {
-              if (typeof links.Website === 'string' && links.Website !== null) {
+              if (links.Website) {
                 window.location.href = links.Website;
-              } else if (typeof links.Linkedin === 'string' && links.Linkedin !== null) {
+              } else if (links.Linkedin) {
                 window.location.href = links.Linkedin;
-              } else if (typeof links.Github === 'string' && links.Github !== null) {
+              } else if (links.Github) {
                 window.location.href = links.Github;
-              } else if (typeof links.Instagram === 'string' && links.Instagram !== null) {
+              } else if (links.Instagram) {
                 window.location.href = links.Instagram;
               }
             }}
