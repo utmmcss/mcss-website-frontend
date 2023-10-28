@@ -10,42 +10,24 @@ import type { RootState } from './store';
 // Define a type for the slice state
 interface Event {
   title: string;
-  creator: string;
+  coverImageUrl: string;
+  featured: boolean;
   startDatetime: string;
   endDatetime: string;
-  coverImageUrl: string;
-  content: string;
-  registrationUrl: string;
-  categories: string[];
   location: string;
-  featured: boolean;
+  content?: string;
+  description?: string;
+  tags: {
+    id: number;
+    Tag: string;
+  }[];
 }
 interface EventState {
   events: Record<number, Event>;
-  categories: string[];
+  tags: string[];
 }
 
-export const getAllEventCategories = createAsyncThunk<
-  string[],
-  /** no args for this async dispatch */
-  void,
-  {
-    state: RootState;
-  }
->('events/fetchAllCategories', async () => {
-  interface CategoryResponse {
-    type: string;
-  }
-
-  const response: DataAttributes<CategoryResponse> = await getAPI('/event-categories');
-  let parsedCategories: string[] = [];
-
-  if (response?.data) {
-    parsedCategories = response.data.map(({ attributes }) => attributes.type);
-  }
-
-  return parsedCategories;
-});
+const uniqueTags: string[] = [];
 
 export const getAllEvents = createAsyncThunk<
   Record<number, Event>,
@@ -55,12 +37,10 @@ export const getAllEvents = createAsyncThunk<
     state: RootState;
   }
 >('events/fetchAllEvents', async () => {
-  interface EventResponse extends Omit<Event, 'categories'> {
-    start_datetime: string;
-    end_datetime: string;
-    registration_url: string;
-    categories: DataAttributes<{ type: string }>;
-    cover_image: DataAttribute<{ url: string }>;
+  interface EventResponse extends Event {
+    start: string;
+    end: string;
+    cover: DataAttribute<{ url: string }>;
   }
 
   interface APIResponse {
@@ -79,32 +59,31 @@ export const getAllEvents = createAsyncThunk<
         id,
         attributes: {
           title,
-          creator,
-          start_datetime: startDatetime,
-          end_datetime: endDatetime,
-          cover_image,
-          content,
-          registration_url: registrationUrl,
-          categories,
-          location,
+          cover,
           featured,
+          start: startDatetime,
+          end: endDatetime,
+          location,
+          content,
+          description,
+          tags,
         },
       }) => {
-        const parsedCategories = !_.isEmpty(categories.data)
-          ? categories.data.map(({ attributes: { type } }) => type)
-          : ['Other'];
-
+        tags.forEach((t) => {
+          if (!uniqueTags.includes(t.Tag)) {
+            uniqueTags.push(t.Tag);
+          }
+        });
         parsedEvents[id] = {
           title,
-          creator,
+          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover.data.attributes.url}`,
+          featured,
           startDatetime,
           endDatetime,
-          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
-          content: content.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
-          registrationUrl,
-          categories: parsedCategories,
           location,
-          featured,
+          content: content?.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
+          description,
+          tags,
         };
       }
     );
@@ -115,7 +94,7 @@ export const getAllEvents = createAsyncThunk<
 // Define the initial state using that type
 const initialState: EventState = {
   events: [],
-  categories: [],
+  tags: [],
 };
 
 const eventSlice = createSlice({
@@ -123,14 +102,11 @@ const eventSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // load all events
     builder.addCase(getAllEvents.fulfilled, (state, action) => {
+      // load all events
       state.events = action.payload;
-    });
-
-    // load all event categories
-    builder.addCase(getAllEventCategories.fulfilled, (state, action) => {
-      state.categories = action.payload;
+      // load all tags
+      state.tags = uniqueTags;
     });
   },
 });

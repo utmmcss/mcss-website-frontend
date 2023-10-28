@@ -10,40 +10,23 @@ import type { RootState } from './store';
 // Define a type for the slice state
 interface Blog {
   title: string;
-  creator: string;
-  updatedDatetime: string;
   coverImageUrl: string;
-  content: string;
-  categories: string[];
   featured: boolean;
-  description: string;
+  updatedDatetime: string;
+  author?: string;
+  content?: string;
+  description?: string;
+  tags: {
+    id: number;
+    Tag: string;
+  }[];
 }
 interface BlogState {
   blogs: Record<number, Blog>;
-  categories: string[];
+  tags: string[];
 }
 
-export const getAllBlogCategories = createAsyncThunk<
-  string[],
-  /** no args for this async dispatch */
-  void,
-  {
-    state: RootState;
-  }
->('blogs/fetchAllCategories', async () => {
-  interface CategoryResponse {
-    type: string;
-  }
-
-  const response: DataAttributes<CategoryResponse> = await getAPI('/blog-categories');
-  let parsedCategories: string[] = [];
-
-  if (response?.data) {
-    parsedCategories = response.data.map(({ attributes }) => attributes.type);
-  }
-
-  return parsedCategories;
-});
+const uniqueTags: string[] = [];
 
 export const getAllBlogs = createAsyncThunk<
   Record<number, Blog>,
@@ -53,10 +36,9 @@ export const getAllBlogs = createAsyncThunk<
     state: RootState;
   }
 >('blogs/fetchAllBlogs', async () => {
-  interface BlogResponse extends Omit<Blog, 'categories'> {
+  interface BlogResponse extends Blog {
     updatedAt: string;
-    categories: DataAttributes<{ type: string }>;
-    cover_image: DataAttribute<{ url: string }>;
+    cover: DataAttribute<{ url: string }>;
   }
 
   interface APIResponse {
@@ -66,37 +48,29 @@ export const getAllBlogs = createAsyncThunk<
     }[];
   }
 
-  const response: APIResponse = await getAPI('/blogs?populate=*');
   const parsedBlogs: Record<number, Blog> = {};
+  const response: APIResponse = await getAPI('/blogs?populate=*');
 
   if (response?.data) {
     response.data.forEach(
       ({
         id,
-        attributes: {
-          title,
-          creator,
-          cover_image,
-          content,
-          categories,
-          featured,
-          updatedAt,
-          description,
-        },
+        attributes: { title, cover, featured, updatedAt, author, content, description, tags },
       }) => {
-        const parsedCategories = !_.isEmpty(categories.data)
-          ? categories.data.map(({ attributes: { type } }) => type)
-          : ['Other'];
-
+        tags.forEach((t) => {
+          if (!uniqueTags.includes(t.Tag)) {
+            uniqueTags.push(t.Tag);
+          }
+        });
         parsedBlogs[id] = {
           title,
-          creator,
-          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover_image.data.attributes.url}`,
-          content: content.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
-          categories: parsedCategories,
+          coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover.data.attributes.url}`,
           featured,
           updatedDatetime: updatedAt,
+          author,
+          content: content?.replaceAll('/uploads/', `${process.env.NEXT_PUBLIC_API_URL}/uploads/`),
           description,
+          tags,
         };
       }
     );
@@ -107,7 +81,7 @@ export const getAllBlogs = createAsyncThunk<
 // Define the initial state using that type
 const initialState: BlogState = {
   blogs: [],
-  categories: [],
+  tags: [],
 };
 
 const blogSlice = createSlice({
@@ -115,14 +89,11 @@ const blogSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // load all blogs
     builder.addCase(getAllBlogs.fulfilled, (state, action) => {
+      // load all blogs
       state.blogs = action.payload;
-    });
-
-    // load all blog categories
-    builder.addCase(getAllBlogCategories.fulfilled, (state, action) => {
-      state.categories = action.payload;
+      // load all blog categories
+      state.tags = uniqueTags;
     });
   },
 });
