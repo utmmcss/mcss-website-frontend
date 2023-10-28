@@ -16,16 +16,17 @@ interface Blog {
   author?: string;
   content?: string;
   description?: string;
-  tags:
-    | {
-        id: number;
-        Tag: string;
-      }[]
-    | [];
+  tags: {
+    id: number;
+    Tag: string;
+  }[];
 }
 interface BlogState {
   blogs: Record<number, Blog>;
+  tags: string[];
 }
+
+const uniqueTags: string[] = [];
 
 export const getAllBlogs = createAsyncThunk<
   Record<number, Blog>,
@@ -56,6 +57,11 @@ export const getAllBlogs = createAsyncThunk<
         id,
         attributes: { title, cover, featured, updatedAt, author, content, description, tags },
       }) => {
+        tags.forEach((t) => {
+          if (!uniqueTags.includes(t.Tag)) {
+            uniqueTags.push(t.Tag);
+          }
+        });
         parsedBlogs[id] = {
           title,
           coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover.data.attributes.url}`,
@@ -75,6 +81,7 @@ export const getAllBlogs = createAsyncThunk<
 // Define the initial state using that type
 const initialState: BlogState = {
   blogs: [],
+  tags: [],
 };
 
 const blogSlice = createSlice({
@@ -82,9 +89,11 @@ const blogSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // load all blogs
     builder.addCase(getAllBlogs.fulfilled, (state, action) => {
+      // load all blogs
       state.blogs = action.payload;
+      // load all blog categories
+      state.tags = uniqueTags;
     });
   },
 });

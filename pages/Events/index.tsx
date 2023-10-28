@@ -11,24 +11,8 @@ import _ from 'underscore';
 
 const Events: FC = () => {
   const dispatch = useAppDispatch();
-  const { events } = useAppSelector((state) => state.events);
-  const optionNames = [
-    'All',
-    'Computer Science',
-    'Mathematics',
-    'Statistics',
-    'PEY',
-    'Student Life',
-    'Informational',
-    'Guide',
-    'MCSS',
-    'Partner',
-    'In Person',
-    'Remote',
-    'Hybrid',
-    'Partner Event',
-    'Other',
-  ];
+  const { tags, events } = useAppSelector((state) => state.events);
+  const optionNames = ['All', ...tags, 'Other'];
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
 
   interface IOption {

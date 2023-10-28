@@ -17,16 +17,17 @@ interface Event {
   location: string;
   content?: string;
   description?: string;
-  tags:
-    | {
-        id: number;
-        Tag: string;
-      }[]
-    | [];
+  tags: {
+    id: number;
+    Tag: string;
+  }[];
 }
 interface EventState {
   events: Record<number, Event>;
+  tags: string[];
 }
+
+const uniqueTags: string[] = [];
 
 export const getAllEvents = createAsyncThunk<
   Record<number, Event>,
@@ -68,6 +69,11 @@ export const getAllEvents = createAsyncThunk<
           tags,
         },
       }) => {
+        tags.forEach((t) => {
+          if (!uniqueTags.includes(t.Tag)) {
+            uniqueTags.push(t.Tag);
+          }
+        });
         parsedEvents[id] = {
           title,
           coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${cover.data.attributes.url}`,
@@ -88,6 +94,7 @@ export const getAllEvents = createAsyncThunk<
 // Define the initial state using that type
 const initialState: EventState = {
   events: [],
+  tags: [],
 };
 
 const eventSlice = createSlice({
@@ -95,9 +102,11 @@ const eventSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // load all events
     builder.addCase(getAllEvents.fulfilled, (state, action) => {
+      // load all events
       state.events = action.payload;
+      // load all tags
+      state.tags = uniqueTags;
     });
   },
 });
