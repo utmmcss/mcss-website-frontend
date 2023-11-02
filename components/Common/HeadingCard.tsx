@@ -10,13 +10,13 @@ import Image from 'next/image';
 
 type Details = {
   subHeading: string;
-  info: string;
+  info?: string;
 }[];
 
 type Props = {
   title: string;
   details: Details;
-  categories: string[];
+  categories?: string[];
   coverImageUrl: string;
   buttonProps?: {
     text: string;
@@ -25,7 +25,7 @@ type Props = {
 };
 
 const HeadingCard = (props: Props) => {
-  const { title, details, categories, coverImageUrl, buttonProps } = props;
+  const { title, categories, details, coverImageUrl, buttonProps } = props;
   return (
     <Card
       sx={{
@@ -35,7 +35,7 @@ const HeadingCard = (props: Props) => {
       }}
     >
       <CardMedia>
-        <Tag categories={categories} />
+        {categories && <Tag categories={categories} />}
         <Image
           src={coverImageUrl}
           layout="fill"
