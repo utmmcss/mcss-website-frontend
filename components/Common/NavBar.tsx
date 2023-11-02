@@ -120,8 +120,6 @@ const NavBar: FC = () => {
                 router.push(`/Blogs/${selectedOption.value}`);
               } else if (selectedOption?.label.includes('Sponsors:')) {
                 router.push(`/Sponsors/${selectedOption.value}`);
-              } else if (selectedOption?.label.includes('Academic:')) {
-                router.push(`/Academics/${selectedOption.value}`);
               }
             }}
             options={options}
