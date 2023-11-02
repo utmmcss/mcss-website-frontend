@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import Filter from '@components/Common/Filter';
 import EventHighlightSection from '@components/Events/EventHighlightSection';
 import EventsListSection from '@components/Events/EventListSection';
-import { getAllEventCategories, getAllEvents } from '@store/eventSlice';
+import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { removeElement } from '@utils/helper';
 import Head from 'next/head';
@@ -11,8 +11,8 @@ import _ from 'underscore';
 
 const Events: FC = () => {
   const dispatch = useAppDispatch();
-  const { categories, events } = useAppSelector((state) => state.events);
-  const optionNames = ['All', ...categories, 'Other'];
+  const { tags, events } = useAppSelector((state) => state.events);
+  const optionNames = ['All', ...tags, 'Other'];
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
 
   interface IOption {
@@ -57,10 +57,6 @@ const Events: FC = () => {
   useEffect(() => {
     if (_.isEmpty(events)) {
       dispatch(getAllEvents());
-    }
-
-    if (_.isEmpty(categories)) {
-      dispatch(getAllEventCategories());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

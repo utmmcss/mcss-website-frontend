@@ -43,10 +43,12 @@ const BlogDetail: FC = () => {
     return <Error statusCode={404} />;
   }
 
+  const tagStrings = currBlog.tags.map((tagObject) => tagObject.Tag);
+
   const parsedCurrBlog = {
     id: pid,
     title: currBlog.title,
-    creator: currBlog.creator,
+    creator: currBlog.author,
     lastUpdated: formatDate(currBlog.updatedDatetime, {
       month: 'short',
       day: 'numeric',
@@ -55,8 +57,9 @@ const BlogDetail: FC = () => {
       minute: 'numeric',
     }),
     coverImageUrl: currBlog.coverImageUrl,
-    categories: currBlog.categories,
+    categories: tagStrings,
     content: currBlog.content,
+    descr: currBlog.description,
   };
 
   return (
@@ -72,11 +75,15 @@ const BlogDetail: FC = () => {
             subHeading: 'Creator',
             info: parsedCurrBlog.creator,
           },
+          {
+            subHeading: 'Description',
+            info: parsedCurrBlog.descr,
+          },
         ]}
         categories={parsedCurrBlog.categories}
         coverImageUrl={parsedCurrBlog.coverImageUrl}
       />
-      <MarkdownDisplay>{parsedCurrBlog.content}</MarkdownDisplay>
+      {parsedCurrBlog.content && <MarkdownDisplay>{parsedCurrBlog.content}</MarkdownDisplay>}
     </DetailPageContainer>
   );
 };

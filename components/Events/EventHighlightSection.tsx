@@ -13,46 +13,39 @@ import { formatDate } from '@utils/helper';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-const BlogHighlightSection: FC = () => {
+const EventHighlightSection: FC = () => {
   const { events } = useAppSelector((state) => state.events);
   const router = useRouter();
 
   const eventCardInfos = Object.entries(events)
     .filter(([, { featured }]) => featured)
-    .map(
-      ([
-        id,
-        { title, creator, startDatetime, coverImageUrl, categories, location, registrationUrl },
-      ]) => ({
-        id,
-        title,
-        creator,
-        startDate: formatDate(startDatetime),
-        startDatetime: formatDate(startDatetime, {
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric',
-          hour: 'numeric',
-          minute: 'numeric',
-        }),
-        coverImageUrl,
-        categories,
-        location,
-        registrationUrl,
-      })
-    );
+    .map(([id, { title, startDatetime, coverImageUrl, location, tags }]) => ({
+      id,
+      title,
+      startDate: formatDate(startDatetime),
+      startDatetime: formatDate(startDatetime, {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+      }),
+      coverImageUrl,
+      tags: tags.map((t) => t.Tag),
+      location,
+    }));
 
   return (
     <div>
       <MediaQueryContainer showOnMobile>
         <Slider dots infinite speed={500} slidesToShow={1} slidesToScroll={1} arrows={false}>
-          {eventCardInfos.map(({ id, title, creator, startDate, coverImageUrl, categories }) => (
+          {eventCardInfos.map(({ id, title, startDate, coverImageUrl, tags }) => (
             <div className="w-full pb-4 px-14" key={id}>
               <MaterialCard
                 className="mobile-event-card w-full rounded-lg relative h-96"
                 onClick={() => router.push(`Events/${id}`)}
               >
-                <Tag categories={categories} />
+                <Tag categories={tags} />
                 <div className="w-full h-1/2 image-container">
                   <Image src={coverImageUrl} layout="fill" priority />
                 </div>
@@ -61,10 +54,6 @@ const BlogHighlightSection: FC = () => {
                     <div className="flex w-1/2">
                       <EventOutlinedIcon className="mr-1" />
                       <p>{startDate}</p>
-                    </div>
-                    <div className="flex w-1/2">
-                      <PersonOutlineOutlinedIcon />
-                      <p className="ml-1">{creator}</p>
                     </div>
                   </div>
                   <div className="h-2/3">
@@ -78,58 +67,37 @@ const BlogHighlightSection: FC = () => {
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
         <div className="event-highlight-section">
-          {eventCardInfos.map(
-            ({
-              id,
-              title,
-              startDatetime,
-              coverImageUrl,
-              location,
-              categories,
-              registrationUrl,
-            }) => (
-              <MaterialCard
-                key={id}
-                className="event-card h-96 w-10/12 lg:w-1/2 relative mb-10"
-                onClick={() => router.push(`Events/${id}`)}
-              >
-                <Tag categories={categories} />
-                <div className="flex h-full">
-                  <div className="w-1/2 h-full image-container">
-                    <Image src={coverImageUrl} layout="fill" priority />
+          {eventCardInfos.map(({ id, title, startDatetime, coverImageUrl, location, tags }) => (
+            <MaterialCard
+              key={id}
+              className="event-card h-96 w-10/12 lg:w-1/2 relative mb-10"
+              onClick={() => router.push(`Events/${id}`)}
+            >
+              <Tag categories={tags} />
+              <div className="flex h-full">
+                <div className="w-1/2 h-full image-container">
+                  <Image src={coverImageUrl} layout="fill" priority />
+                </div>
+                <div className="w-1/2 h-full px-5 pt-3 pb-5">
+                  <div className="h-1/2">
+                    <h2 className="text-lg font-bold">Datetime</h2>
+                    <p>{startDatetime}</p>
+                    <h2 className="text-lg mt-5 font-bold">Location</h2>
+                    <p>{location}</p>
                   </div>
-                  <div className="w-1/2 h-full px-5 pt-3 pb-5">
-                    <div className="h-1/2">
-                      <h2 className="text-lg font-bold">Datetime</h2>
-                      <p>{startDatetime}</p>
-                      <h2 className="text-lg mt-5 font-bold">Location</h2>
-                      <p>{location}</p>
-                    </div>
-                    <div className="h-1/2 flex flex-col justify-end">
-                      <div className="h-3/4">
-                        <p className="text-2xl font-bold text-justify title w-full">{title}</p>
-                      </div>
-                      <div className="h-1/4">
-                        <Button
-                          className="w-full h-full"
-                          variant="contained"
-                          onClick={() => {
-                            window.location.href = registrationUrl;
-                          }}
-                        >
-                          Register
-                        </Button>
-                      </div>
+                  <div className="h-1/2 flex flex-col justify-end">
+                    <div className="h-3/4">
+                      <p className="text-2xl font-bold text-justify title w-full">{title}</p>
                     </div>
                   </div>
                 </div>
-              </MaterialCard>
-            )
-          )}
+              </div>
+            </MaterialCard>
+          ))}
         </div>
       </MediaQueryContainer>
     </div>
   );
 };
 
-export default BlogHighlightSection;
+export default EventHighlightSection;

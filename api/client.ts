@@ -7,12 +7,7 @@ import {
   UseQueryOptions,
 } from '@tanstack/react-query';
 
-import {
-  APITemplate,
-  ClientQueries,
-  InferHandlerInput,
-  QueryPaths,
-} from './types';
+import { APITemplate, ClientQueries, InferHandlerInput, QueryPaths } from './types';
 
 const validateApiError = () => {
   return (apiError: any) => {

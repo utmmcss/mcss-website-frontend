@@ -56,10 +56,6 @@ const NavBar: FC = () => {
       label: `Sponsors: ${title}`,
       value: id,
     })),
-    ...Object.entries(blogs).map(([id, { title }]) => ({
-      label: `Academics: ${title}`,
-      value: id,
-    })),
   ];
 
   useEffect(() => {

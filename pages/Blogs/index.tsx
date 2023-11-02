@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import BlogHighlightSection from '@components/Blogs/BlogHighlightSection';
 import BlogListSection from '@components/Blogs/BlogListSection';
 import Filter from '@components/Common/Filter';
-import { getAllBlogCategories, getAllBlogs } from '@store/blogSlice';
+import { getAllBlogs } from '@store/blogSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { removeElement } from '@utils/helper';
 import Head from 'next/head';
@@ -11,8 +11,8 @@ import _ from 'underscore';
 
 const Blogs: FC = () => {
   const dispatch = useAppDispatch();
-  const { categories, blogs } = useAppSelector((state) => state.blogs);
-  const optionNames = ['All', ...categories, 'Other'];
+  const { tags, blogs } = useAppSelector((state) => state.blogs);
+  const optionNames = ['All', ...tags, 'Other'];
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
 
   interface IOption {
@@ -57,10 +57,6 @@ const Blogs: FC = () => {
   useEffect(() => {
     if (_.isEmpty(blogs)) {
       dispatch(getAllBlogs());
-    }
-
-    if (_.isEmpty(categories)) {
-      dispatch(getAllBlogCategories());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
