@@ -66,10 +66,6 @@ const NavBar: FC = () => {
     if (_.isEmpty(blogs)) {
       dispatch(getAllBlogs());
     }
-
-    if (_.isEmpty(sponsors)) {
-      dispatch(getAllSponsors());
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

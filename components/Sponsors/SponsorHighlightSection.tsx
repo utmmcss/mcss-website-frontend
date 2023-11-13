@@ -19,7 +19,6 @@ const SponsorHighlightSection: FC = () => {
     title: string;
     description: string;
     coverImageUrl: string;
-    updatedDatetime: string;
     featured: boolean;
   }[] = [];
   if (data) {
@@ -27,23 +26,10 @@ const SponsorHighlightSection: FC = () => {
       .filter(([, { attributes }]) => attributes.featured)
       .slice(0, 3)
       .map(([, { id, attributes }]) => {
-        const {
-          title,
-          updatedAt: updatedDatetime,
-          cover_image: coverImage,
-          description,
-          featured,
-        } = attributes;
+        const { title, cover_image: coverImage, description, featured } = attributes;
         return {
           id,
           title,
-          updatedDatetime: formatDate(updatedDatetime, {
-            month: 'short',
-            day: 'numeric',
-            year: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-          }),
           coverImageUrl: `${process.env.NEXT_PUBLIC_API_URL}${coverImage.data.attributes.url}`,
           description,
           featured,
@@ -75,7 +61,7 @@ const SponsorHighlightSection: FC = () => {
       </MediaQueryContainer>
       <MediaQueryContainer hideOnMobile>
         <div className="sponsor-highlight-section">
-          {sponsorCardInfos.map(({ id, title, updatedDatetime, coverImageUrl }) => (
+          {sponsorCardInfos.map(({ id, title, coverImageUrl }) => (
             <MaterialCard
               key={id}
               className="sponsor-card h-96 w-10/12 lg:w-1/2 relative mb-10"
@@ -86,10 +72,6 @@ const SponsorHighlightSection: FC = () => {
                   <Image src={coverImageUrl} layout="fill" priority />
                 </div>
                 <div className="w-1/2 h-full px-5 pt-3 pb-5">
-                  <div className="h-1/4">
-                    <h2 className="text-lg font-bold">Last Updated</h2>
-                    <p>{updatedDatetime}</p>
-                  </div>
                   <div className="h-3/4 flex flex-col justify-end">
                     <div className="h-4/5">
                       <p className="text-2xl font-bold text-justify title w-full">{title}</p>
