@@ -47,7 +47,7 @@ const NavBar: FC = () => {
     { label: 'Blogs', href: '/Blogs' },
     { label: 'Sponsors', href: '/Sponsors' },
   ];
-  const searchBarWhiteList = ['/Events', '/Blogs', '/Sponsors', '/Academics'];
+  const searchBarWhiteList = ['/Events', '/Blogs', '/Sponsors'];
   const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
   const options = [
     ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
