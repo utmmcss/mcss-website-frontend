@@ -1,5 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import sponsorSlice from '@store/sponsorSlice';
 
 import blogSlice from './blogSlice';
 import eventSlice from './eventSlice';
@@ -10,7 +9,6 @@ export const store = configureStore({
     events: eventSlice,
     blogs: blogSlice,
     members: memberSlice,
-    sponsors: sponsorSlice,
   },
 });
 
