@@ -13,9 +13,9 @@ import Logo from '@public/MCSSText.svg';
 import { getAllBlogs } from '@store/blogSlice';
 import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
-import { getAllSponsors } from '@store/sponsorSlice';
 import { useIsMobile } from '@utils/hooks';
 import classNames from 'classnames';
+import useSponsors from 'hooks/useSponsors';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
@@ -41,7 +41,7 @@ const NavBar: FC = () => {
   const router = useRouter();
   const { events } = useAppSelector((state) => state.events);
   const { blogs } = useAppSelector((state) => state.blogs);
-  const { sponsors } = useAppSelector((state) => state.sponsors);
+  const { data: sponsors } = useSponsors();
   const links = [
     { label: 'Events', href: '/Events' },
     { label: 'Blogs', href: '/Blogs' },
@@ -52,10 +52,12 @@ const NavBar: FC = () => {
   const options = [
     ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
     ...Object.entries(blogs).map(([id, { title }]) => ({ label: `Blog: ${title}`, value: id })),
-    ...Object.entries(sponsors).map(([id, { title }]) => ({
-      label: `Sponsors: ${title}`,
-      value: id,
-    })),
+    ...(sponsors?.data
+      ? Object.entries(sponsors.data).map(([, { id, attributes }]) => ({
+        label: `Sponsors: ${attributes.title}`,
+        value: id.toString(),
+      }))
+      : []),
   ];
 
   useEffect(() => {
