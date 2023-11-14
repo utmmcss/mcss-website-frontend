@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import academicSlice from './academicsSlice';
 import blogSlice from './blogSlice';
 import eventSlice from './eventSlice';
 import memberSlice from './memberSlice';
@@ -10,7 +9,6 @@ export const store = configureStore({
     events: eventSlice,
     blogs: blogSlice,
     members: memberSlice,
-    academics: academicSlice,
   },
 });
 

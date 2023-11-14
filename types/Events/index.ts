@@ -13,11 +13,11 @@ export interface Event {
   featured: boolean;
 }
 
-interface EventResponse extends Omit<Event, 'categories'> {
+interface EventResponse extends Event {
   start_datetime: string;
   end_datetime: string;
   registration_url: string;
-  categories: DataAttributes<{ type: string }>;
+  categories: string[];
   cover_image: DataAttribute<{ url: string }>;
 }
 

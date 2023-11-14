@@ -1,18 +1,14 @@
 import { FC, useEffect, useState } from 'react';
 
-import AcademicHighlightSection from '@components/Academics/AcademicHighlightSection';
-import AcademicListSection from '@components/Academics/AcademicListSection';
 import Filter from '@components/Common/Filter';
-import { getAllAcademicCategories, getAllAcademics } from '@store/academicsSlice';
-import { useAppDispatch, useAppSelector } from '@store/hooks';
+import SponsorHighlightSection from '@components/Sponsors/SponsorHighlightSection';
+import SponsorListSection from '@components/Sponsors/SponsorListSection';
 import { removeElement } from '@utils/helper';
 import Head from 'next/head';
 import _ from 'underscore';
 
-const Academics: FC = () => {
-  const dispatch = useAppDispatch();
-  const { categories, academics } = useAppSelector((state) => state.academics);
-  const optionNames = ['All', ...categories, 'Other'];
+const Sponsors: FC = () => {
+  const optionNames = ['All'];
   const [selectedCategories, setSelectedCategories] = useState<string[]>(['All']);
 
   interface IOption {
@@ -33,15 +29,10 @@ const Academics: FC = () => {
           /**
            * Case 1: Nothing is selected, then we should select 'All'
            * Case 2: Something other than 'All' is selected, then we should de-select 'All'
+           * Case 3: If 'All' is selected, then we should de-select everything other than 'All'
            */
           if (_.isEmpty(newSelectedCategories)) {
             newSelectedCategories = ['All'];
-          } else if (
-            newSelectedCategories.length > 1 &&
-            currOptionName !== 'All' &&
-            newSelectedCategories.includes('All')
-          ) {
-            newSelectedCategories = removeElement(newSelectedCategories, 'All');
           }
 
           setSelectedCategories(newSelectedCategories);
@@ -51,31 +42,20 @@ const Academics: FC = () => {
     []
   );
 
-  useEffect(() => {
-    if (_.isEmpty(academics)) {
-      dispatch(getAllAcademics());
-    }
-
-    if (_.isEmpty(categories)) {
-      dispatch(getAllAcademicCategories());
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <>
       <Head>
-        <title>UTM MCSS | Academics</title>
+        <title>UTM MCSS | Sponsors</title>
       </Head>
       <div>
         <h1 className="text-4xl font-bold my-10 ml-14">Featured</h1>
-        <AcademicHighlightSection />
-        <h1 className="text-4xl font-bold my-10 ml-14">Academics</h1>
+        <SponsorHighlightSection />
+        <h1 className="text-4xl font-bold my-10 ml-14">Sponsors</h1>
         <Filter options={options} selectedOptions={selectedCategories} />
-        <AcademicListSection selectedCategories={selectedCategories} />
+        <SponsorListSection selectedCategories={selectedCategories} />
       </div>
     </>
   );
 };
 
-export default Academics;
+export default Sponsors;

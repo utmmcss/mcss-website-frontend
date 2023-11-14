@@ -15,6 +15,7 @@ import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { useIsMobile } from '@utils/hooks';
 import classNames from 'classnames';
+import useSponsors from 'hooks/useSponsors';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
@@ -40,15 +41,23 @@ const NavBar: FC = () => {
   const router = useRouter();
   const { events } = useAppSelector((state) => state.events);
   const { blogs } = useAppSelector((state) => state.blogs);
+  const { data: sponsors } = useSponsors();
   const links = [
     { label: 'Events', href: '/Events' },
     { label: 'Blogs', href: '/Blogs' },
+    { label: 'Sponsors', href: '/Sponsors' },
   ];
-  const searchBarWhiteList = ['/Events', '/Blogs'];
+  const searchBarWhiteList = ['/Events', '/Blogs', '/Sponsors'];
   const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
   const options = [
     ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
     ...Object.entries(blogs).map(([id, { title }]) => ({ label: `Blog: ${title}`, value: id })),
+    ...(sponsors?.data
+      ? Object.entries(sponsors.data).map(([, { id, attributes }]) => ({
+        label: `Sponsors: ${attributes.title}`,
+        value: id.toString(),
+      }))
+      : []),
   ];
 
   useEffect(() => {
@@ -107,6 +116,8 @@ const NavBar: FC = () => {
                 router.push(`/Events/${selectedOption.value}`);
               } else if (selectedOption?.label.includes('Blog:')) {
                 router.push(`/Blogs/${selectedOption.value}`);
+              } else if (selectedOption?.label.includes('Sponsors:')) {
+                router.push(`/Sponsors/${selectedOption.value}`);
               }
             }}
             options={options}
