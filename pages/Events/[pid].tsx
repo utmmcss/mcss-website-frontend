@@ -1,16 +1,13 @@
 import { FC, useEffect, useState } from 'react';
 import { HashLoader } from 'react-spinners';
 
-import Button from '@mui/material/Button';
-
+import DetailPageContainer from '@components/Common/DetailPageContainer';
+import HeadingCard from '@components/Common/HeadingCard';
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
-import MaterialCard from '@components/Common/MaterialCard';
-import Tag from '@components/Common/Tag';
 import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { formatDate } from '@utils/helper';
 import Error from 'next/error';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import _ from 'underscore';
 
@@ -46,10 +43,11 @@ const EventDetail: FC = () => {
     return <Error statusCode={404} />;
   }
 
+  const tagStrings = currEvent.tags.map((tagObject) => tagObject.Tag);
+
   const parsedCurrEvent = {
     id: pid,
     title: currEvent.title,
-    creator: currEvent.creator,
     startDatetime: formatDate(currEvent.startDatetime, {
       month: 'short',
       day: 'numeric',
@@ -65,54 +63,35 @@ const EventDetail: FC = () => {
       minute: 'numeric',
     }),
     coverImageUrl: currEvent.coverImageUrl,
-    categories: currEvent.categories,
+    categories: tagStrings,
     location: currEvent.location,
-    registrationUrl: currEvent.registrationUrl,
     content: currEvent.content,
+    descr: currEvent.description,
   };
 
   return (
-    <div className="event-detail px-5 md:px-28 lg:px-64 py-10">
-      <MaterialCard className="w-full h-full rounded-t-md relative">
-        <div className="overview-card flex flex-col md:flex-row">
-          <Tag categories={parsedCurrEvent.categories} />
-          <div className="w-full h-1/3 md:w-2/3 md:h-full image-container relative">
-            <Image src={parsedCurrEvent.coverImageUrl} layout="fill" priority />
-          </div>
-          <div className="h-2/3 md:w-1/3 md:h-full px-5 pt-3 pb-5">
-            <div className="h-1/2">
-              <h2 className="text-lg font-bold">Event time</h2>
-              <p>{`${parsedCurrEvent.startDatetime} - ${parsedCurrEvent.endDatetime}`}</p>
-              <h2 className="text-lg mt-1 font-bold">Location</h2>
-              <p>{parsedCurrEvent.location}</p>
-              <h2 className="text-lg mt-1 font-bold">Creator</h2>
-              <p>{parsedCurrEvent.creator}</p>
-            </div>
-            <div className="h-1/2 flex flex-col justify-end">
-              <div className="h-3/4">
-                <p className="text-2xl font-bold text-justify title w-full">
-                  {parsedCurrEvent.title}
-                </p>
-              </div>
-              <div className="h-1/4">
-                <Button
-                  variant="contained"
-                  className="w-full h-full"
-                  onClick={() => {
-                    window.location.href = parsedCurrEvent.registrationUrl;
-                  }}
-                >
-                  Register
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </MaterialCard>
-      <MaterialCard className="mt-5 w-full h-full p-5 rounded-b-md">
-        <MarkdownDisplay>{parsedCurrEvent.content}</MarkdownDisplay>
-      </MaterialCard>
-    </div>
+    <DetailPageContainer>
+      <HeadingCard
+        title={parsedCurrEvent.title}
+        details={[
+          {
+            subHeading: 'Event Time',
+            info: `${parsedCurrEvent.startDatetime} - ${parsedCurrEvent.endDatetime}`,
+          },
+          {
+            subHeading: 'Location',
+            info: parsedCurrEvent.location,
+          },
+          {
+            subHeading: 'Description',
+            info: parsedCurrEvent.descr,
+          },
+        ]}
+        categories={parsedCurrEvent.categories}
+        coverImageUrl={parsedCurrEvent.coverImageUrl}
+      />
+      {parsedCurrEvent.content && <MarkdownDisplay>{parsedCurrEvent.content}</MarkdownDisplay>}
+    </DetailPageContainer>
   );
 };
 

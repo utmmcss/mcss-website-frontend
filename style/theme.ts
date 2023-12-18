@@ -94,6 +94,73 @@ const theme = createTheme(base, {
         },
       },
     },
+    MuiCard: {
+      defaultProps: {
+        elevation: 7,
+      },
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          borderRadius: '0.375rem',
+
+          flexDirection: 'column',
+          [base.breakpoints.up('md')]: {
+            flexDirection: 'row',
+          },
+        },
+      },
+    },
+    MuiCardMedia: {
+      styleOverrides: {
+        root: {
+          width: '100%',
+          minHeight: '200px',
+          position: 'relative',
+          backgroundColor: COLORS.LIGHT_PURPLE,
+          [base.breakpoints.up('md')]: {
+            flexDirection: 'row',
+            maxWidth: '66%',
+          },
+
+          '.tag': {
+            position: 'absolute',
+            padding: '10px 15px',
+            zIndex: 1000,
+            inset: '0 0 auto 0',
+            color: 'white',
+            background: COLORS.PRIMARY_TRANSLUCENT,
+          },
+        },
+      },
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          wordWrap: 'break-word',
+
+          '.MuiTypography-h1': {
+            fontWeight: 700,
+            fontSize: '1.5rem',
+            lineHeight: '2rem',
+            marginBottom: '1rem',
+          },
+
+          '.MuiTypography-h2': {
+            fontWeight: 700,
+            fontSize: '1.125rem',
+            lineHeight: '1.75rem',
+          },
+
+          '.MuiButton-root': {
+            minHeight: '40px',
+            marginTop: '1rem',
+          },
+        },
+      },
+    },
   },
 });
 

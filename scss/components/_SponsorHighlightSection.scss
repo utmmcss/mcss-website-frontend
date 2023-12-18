@@ -1,4 +1,4 @@
-.partner-highlight-section {
+.sponsor-highlight-section {
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
@@ -21,7 +21,7 @@
     }
   }
 
-  .partner-card {
+  .sponsor-card {
     display: inline-block;
     margin: 10px;
 
@@ -56,7 +56,7 @@
     }
   }
 }
-.mobile-partner-card {
+.mobile-sponsor-card {
   .image-container {
     position: relative;
     img {
