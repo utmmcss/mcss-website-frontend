@@ -1,68 +1,124 @@
 import { FC } from 'react';
 
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Divider from '@mui/material/Divider';
+import { ThemeProvider } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 
 import Image from 'next/image';
 import Deerfield from 'public/deerfield.png'; // image from https://www.soundsolutions.ca/projects/featured-exterior-cladding-projects/deerfield-hall-univeristy-of-toronto-mississauga-campus
 import Experience from 'public/experience.png';
 
-const theme = createTheme({
-  typography: {
-    fontFamily: ['Segoe UI'].join(','),
-  },
-});
+import { aboutSectionTheme } from '../../style/theme';
 
 const AboutUsSection: FC = () => (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={aboutSectionTheme}>
     <Container
       maxWidth={false}
       disableGutters
       id="about"
-      className="about-us-section flex flex-col items-center lg:items-stretch lg:flex-row gap-8"
+      sx={{
+        display: 'flex',
+        flexDirection: { lg: 'row' },
+        alignItems: { md: 'center', lg: 'stretch' },
+        gap: '2rem',
+      }}
     >
-      <div className="header-img w-full lg:w-1/3 lg:min-h-full  hidden lg:block">
+      <Box
+        sx={{
+          width: { lg: 1 / 3, md: 'full' },
+          minHeight: { lg: 'full' },
+          display: { xs: 'none', lg: 'block' },
+        }}
+      >
         <Image
           src={Deerfield}
           alt="Deerfield Hall"
           className="min-h-full rounded-lg overflow-hidden"
           draggable="false"
         />
-      </div>
+      </Box>
 
-      <div className="mt-10 md:w-4/5 lg:mt-0 lg:w-2/3 flex flex-col justify-between xl:justify-center text-center md:text-left">
-        <div>
+      <Box
+        sx={{
+          marginTop: 0,
+          width: { md: 4 / 5, lg: 2 / 3 },
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: { lg: 'space-between', xl: 'center' },
+          textAlign: { md: 'left' },
+        }}
+      >
+        <Box sx={{ textAlign: { xs: 'center', sm: 'left' } }}>
           <Typography
-            sx={{ fontSize: { lg: 23.5, xs: 35 } }}
-            className="md:inline-block h-1/3 lg:mr-5 lg:text-center flex-col"
+            sx={{
+              fontSize: { lg: 23.5, xs: 35 },
+              display: { md: 'inline-block' },
+              flexDirection: 'column',
+              height: { md: '1/3' },
+              marginRight: { lg: 2 },
+              textAlign: { lg: 'center' },
+            }}
           >
             ABOUT US
           </Typography>
-          <hr className="inline-block h-1 w-56 bg-purple-600" />
-        </div>
+          <Divider
+            sx={{
+              display: 'inline-block',
+              height: '0.25rem',
+              width: '14rem',
+              backgroundColor: '#805ad5',
+            }}
+          />
+        </Box>
 
-        <div className="flex items-center my-5 lg:my-0">
-          <div className="w-1/2">
-            <p className="hidden md:block md:text-4xl mt-3 mb-3 lg:text-6xl font-bold">
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            marginY: { xs: 5, lg: 0 },
+          }}
+        >
+          <Box sx={{ width: 1 / 2 }}>
+            <Typography
+              sx={{
+                display: { xs: 'none', md: 'block' },
+                fontSize: { md: '2.25rem', lg: '3.75rem' },
+                lineHeight: { md: '2.5rem', lg: '1' },
+                marginTop: '0.75rem',
+                marginBottom: '0.75rem',
+                fontWeight: 'bold',
+              }}
+            >
               FOR THE STUDENTS
-            </p>
-            <p className="hidden md:block lg:hidden text-lg text-purple-700 font-semibold">
-              Academic Society
-            </p>
-          </div>
-          <div className="md:block w-1/4 md:w-1/6 m-auto hidden">
+            </Typography>
+          </Box>
+          <Box className="md:block w-1/4 md:w-1/6 m-auto hidden">
             <Image src={Experience} alt="Experience" draggable="false" />
-          </div>
-        </div>
-        <p className="hidden lg:inline-block text-lg text-purple-700 font-semibold  xl:pb-5">
+          </Box>
+        </Box>
+        <Typography
+          sx={{
+            display: { xs: 'none', md: 'block', lg: 'inline-block' },
+            fontWeight: 600,
+            paddingBottom: { xl: '1.25rem' },
+            fontSize: '1.125rem',
+            lineHeight: '1.75rem',
+            color: '#7E22CE',
+          }}
+        >
           Academic Society
-        </p>
-        <div className="flex">
+        </Typography>
+        <Box sx={{ display: 'flex' }}>
           <Typography
-            sx={{ paddingX: { xs: 2, sm: 0, md: 0, lg: 0 } }}
+            sx={{
+              paddingX: { xs: 2, sm: 0, md: 0, lg: 0 },
+              fontWeight: 400,
+              fontSize: '1rem',
+              textAlign: 'left',
+            }}
             paragraph
-            className="text-med font-normal text-left lg:text-justify"
           >
             Hello students and welcome! UTM Mathematical and Computational Sciences Society (MCSS)
             is the official academic society for the Mathematics and Computational Sciences
@@ -73,8 +129,8 @@ const AboutUsSection: FC = () => (
             between the students themselves, and encourage faculty and student interaction outside
             of the formal lecture, tutorial, and lab settings.
           </Typography>
-        </div>
-      </div>
+        </Box>
+      </Box>
     </Container>
   </ThemeProvider>
 );

@@ -2,6 +2,12 @@ import { createTheme } from '@mui/material/styles';
 
 import COLORS from 'style/colors';
 
+const aboutSectionTheme = createTheme({
+  typography: {
+    fontFamily: ['Segoe UI'].join(','),
+  },
+});
+
 const base = createTheme({
   palette: {
     primary: {
@@ -164,4 +170,4 @@ const theme = createTheme(base, {
   },
 });
 
-export default theme;
+export { theme, aboutSectionTheme };
