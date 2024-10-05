@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import Image from 'next/image';
 import Deerfield from 'public/deerfield.png'; // image from https://www.soundsolutions.ca/projects/featured-exterior-cladding-projects/deerfield-hall-univeristy-of-toronto-mississauga-campus
-import Experience from 'public/experience.png';
 
 const AboutUsSection: FC = () => (
   <div
@@ -26,9 +25,6 @@ const AboutUsSection: FC = () => (
         <div className="w-1/2">
           <p className="text-2xl md:text-4xl mt-3 mb-3 lg:text-6xl font-bold">FOR THE STUDENTS</p>
           <p className="lg:hidden text-lg text-purple-700 font-semibold">Academic Society</p>
-        </div>
-        <div className="w-1/4 md:w-1/6 m-auto">
-          <Image src={Experience} alt="Experience" draggable="false" />
         </div>
       </div>
       <p className="hidden lg:inline-block text-lg text-purple-700 font-semibold xl:pb-5">
