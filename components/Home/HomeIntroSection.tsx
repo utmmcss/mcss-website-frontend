@@ -39,7 +39,7 @@ const HomeIntroSection = () => {
           flexDirection={{ xs: 'column-reverse', md: 'row' }}
           gap={2}
         >
-          <LinearProgress sx={{ width: '14rem' }} />
+          <LinearProgress sx={{ width: '14rem' }} variant="determinate" />
           <Typography variant="h2">University of Toronto Mississauga</Typography>
         </Box>
         <Typography variant="h1">Mathematical & Computational Sciences Society</Typography>
