@@ -9,7 +9,7 @@ import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 
-import Logo from '@public/MCSSText.svg';
+import Logo from '@public/MCSS.svg';
 import { getAllBlogs } from '@store/blogSlice';
 import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
@@ -77,7 +77,7 @@ const NavBar: FC = () => {
       style={{ zIndex: 1000 }}
     >
       {!showSearchBar && (
-        <div className="flex item-center justify-start cursor-pointer w-20 md:mr-5">
+        <div className="flex item-center justify-start cursor-pointer w-24 md:mr-5">
           <Button className="p-0">
             <Image src={Logo} alt="MCSS logo" onClick={() => router.push('/')} draggable="false" />
           </Button>
