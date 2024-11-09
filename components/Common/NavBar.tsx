@@ -10,7 +10,6 @@ import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
 
 import Logo from '@public/MCSS.svg';
-import { getAllBlogs } from '@store/blogSlice';
 import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { useIsMobile } from '@utils/hooks';
@@ -40,33 +39,26 @@ const NavBar: FC = () => {
   const [showDrawer, setShowDrawer] = useState(false);
   const router = useRouter();
   const { events } = useAppSelector((state) => state.events);
-  const { blogs } = useAppSelector((state) => state.blogs);
   const { data: sponsors } = useSponsors();
   const links = [
     { label: 'Events', href: '/Events' },
-    { label: 'Blogs', href: '/Blogs' },
     { label: 'Sponsors', href: '/Sponsors' },
   ];
-  const searchBarWhiteList = ['/Events', '/Blogs', '/Sponsors'];
+  const searchBarWhiteList = ['/Events', '/Sponsors'];
   const partialRouteMatch = searchBarWhiteList.some((route) => router.pathname.includes(route));
   const options = [
     ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
-    ...Object.entries(blogs).map(([id, { title }]) => ({ label: `Blog: ${title}`, value: id })),
     ...(sponsors?.data
       ? Object.entries(sponsors.data).map(([, { id, attributes }]) => ({
-        label: `Sponsors: ${attributes.title}`,
-        value: id.toString(),
-      }))
+          label: `Sponsors: ${attributes.title}`,
+          value: id.toString(),
+        }))
       : []),
   ];
 
   useEffect(() => {
     if (_.isEmpty(events)) {
       dispatch(getAllEvents());
-    }
-
-    if (_.isEmpty(blogs)) {
-      dispatch(getAllBlogs());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -114,8 +106,6 @@ const NavBar: FC = () => {
               setValue(selectedOption);
               if (selectedOption?.label.includes('Event:')) {
                 router.push(`/Events/${selectedOption.value}`);
-              } else if (selectedOption?.label.includes('Blog:')) {
-                router.push(`/Blogs/${selectedOption.value}`);
               } else if (selectedOption?.label.includes('Sponsors:')) {
                 router.push(`/Sponsors/${selectedOption.value}`);
               }

@@ -3,11 +3,9 @@ import { useEffect } from 'react';
 import Container from '@mui/material/Container';
 
 import AboutUsSection from '@components/Home/AboutUsSection';
-import BlogsSection from '@components/Home/BlogsSection';
 import HomeIntroSection from '@components/Home/HomeIntroSection';
 import TeamMemberSection from '@components/Home/TeamMemberSection';
 import WhatWeDoSection from '@components/Home/WhatWeDoSection';
-import { getAllBlogs } from '@store/blogSlice';
 import { getAllEvents } from '@store/eventSlice';
 import { useAppDispatch } from '@store/hooks';
 import { getAllMembers } from '@store/memberSlice';
@@ -18,7 +16,6 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getAllEvents());
-    dispatch(getAllBlogs());
     dispatch(getAllMembers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
