@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 
 import Filter from '@components/Common/Filter';
 import SponsorHighlightSection from '@components/Sponsors/SponsorHighlightSection';

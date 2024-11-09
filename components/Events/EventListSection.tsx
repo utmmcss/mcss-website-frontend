@@ -1,7 +1,6 @@
 import { FC } from 'react';
 
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 
 import MaterialCard from '@components/Common/MaterialCard';
 import Tag from '@components/Common/Tag';

@@ -50,9 +50,9 @@ const NavBar: FC = () => {
     ...Object.entries(events).map(([id, { title }]) => ({ label: `Event: ${title}`, value: id })),
     ...(sponsors?.data
       ? Object.entries(sponsors.data).map(([, { id, attributes }]) => ({
-          label: `Sponsors: ${attributes.title}`,
-          value: id.toString(),
-        }))
+        label: `Sponsors: ${attributes.title}`,
+        value: id.toString(),
+      }))
       : []),
   ];
 

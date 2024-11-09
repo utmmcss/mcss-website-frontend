@@ -1,7 +1,6 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 import MaterialCard from '@components/Common/MaterialCard';
-import { formatDate } from '@utils/helper';
 import classNames from 'classnames';
 import useSponsors from 'hooks/useSponsors';
 import Image from 'next/image';

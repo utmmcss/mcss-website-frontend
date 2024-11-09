@@ -1,8 +1,6 @@
 import { FC } from 'react';
 
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import Button from '@mui/material/Button';
 
 import MaterialCard from '@components/Common/MaterialCard';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
