@@ -1,23 +1,17 @@
 {
-  // Spell checker
   "cSpell.words": ["Deerfield", "Esports", "linebreak", "Mailchimp", "MCSS", "rehype"],
   "cSpell.language": "en",
-  // Use prettier for code formatting
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  // Fix all autofixable errors on file save
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   },
-  // Fix formatting issues on file save
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "eslint.format.enable": true,
-  // Enable code suggestions
   "editor.quickSuggestions": {
     "comments": "on",
     "strings": "on",
     "other": "on"
   },
-  // Auto save files after TS refactoring
   "files.refactoring.autoSave": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.validate.enable": true,
@@ -26,7 +20,6 @@
   "typescript.suggest.completeJSDocs": true,
   "javascript.validate.enable": true,
   "typescript.preferences.importModuleSpecifier": "non-relative",
-  // Exclude files from watcher
   "files.watcherExclude": {
     "**/.git/objects/**": true,
     "**/.git/subtree-cache/**": true,

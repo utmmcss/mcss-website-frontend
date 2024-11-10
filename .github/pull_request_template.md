@@ -1,9 +1,12 @@
-# What's Inside
+# Description
 
-- [ ] Placeholder 1
-- [ ] Placeholder 2
+- Describe what changes you made
 
-... full details of acceptance criteria documented in the linked GitHub issue
+- Link the ticket here
+
+## Screenshot(s)
+
+- If applicable, provide screenshots of your change
 
 [//]: <> 'Self Checklist When Opening a Pull Request'
 
