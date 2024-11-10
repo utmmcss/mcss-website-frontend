@@ -1,18 +1,9 @@
 import { CategoryResponse, DataAttributes } from '../types';
-import { APIResponseBlog } from '../types/Blogs';
 import { APIResponseEvent } from '../types/Events';
 import { MemberResponse } from '../types/Members';
 import { APIResponseSponsor } from '../types/Sponsors';
 
 import { CustomFetch } from './useFetch';
-
-const blogs = (customFetch: CustomFetch) =>
-  ({
-    blogsList: async () => {
-      const res = await customFetch('CMS', 'blogs?populate=*');
-      return res.data as APIResponseBlog;
-    },
-  } as const);
 
 const events = (customFetch: CustomFetch) =>
   ({
@@ -39,7 +30,6 @@ const sponsors = (customFetch: CustomFetch) =>
 
 const config = (customFetch: CustomFetch) =>
   ({
-    ...blogs(customFetch),
     ...events(customFetch),
     ...members(customFetch),
     ...sponsors(customFetch),

@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import EventOutlinedIcon from '@mui/icons-material/EventOutlined';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import Button from '@mui/material/Button';
 
 import HorizontalSkeletonLoader from '@components/Common/HorizontalSkeletonLoader';

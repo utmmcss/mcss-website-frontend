@@ -1,10 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { HashLoader } from 'react-spinners';
 
 import DetailPageContainer from '@components/Common/DetailPageContainer';
 import HeadingCard from '@components/Common/HeadingCard';
 import MarkdownDisplay from '@components/Common/MarkdownDisplay';
-import { formatDate } from '@utils/helper';
 import useSponsors from 'hooks/useSponsors';
 import Error from 'next/error';
 import { useRouter } from 'next/router';

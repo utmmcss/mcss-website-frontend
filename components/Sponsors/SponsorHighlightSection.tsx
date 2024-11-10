@@ -5,7 +5,6 @@ import Button from '@mui/material/Button';
 import MaterialCard from '@components/Common/MaterialCard';
 import MediaQueryContainer from '@components/Common/MediaQueryContainer';
 import Slider from '@components/Common/Slider';
-import { formatDate } from '@utils/helper';
 import useSponsors from 'hooks/useSponsors';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
